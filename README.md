@@ -1,11 +1,148 @@
 # Anonimax
 
-> Fork do [AnonSurf](https://gitlab.com/parrotsec/packages/anonsurf/) original do ParrotSec,
-> com funcionalidades adicionais de privacidade e anonimato.
+**Anonimax** é uma ferramenta de privacidade e anonimato para Linux que redireciona **todo o tráfego de rede do seu computador** pelo [Tor](https://www.torproject.org/), escondendo seu IP real e dificultando o rastreamento da sua navegação.
 
-## Créditos ao projeto original
+> Fork do [AnonSurf](https://gitlab.com/parrotsec/packages/anonsurf/) do ParrotSec, com funcionalidades extras de privacidade.
 
-Este projeto é baseado no **AnonSurf**, criado e mantido pelo time do **ParrotSec**:
+---
+
+## Funciona no meu sistema?
+
+| Sistema operacional | Funciona? |
+|---|---|
+| **Parrot OS** | ✅ Sim — sistema ideal, já tem quase tudo instalado |
+| **Kali Linux** | ✅ Sim |
+| **Ubuntu / Debian** | ✅ Sim, com algumas dependências extras |
+| **Arch / Fedora / outros Linux** | ⚠️ Pode funcionar, mas sem suporte garantido |
+| **Windows 10 / 11 / 7** | ❌ Não — a ferramenta usa tecnologias exclusivas do Linux |
+| **macOS** | ❌ Não |
+
+### Estou no Windows e quero privacidade — o que faço?
+
+Se você usa Windows e quer algo parecido com o Anonimax, as melhores opções são:
+
+- **[Tor Browser](https://www.torproject.org/download/)** — protege só o navegador, mas é fácil de instalar no Windows
+- **[Tails OS](https://tails.boum.org)** — Linux completo que você bota em um pendrive USB e usa em qualquer PC sem instalar nada. É o que jornalistas e ativistas usam para anonimato real. Não deixa nenhum rastro no computador
+- **[Whonix](https://www.whonix.org)** — máquina virtual Linux pré-configurada com Tor que roda dentro do Windows
+- **[ProtonVPN](https://protonvpn.com)** — VPN gratuita confiável (não é Tor, mas esconde seu IP do provedor)
+
+---
+
+## O que o Anonimax faz?
+
+Quando você executa `anonsurf start`, o Anonimax:
+
+1. 🔀 **Troca o endereço MAC** da sua placa de rede por um aleatório
+2. 🌐 **Renova seu IP local** via DHCP
+3. 🕐 **Força o fuso horário para UTC** (evita identificação pelo fuso)
+4. 🔒 **Conecta uma VPN** opcional antes do Tor
+5. 🧅 **Redireciona todo o tráfego pelo Tor**
+6. 🚫 **Bloqueia WebRTC** (impede que o navegador vaze seu IP real)
+7. 📡 **Bloqueia telemetria** do Google, Microsoft e Amazon
+8. 📷 **Desativa câmera e microfone** via módulos do kernel
+
+Quando você executa `anonsurf stop`, tudo é restaurado ao estado original automaticamente.
+
+---
+
+## Comandos
+
+```bash
+anonsurf start              # Ativa proteção completa
+anonsurf stop               # Para e restaura tudo
+anonsurf status             # Mostra o estado atual
+anonsurf restart            # Reinicia (troca circuito Tor)
+anonsurf changeid           # Troca de identidade Tor manualmente
+anonsurf autochange 10      # Troca de identidade a cada 10 minutos
+anonsurf autochange stop    # Para a troca automática
+anonsurf panic              # EMERGÊNCIA: derruba rede, limpa rastros e desliga
+anonsurf proxy set socks5://127.0.0.1:1080   # Configura proxy
+anonsurf proxy unset        # Remove proxy
+anonsurf config list        # Lista todas as configurações
+anonsurf config set block_telemetry true     # Altera uma configuração
+```
+
+### Modo Pânico
+
+```bash
+anonsurf panic
+```
+
+Sequência de emergência: derruba todas as interfaces de rede → para o Tor → limpa as regras de firewall → restaura o MAC original → apaga rastros → **desliga o computador**. Use quando precisar fechar tudo rapidamente.
+
+---
+
+## Interface gráfica
+
+O Anonimax tem uma interface gráfica (GUI) com todos os controles:
+
+- Botão Start / Stop / Restart
+- Painel de status (IP público, estado do Tor, DNS)
+- Checkboxes para ativar/desativar cada funcionalidade individualmente
+
+---
+
+## O que é Tor?
+
+O [Tor](https://www.torproject.org/) é uma rede gratuita e aberta que anonimiza o tráfego de internet passando-o por três servidores intermediários ao redor do mundo antes de chegar ao destino. Cada servidor conhece apenas o anterior e o próximo — nenhum deles vê quem você é e para onde está indo ao mesmo tempo.
+
+O Tor Browser usa essa rede só para o navegador. O Anonimax vai além: coloca **todo o tráfego do sistema** pelo Tor.
+
+---
+
+## Funcionalidades detalhadas
+
+| Funcionalidade | Comando / Config | Padrão |
+|---|---|---|
+| Aleatorizar MAC | `change_mac` | ✅ ativo |
+| Renovar IP local | `renew_ip` | ✅ ativo |
+| Forçar UTC | `force_utc` | ✅ ativo |
+| Bloquear WebRTC | `block_webrtc` | ✅ ativo |
+| Bloquear telemetria | `block_telemetry` | ❌ desativado |
+| Desativar câmera/mic | `disable_camera_mic` | ❌ desativado |
+| Limpeza ao parar | `clean_on_stop` | ❌ desativado |
+| VPN antes do Tor | `use_vpn` | ❌ desativado |
+| Proxy SOCKS5/HTTP | `use_proxy` | ❌ desativado |
+
+Para ativar qualquer opção:
+```bash
+sudo anonsurf config set block_telemetry true
+```
+
+Ou use os checkboxes na interface gráfica.
+
+---
+
+## Instalação
+
+### Dependências
+
+```bash
+# Dependências de execução
+sudo apt install tor iptables macchanger bleachbit network-manager
+
+# Para VPN (opcional)
+sudo apt install openvpn wireguard
+```
+
+### Compilar e instalar
+
+```bash
+# Dependências de compilação
+sudo apt install golang-go cmake g++ qt6-base-dev qt6-declarative-dev qml6-module-qtquick-shapes
+
+# Clonar e instalar
+git clone https://github.com/revdf/anonimax.git
+cd anonimax
+make build
+sudo make install
+```
+
+---
+
+## Créditos
+
+Este projeto é um fork do **AnonSurf**, criado e mantido pela equipe do **[ParrotSec](https://www.parrotsec.org/)**:
 
 | Autor | Contribuição |
 |---|---|
@@ -22,78 +159,6 @@ Licença: GPL-3.0+
 
 ---
 
-## O que este fork adiciona
+## Aviso legal
 
-Em relação ao AnonSurf original, este fork adiciona:
-
-- **MAC Address aleatório** — troca na ativação, restaura ao parar
-- **Renovação de IP local** — via dhclient no start/stop
-- **VPN opcional** — conecta antes do Tor (OpenVPN ou WireGuard)
-- **Bloquear WebRTC** — impede vazamento de IP real pelo navegador
-- **Modo Pânico** (`anonsurf panic`) — derruba rede, limpa rastros, desliga
-- **Limpeza automática ao parar** — cache, logs, arquivos temporários, DNS
-- **Auto-troca de identidade** (`anonsurf autochange <N>`) — a cada N minutos
-- **Forçar Timezone UTC** — evita identificação pelo fuso horário
-- **Bloquear telemetria** — IPs conhecidos do Google, Microsoft etc.
-- **Desativar microfone/câmera** — via módulos do kernel
-- **Suporte a Proxy** — HTTP, HTTPS e SOCKS5, antes ou depois do Tor
-
-Todas as opções podem ser configuradas tanto pelo **terminal** quanto pela **interface gráfica**.
-
----
-
-## Comandos
-
-```
-anonsurf start            Inicia proteção completa
-anonsurf stop             Para e restaura configurações originais
-anonsurf status           Mostra estado de tudo
-anonsurf changeid         Troca identidade Tor manualmente
-anonsurf autochange <N>   Troca identidade a cada N minutos
-anonsurf mac              Liga/desliga troca de MAC
-anonsurf vpn              Configura VPN opcional
-anonsurf ip               Renova IP local
-anonsurf panic            Modo Pânico: para tudo e limpa rastros
-anonsurf proxy set <addr> Configura proxy (ex: socks5://IP:PORTA)
-anonsurf proxy unset      Remove proxy configurado
-```
-
----
-
-## Como compilar
-
-Dependências de build: `cmake`, `g++`, `golang-go`, `git`, `qt6-base-dev`, `qt6-declarative-dev`, `qml6-module-qtquick-shapes`
-
-Dependências de runtime: `bleachbit`, `nyx`, `sudo`, `tor`, `iptables`, `network-manager`, `procps`, `systemd`, `macchanger`, `dhclient`
-
-```bash
-git clone <este repositório>
-cd anonsurf-enhanced && make build && sudo make install
-make check
-```
-
-Para compilar apenas a GUI:
-```bash
-make gui
-build/gui/anonsurf-gui
-```
-
----
-
-## Estrutura do código
-
-- `src/cmd/` — pontos de entrada dos comandos Go
-- `src/internal/anonsurf/` — orquestração do ciclo de vida
-- `src/internal/dns/`, `firewall/`, `ipv6/`, `tor/` — domínios de rede
-- `src/internal/command/`, `fileops/`, `systemd/` — adaptadores do SO
-- `gui/` — interface Qt 6/QML
-- `configs/` — arquivos de configuração
-
----
-
-## Referências
-
-- [Vivek Gite — dhclient hook script](https://www.cyberciti.biz/faq/dhclient-etcresolvconf-hooks/)
-- [Bridges padrão do Tor](https://gitlab.torproject.org/tpo/anti-censorship/team/-/wikis/Default-Bridges)
-- [Tails OS](https://tails.boum.org) — referência para Modo Pânico e limpeza de rastros
-- [Whonix](https://www.whonix.org) — referência para isolamento de rede
+Esta ferramenta é para uso em **segurança pessoal, privacidade e fins educacionais**. O uso para atividades ilegais é de responsabilidade exclusiva do usuário. Anonimato não é garantia absoluta de segurança — use com bom senso.
