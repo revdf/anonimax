@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonimax — APT Repository</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: #58a6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: #161b22;
+      border-bottom: 1px solid #30363d;
+      padding: 2rem;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      color: #e6edf3;
+      letter-spacing: 2px;
+    }
+    header p {
+      color: #8b949e;
+      margin-top: .5rem;
+      font-size: 1rem;
+    }
+    .badge {
+      display: inline-block;
+      background: #0f3460;
+      color: #58a6ff;
+      border: 1px solid #1f6feb;
+      border-radius: 20px;
+      padding: .2rem .9rem;
+      font-size: .8rem;
+      margin-top: .8rem;
+      letter-spacing: 1px;
+    }
+
+    main { max-width: 860px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      color: #e6edf3;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid #30363d;
+      padding-bottom: .5rem;
+      margin-bottom: 1.2rem;
+    }
+    p { color: #8b949e; margin-bottom: .8rem; }
+
+    .steps { counter-reset: step; }
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.2rem;
+      align-items: flex-start;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: #1f6feb;
+      color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold; font-size: .85rem;
+    }
+    .step-body { flex: 1; }
+    .step-body strong { color: #e6edf3; display: block; margin-bottom: .3rem; }
+
+    pre {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      overflow-x: auto;
+      font-family: 'Cascadia Code', 'Fira Code', monospace;
+      font-size: .88rem;
+      color: #e6edf3;
+      margin: .5rem 0;
+    }
+    .comment { color: #8b949e; }
+    .cmd { color: #79c0ff; }
+    .str { color: #a5d6ff; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .9rem;
+    }
+    th {
+      text-align: left;
+      color: #8b949e;
+      font-weight: 600;
+      padding: .5rem .8rem;
+      border-bottom: 1px solid #30363d;
+      text-transform: uppercase;
+      font-size: .78rem;
+      letter-spacing: 1px;
+    }
+    td {
+      padding: .6rem .8rem;
+      border-bottom: 1px solid #21262d;
+      color: #c9d1d9;
+    }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { font-family: monospace; color: #79c0ff; }
+
+    .pkg-size { color: #8b949e; font-size: .85rem; }
+
+    .warning {
+      background: #161b22;
+      border: 1px solid #d29922;
+      border-left: 4px solid #d29922;
+      border-radius: 6px;
+      padding: 1rem 1.2rem;
+      color: #e3b341;
+      font-size: .9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid #21262d;
+      color: #484f58;
+      font-size: .85rem;
+    }
+    footer a { color: #58a6ff; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ANONIMAX</h1>
+  <p>Repositório APT oficial — Parrot OS / Debian</p>
+  <span class="badge">v6.1.0-anonimax1</span>
+</header>
+
+<main>
+
+  <section>
+    <h2>Instalação via APT</h2>
+    <p>Configure o repositório uma vez e use <code>apt</code> normalmente para instalar e receber atualizações automáticas.</p>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Adicionar a chave GPG do repositório</strong>
+          <pre><span class="cmd">curl</span> <span class="str">-fsSL https://revdf.github.io/anonimax/KEY.gpg</span> \
+  | sudo gpg --dearmor -o /usr/share/keyrings/anonimax.gpg</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Adicionar o repositório às fontes do APT</strong>
+          <pre><span class="cmd">echo</span> <span class="str">"deb [arch=amd64 signed-by=/usr/share/keyrings/anonimax.gpg] \
+  https://revdf.github.io/anonimax stable main"</span> \
+  | sudo tee /etc/apt/sources.list.d/anonimax.list</pre>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Instalar</strong>
+          <pre><span class="cmd">sudo apt update</span>
+<span class="cmd">sudo apt install</span> anonsurf-cli        <span class="comment"># CLI + daemon</span>
+<span class="cmd">sudo apt install</span> anonsurf-gui        <span class="comment"># Interface gráfica (opcional)</span></pre>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2>Pacotes disponíveis</h2>
+    <table>
+      <tr>
+        <th>Pacote</th>
+        <th>Versão</th>
+        <th>Descrição</th>
+        <th>Tamanho</th>
+      </tr>
+      <tr>
+        <td>anonsurf</td>
+        <td>6.1.0+anonimax1</td>
+        <td>Daemon e configurações do sistema</td>
+        <td class="pkg-size">1.9 MB</td>
+      </tr>
+      <tr>
+        <td>anonsurf-cli</td>
+        <td>6.1.0+anonimax1</td>
+        <td>Interface de linha de comando</td>
+        <td class="pkg-size">2.7 MB</td>
+      </tr>
+      <tr>
+        <td>anonsurf-gui</td>
+        <td>6.1.0+anonimax1</td>
+        <td>Interface gráfica Qt6</td>
+        <td class="pkg-size">197 KB</td>
+      </tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>Verificar ambiente antes de instalar</h2>
+    <p>Rode o script de diagnóstico para confirmar que todas as dependências estão presentes:</p>
+    <pre><span class="cmd">curl</span> <span class="str">-fsSL https://raw.githubusercontent.com/revdf/anonimax/master/anonimax-doctor.sh</span> | bash</pre>
+  </section>
+
+  <section>
+    <h2>Remover o repositório</h2>
+    <pre><span class="cmd">sudo rm</span> /etc/apt/sources.list.d/anonimax.list \
+         /usr/share/keyrings/anonimax.gpg
+<span class="cmd">sudo apt update</span></pre>
+  </section>
+
+  <section>
+    <div class="warning">
+      ⚠️ &nbsp;Este repositório é independente do ParrotSec. O Anonimax é um fork do
+      <a href="https://gitlab.com/parrotsec/packages/anonsurf/" target="_blank">AnonSurf</a>
+      com funcionalidades extras. Todos os créditos ao time original do ParrotSec.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>
+    <a href="https://github.com/revdf/anonimax" target="_blank">GitHub</a> ·
+    <a href="https://github.com/revdf/anonimax/releases" target="_blank">Releases</a> ·
+    Licença GPL-3.0+
+  </p>
+  <p style="margin-top:.5rem">Fork do <a href="https://gitlab.com/parrotsec/packages/anonsurf/">AnonSurf</a> por ParrotSec</p>
+</footer>
+
+</body>
+</html>

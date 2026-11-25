@@ -1,0 +1,43 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+Architectures: amd64
+Codename: stable
+Components: main
+Date: Wed, 25 Nov 2026 17:39:38 +0000
+Description: Anonimax APT Repository
+Label: Anonimax
+Origin: Anonimax
+Suite: stable
+MD5Sum:
+ a9eecb24f039802453a691426d54fdc1              177 Release
+ e6c10ff46c169124e3f9e0bdbebfd059             3280 main/binary-amd64/Packages
+ 5c24f59400fbee0745d41f828989d8f7             1506 main/binary-amd64/Packages.gz
+SHA1:
+ f1f4a88f0ad5cb59aef6cfa37ca0020192295bf8              177 Release
+ f0e7d5137724c0f52966ba3b42b446b903e7d297             3280 main/binary-amd64/Packages
+ b7b1aeb0188759667e75800d069f8188e2cc1ce0             1506 main/binary-amd64/Packages.gz
+SHA256:
+ 9a71c57a30ba111f06ef03fdf43c446203d1579d9b3ba801f1c14430a3e13ad0              177 Release
+ cd5af5402e8b0ba718a477af195b12f3ce61d146ad491ea92cd3c75f6a5754a8             3280 main/binary-amd64/Packages
+ 9bf696595653c9a7f7f6b1b426b070e7b224fe8dd6f07e5e4847ef7a35d31d1f             1506 main/binary-amd64/Packages.gz
+SHA512:
+ 3efc5f7f48cee52fa9cf5715c5c4bd1454557ea049c245f3b9b7f228621e4073c6c5fc042596621528427cde762c4308500b79829a312a087659ea34503d99d1              177 Release
+ 99e82b6ea8d4bad195edbbb68709639adf5c947cbd1639fbb6d06baa508eec118966d1aa361035544eb1d9cd4214fa763bf4cf233e3e7020d6f6f7216a14983f             3280 main/binary-amd64/Packages
+ 50f621aaa8da0065a60a94185de47379f65236f91c5a27a9384fb0363a34eda7a5a04014a8887f103cc92e87648971ac658974eee98b6cb7d37c014111bd1729             1506 main/binary-amd64/Packages.gz
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEhFh17VX2epNV+CYVXvgK8k8f8vwFAmsHHVoACgkQXvgK8k8f
+8vxiLQ/9FjbhYob24euod62PCXUW9Y+4MGGnlR4g/xgtAfPPIESSCV0lPS91ucQW
+BwFgJ5AiK5NJmmS6sXPHh2YRUcAlmD+RjgKBT2KTx8A0ExpZCrAdJT8hxAaFvvSC
+BGENh8HN92bCyWzBsfMC39TWpfi5LPValLxPJ2U4wQu03/tYEZ5nZFub/cVUcBLd
+1YW1ucFO6nK74r4e6pvMYjAR9ZAFOUPkfUzhIzHaKCu3W6iXPo5qyBCVlybK0xgy
+o8b8YXZh0cSLYAkG7vX5ze6blX4DWbK1IKxzewTCOQk6NxNryH4bGiQrY4iPlpwH
+iAqiMdaA48ttVILVy7kKUp84i9Uo2fn71GOOQwyPZlmRkaZFGnSMKuUJd/VPSYhU
++wdYVG2OLqk3fJRRPvL95kMsWL6NWnpAiXdI4I+88ksfbFK7TfVblhkkYujRqCET
+xLDLkGGPtmzyjSas+wOrNdQbA58ZgHzdvJRuoHgjDOpalmViD2zgRHtGYaZBisTE
+X+F9TgC0lNQgpivgV/DRCjuquuKyu30R81ODJ2aKCpzwoC1PoHRowsTR6LD+pTq/
+WwCO1+aBqCVqrxU6tVt5ipWGuZSJw7Gs8kIFYC6MLSaMO0z4g6P2DapXifK8cGnf
+/9OCYcwD6H1YDf4iOovNorgmskPdjUtmh6ARoUwM+o8IVi1Lnvs=
+=ilEy
+-----END PGP SIGNATURE-----
