@@ -27,7 +27,21 @@ type Config struct {
 	ListPlainPorts      string
 	HTTPProxyAddress    string
 	HTTPProxyCredential string
-	ProxyIsHTTPS        bool
+	ProxyIsHTTPS          bool
+	Socks5ProxyAddress    string
+	Socks5ProxyCredential string
+	UseProxy              bool
+	ProxyBeforeTor        bool
+	ChangeMac             bool
+	RenewIP               bool
+	UseVPN                bool
+	VPNConfigPath         string
+	NetworkInterface      string
+	BlockWebRTC           bool
+	CleanOnStop           bool
+	ForceUTC              bool
+	BlockTelemetry        bool
+	DisableCameraMic      bool
 }
 
 // Default mirrors configs/anonsurf.cfg so missing optional values keep Parrot's shipped behavior.
@@ -41,7 +55,21 @@ func Default() Config {
 		ListPlainPorts:      "23,109,110,143",
 		HTTPProxyAddress:    "",
 		HTTPProxyCredential: "",
-		ProxyIsHTTPS:        false,
+		ProxyIsHTTPS:          false,
+		Socks5ProxyAddress:    "",
+		Socks5ProxyCredential: "",
+		UseProxy:              false,
+		ProxyBeforeTor:        true,
+		ChangeMac:             true,
+		RenewIP:               true,
+		UseVPN:                false,
+		VPNConfigPath:         "",
+		NetworkInterface:      "",
+		BlockWebRTC:           true,
+		CleanOnStop:           false,
+		ForceUTC:              true,
+		BlockTelemetry:        false,
+		DisableCameraMic:      false,
 	}
 }
 
@@ -132,6 +160,34 @@ func (cfg *Config) apply(key, value string) error {
 		cfg.HTTPProxyCredential = value
 	case "proxy_is_https":
 		return setBool(&cfg.ProxyIsHTTPS, key, value)
+	case "socks5_proxy_address":
+		cfg.Socks5ProxyAddress = value
+	case "socks5_proxy_credential":
+		cfg.Socks5ProxyCredential = value
+	case "use_proxy":
+		return setBool(&cfg.UseProxy, key, value)
+	case "proxy_before_tor":
+		return setBool(&cfg.ProxyBeforeTor, key, value)
+	case "change_mac":
+		return setBool(&cfg.ChangeMac, key, value)
+	case "renew_ip":
+		return setBool(&cfg.RenewIP, key, value)
+	case "use_vpn":
+		return setBool(&cfg.UseVPN, key, value)
+	case "vpn_config_path":
+		cfg.VPNConfigPath = value
+	case "network_interface":
+		cfg.NetworkInterface = value
+	case "block_webrtc":
+		return setBool(&cfg.BlockWebRTC, key, value)
+	case "clean_on_stop":
+		return setBool(&cfg.CleanOnStop, key, value)
+	case "force_utc":
+		return setBool(&cfg.ForceUTC, key, value)
+	case "block_telemetry":
+		return setBool(&cfg.BlockTelemetry, key, value)
+	case "disable_camera_mic":
+		return setBool(&cfg.DisableCameraMic, key, value)
 	default:
 		// Typos in privacy-related settings should fail loudly instead of weakening the setup.
 		return fmt.Errorf("unknown config key %q", key)

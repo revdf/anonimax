@@ -28,7 +28,7 @@ Window {
     maximumWidth: root.width
     minimumHeight: root.preferredHeight
     maximumHeight: root.preferredHeight
-    title: "About AnonSurf"
+    title: "About Anonimax"
     color: Theme.bgPanel
     flags: Qt.Dialog
 

@@ -58,8 +58,11 @@ var rootHelpEntries = [...]struct {
 	{name: "restart", options: "[-k]"},
 	{name: "status", options: "[-n | --json]"},
 	{name: "changeid"},
+	{name: "autochange", options: "<N|stop>"},
+	{name: "proxy", options: "<set|unset>"},
 	{name: "ip", options: "[--json]"},
 	{name: "monitor"},
+	{name: "panic", options: "[--force]"},
 	{name: "boot", options: "<action>"},
 }
 
@@ -101,6 +104,8 @@ func writeRootHelp(output io.Writer, root *cobra.Command) {
 		)
 	}
 	fmt.Fprintf(output, "\n  %sActions%s   boot enable | disable | status\n", muted, reset)
+	fmt.Fprintf(output, "            autochange <N> | stop\n")
+	fmt.Fprintf(output, "            proxy set <url> | unset\n")
 	fmt.Fprintf(output, "  %sFlags%s     -k, --safe-kill   -n, --nyx\n", muted, reset)
 	fmt.Fprintln(output, "            -h, --help        -v, --version")
 	fmt.Fprintln(output, "            --json           --verbose")

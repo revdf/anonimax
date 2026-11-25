@@ -17,7 +17,8 @@ const (
 	procRootPath  = "/proc"
 )
 
-var processNames = []string{
+// ProcessNames lists networked applications terminated by SafeKill and Panic.
+var ProcessNames = []string{
 	"chrome",
 	"dropbox",
 	"skype",
@@ -129,7 +130,7 @@ func killProcesses(names []string) error {
 type Runner struct{}
 
 func (Runner) Run() error {
-	if err := killProcesses(processNames); err != nil {
+	if err := killProcesses(ProcessNames); err != nil {
 		return fmt.Errorf("kill networked applications: %w", err)
 	}
 

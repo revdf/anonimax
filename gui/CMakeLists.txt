@@ -19,6 +19,8 @@ qt_add_executable(anonsurf-gui
     src/anonsurf/anonsurfactions.cpp
     src/anonsurf/anonsurfbackend.cpp
     src/anonsurf/anonsurfbackend.h
+    src/anonsurf/anonsurfconfig.cpp
+    src/anonsurf/anonsurfconfig.h
     src/anonsurf/anonsurfstate.cpp
     src/cli/commandclient.cpp
     src/cli/commandclient.h
@@ -59,6 +61,7 @@ qt_add_qml_module(anonsurf-gui
         qml/controls/ThemedToolTip.qml
         qml/controls/ToggleOption.qml
         qml/dashboard/ActionPanel.qml
+        qml/dashboard/ConfigPanel.qml
         qml/dashboard/ConnectionOverview.qml
         qml/dashboard/ProtectionPanel.qml
         qml/theme/IconPaths.qml

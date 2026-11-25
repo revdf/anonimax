@@ -86,6 +86,41 @@ func bridgeTransport(address string) (string, error) {
 }
 
 func renderProxySettings(options TorrcOptions) (string, error) {
+	if !options.UseProxy {
+		return "", nil
+	}
+
+	socks5Address := strings.TrimSpace(options.Socks5ProxyAddress)
+	socks5Credential := strings.TrimSpace(options.Socks5ProxyCredential)
+	if socks5Address != "" {
+		if err := validateTorrcSingleLine("socks5 proxy address", socks5Address); err != nil {
+			return "", err
+		}
+		if err := validateTorrcSingleLine("socks5 proxy credential", socks5Credential); err != nil {
+			return "", err
+		}
+		var builder strings.Builder
+		builder.WriteString("# Set SOCKS5 proxy\n")
+		builder.WriteString("Socks5Proxy ")
+		builder.WriteString(socks5Address)
+		builder.WriteString("\n")
+		if socks5Credential != "" {
+			user, pass, ok := strings.Cut(socks5Credential, ":")
+			if !ok {
+				user = socks5Credential
+			}
+			builder.WriteString("Socks5ProxyUsername ")
+			builder.WriteString(user)
+			builder.WriteString("\n")
+			if pass != "" {
+				builder.WriteString("Socks5ProxyPassword ")
+				builder.WriteString(pass)
+				builder.WriteString("\n")
+			}
+		}
+		return strings.TrimRight(builder.String(), "\n"), nil
+	}
+
 	address := strings.TrimSpace(options.HTTPProxyAddress)
 	credential := strings.TrimSpace(options.HTTPProxyCredential)
 

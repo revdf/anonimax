@@ -13,7 +13,11 @@ _anonsurf() {
         status) words='-n --nyx --json --verbose -h --help' ;;
         ip) words='--json --verbose -h --help' ;;
         boot) words='enable disable status --verbose -h --help' ;;
-        *) words='start stop restart status changeid ip monitor boot --verbose -h --help -v --version' ;;
+        panic) words='--force --verbose -h --help' ;;
+        autochange) words='stop --verbose -h --help' ;;
+        proxy) words='set unset --verbose -h --help' ;;
+        config) words='list set --verbose -h --help' ;;
+        *) words='start stop restart status changeid autochange proxy config ip monitor panic boot --verbose -h --help -v --version' ;;
     esac
     COMPREPLY=($(compgen -W "$words" -- "$current"))
 }

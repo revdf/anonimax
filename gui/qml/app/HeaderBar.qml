@@ -31,7 +31,7 @@ Item {
             spacing: Theme.spacingTiny
 
             Text {
-                text: "ANONSURF"
+                text: "ANONIMAX"
                 color: Theme.textPrimary
                 font.family: Theme.uiFont
                 font.pixelSize: Theme.headingSize
@@ -41,7 +41,7 @@ Item {
 
             Text {
                 Layout.fillWidth: true
-                text: "Route system traffic through Tor"
+                text: "Advanced privacy routing through Tor"
                 color: Theme.textSecondary
                 font.family: Theme.uiFont
                 font.pixelSize: Theme.detailSize
@@ -52,7 +52,7 @@ Item {
         IconButton {
             Layout.alignment: Qt.AlignVCenter
             iconName: "info"
-            tooltip: "About AnonSurf"
+            tooltip: "About Anonimax"
             onClicked: root.aboutRequested()
         }
     }

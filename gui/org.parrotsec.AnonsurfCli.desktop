@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=AnonSurf CLI
+Name=Anonimax CLI
 Comment=Manage system-wide Tor routing from the terminal
 Exec=anonsurf
 Icon=anonsurf

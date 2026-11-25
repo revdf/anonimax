@@ -8,6 +8,7 @@ ApplicationWindow {
 
     required property var backend
     required property var desktop
+    required property var config
     property bool safeKill: false
     // The tray needs fresh status even while the window is hidden.
     readonly property bool live: window.visible
@@ -27,7 +28,7 @@ ApplicationWindow {
     minimumHeight: 240
     maximumHeight: window.naturalHeight
     visible: true
-    title: "AnonSurf"
+    title: "Anonimax"
     color: Theme.bgWindow
     font.family: Theme.uiFont
 
@@ -97,6 +98,11 @@ ApplicationWindow {
                         else
                             window.safeKill = false;
                     }
+                }
+
+                ConfigPanel {
+                    width: parent.width
+                    config: window.config
                 }
 
                 ConnectionOverview {

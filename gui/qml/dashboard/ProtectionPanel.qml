@@ -90,7 +90,7 @@ Rectangle {
                 Layout.preferredWidth: root.compact ? 150 : 190
                 Layout.fillWidth: false
                 Layout.alignment: Qt.AlignVCenter
-                text: root.backend.anonsurfActive ? "Stop AnonSurf" : "Start AnonSurf"
+                text: root.backend.anonsurfActive ? "Stop Anonimax" : "Start Anonimax"
                 iconName: root.backend.anonsurfActive ? "stop" : "start"
                 tooltip: root.backend.anonsurfActive
                          ? "Removes AnonSurf routing and restores the previous network settings."

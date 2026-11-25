@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Name=AnonSurf GUI
+Name=Anonimax
 Comment=Manage system-wide Tor routing
 Exec=anonsurf-gui
 Icon=anonsurf

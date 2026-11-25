@@ -13,6 +13,9 @@ const (
 	ActiveStatePath    = "/run/anonsurf/active"
 	DNSStatePath       = dns.StatePath
 	TorStatePath       = "/run/anonsurf/tor.was-active"
+	MACStatePath       = "/run/anonsurf/original-mac"
+	TimezoneStatePath  = "/run/anonsurf/original-timezone"
+	AVModulesStatePath = "/run/anonsurf/loaded-av-modules"
 	stateMarkerContent = "anonsurf\n"
 )
 

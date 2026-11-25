@@ -12,18 +12,21 @@ import (
 var defaultTorrcBase string
 
 type TorrcOptions struct {
-	UseSandbox          bool
-	UseSafeSocks        bool
-	RejectPlainPorts    bool
-	PlaintextPorts      string
-	AutoBridge          bool
-	BridgeAddress       string
-	BridgeAddresses     []string
-	Obfs4ProxyPath      string
-	SnowflakeClientPath string
-	HTTPProxyAddress    string
-	HTTPProxyCredential string
-	ProxyIsHTTPS        bool
+	UseSandbox            bool
+	UseSafeSocks          bool
+	RejectPlainPorts      bool
+	PlaintextPorts        string
+	AutoBridge            bool
+	BridgeAddress         string
+	BridgeAddresses       []string
+	Obfs4ProxyPath        string
+	SnowflakeClientPath   string
+	UseProxy              bool
+	HTTPProxyAddress      string
+	HTTPProxyCredential   string
+	ProxyIsHTTPS          bool
+	Socks5ProxyAddress    string
+	Socks5ProxyCredential string
 }
 
 type RoutingConfig struct {
@@ -35,15 +38,18 @@ type RoutingConfig struct {
 
 func TorrcOptionsFromConfig(cfg config.Config) TorrcOptions {
 	return TorrcOptions{
-		UseSandbox:          cfg.UseSandbox,
-		UseSafeSocks:        cfg.UseSafeSocks,
-		RejectPlainPorts:    cfg.RejectPlainPorts,
-		PlaintextPorts:      cfg.ListPlainPorts,
-		AutoBridge:          cfg.AutoBridge,
-		BridgeAddress:       cfg.BridgeAddress,
-		HTTPProxyAddress:    cfg.HTTPProxyAddress,
-		HTTPProxyCredential: cfg.HTTPProxyCredential,
-		ProxyIsHTTPS:        cfg.ProxyIsHTTPS,
+		UseSandbox:            cfg.UseSandbox,
+		UseSafeSocks:          cfg.UseSafeSocks,
+		RejectPlainPorts:      cfg.RejectPlainPorts,
+		PlaintextPorts:        cfg.ListPlainPorts,
+		AutoBridge:            cfg.AutoBridge,
+		BridgeAddress:         cfg.BridgeAddress,
+		UseProxy:              cfg.UseProxy,
+		HTTPProxyAddress:      cfg.HTTPProxyAddress,
+		HTTPProxyCredential:   cfg.HTTPProxyCredential,
+		ProxyIsHTTPS:          cfg.ProxyIsHTTPS,
+		Socks5ProxyAddress:    cfg.Socks5ProxyAddress,
+		Socks5ProxyCredential: cfg.Socks5ProxyCredential,
 	}
 }
 

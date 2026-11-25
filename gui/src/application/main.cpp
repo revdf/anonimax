@@ -1,4 +1,5 @@
 #include "anonsurf/anonsurfbackend.h"
+#include "anonsurf/anonsurfconfig.h"
 #include "application/instance.h"
 #include "tray/traycontroller.h"
 
@@ -18,7 +19,7 @@ int main(int argc, char *argv[]) {
 
   QApplication app(argc, argv);
   app.setApplicationName("anonsurf-gui");
-  app.setApplicationDisplayName("AnonSurf");
+  app.setApplicationDisplayName("Anonimax");
   app.setOrganizationName("ParrotSec");
   app.setApplicationVersion(ANONSURF_VERSION);
   app.setDesktopFileName("org.parrotsec.Anonsurf");
@@ -33,11 +34,13 @@ int main(int argc, char *argv[]) {
     return 1;
 
   AnonSurfBackend backend;
-  TrayController desktop(backend);
+  AnonSurfConfig  config;
+  TrayController  desktop(backend);
   QQmlApplicationEngine engine;
   engine.setInitialProperties(
       {{"backend", QVariant::fromValue(static_cast<QObject *>(&backend))},
-       {"desktop", QVariant::fromValue(static_cast<QObject *>(&desktop))}});
+       {"desktop", QVariant::fromValue(static_cast<QObject *>(&desktop))},
+       {"config",  QVariant::fromValue(static_cast<QObject *>(&config))}});
   engine.load(QUrl("qrc:/qt/qml/Parrot/AnonSurf/qml/app/Main.qml"));
   if (engine.rootObjects().isEmpty())
     return 1;

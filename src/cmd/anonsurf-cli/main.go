@@ -50,6 +50,9 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 		Example: `  anonsurf start
   anonsurf status
   anonsurf changeid
+  anonsurf autochange 10
+  anonsurf proxy set socks5://127.0.0.1:1080
+  anonsurf panic
   anonsurf boot enable`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return cmd.Help()
@@ -89,8 +92,12 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 		),
 		statusCommand(status.Reader{}, monitor),
 		changeIDCommand(anonsurf.IdentityClient{}),
+		autoChangeCommand(anonsurf.AutoChangeClient{}),
+		proxyCommand(anonsurf.ProxyClient{}),
+		configCommand(),
 		ipCommand(netcheck.Checker{}),
 		monitorCommand(monitor),
+		panicCommand(anonsurf.PanicClient{}),
 		bootCommand(service),
 	)
 	configureRootHelp(rootCmd)
