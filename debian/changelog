@@ -1,3 +1,23 @@
+anonsurf (6.1.0+anonimax1) unstable; urgency=medium
+
+  * Fork: Anonimax — extended privacy features on top of AnonSurf 6.
+  * Add MAC address randomization via macchanger at start/stop.
+  * Add local IP renewal via dhclient at start/stop.
+  * Add optional VPN support (OpenVPN / WireGuard) before Tor.
+  * Add WebRTC STUN port blocking via iptables.
+  * Add telemetry blocking chain (Google, Microsoft, Amazon CIDRs).
+  * Add panic mode: kills network, flushes firewall, powers off.
+  * Add automatic Tor identity rotation (autochange command).
+  * Add UTC timezone enforcement during session.
+  * Add camera and microphone disable via kernel module unload.
+  * Add SOCKS5/HTTP/HTTPS proxy support before or after Tor.
+  * Add config subcommand to read/write individual settings.
+  * Add GUI ConfigPanel with 9 privacy-option checkboxes.
+  * Rename visible UI strings to Anonimax.
+  * Add anonimax-doctor.sh dependency checker script.
+
+ -- rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>  Tue, 25 Nov 2026 00:00:00 +0000
+
 anonsurf (6.0.1+parrot2) echo; urgency=medium
 
   * Rebuild package.

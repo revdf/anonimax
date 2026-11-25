@@ -18,7 +18,7 @@ Homepage: https://www.parrotsec.org/
 Package: anonsurf
 Architecture: any
 Priority: optional
-Depends: ${shlibs:Depends}, ${misc:Depends}, iptables, network-manager, procps, tor, systemd | systemctl, sudo
+Depends: ${shlibs:Depends}, ${misc:Depends}, iptables, network-manager, procps, tor, systemd | systemctl, sudo, macchanger, isc-dhcp-client
 Breaks: anonsurf-gtk (<< 6.0.0~)
 Recommends: bleachbit, tor-geoipdb
 Suggests: obfs4proxy, snowflake-client

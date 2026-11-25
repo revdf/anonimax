@@ -19,14 +19,14 @@ const (
 var ErrSectionNotFound = errors.New("AnonSurfConfig section not found")
 
 type Config struct {
-	UseSandbox          bool
-	BridgeAddress       string
-	UseSafeSocks        bool
-	AutoBridge          bool
-	RejectPlainPorts    bool
-	ListPlainPorts      string
-	HTTPProxyAddress    string
-	HTTPProxyCredential string
+	UseSandbox            bool
+	BridgeAddress         string
+	UseSafeSocks          bool
+	AutoBridge            bool
+	RejectPlainPorts      bool
+	ListPlainPorts        string
+	HTTPProxyAddress      string
+	HTTPProxyCredential   string
 	ProxyIsHTTPS          bool
 	Socks5ProxyAddress    string
 	Socks5ProxyCredential string
@@ -47,14 +47,14 @@ type Config struct {
 // Default mirrors configs/anonsurf.cfg so missing optional values keep Parrot's shipped behavior.
 func Default() Config {
 	return Config{
-		UseSandbox:          false,
-		BridgeAddress:       "",
-		UseSafeSocks:        false,
-		AutoBridge:          false,
-		RejectPlainPorts:    false,
-		ListPlainPorts:      "23,109,110,143",
-		HTTPProxyAddress:    "",
-		HTTPProxyCredential: "",
+		UseSandbox:            false,
+		BridgeAddress:         "",
+		UseSafeSocks:          false,
+		AutoBridge:            false,
+		RejectPlainPorts:      false,
+		ListPlainPorts:        "23,109,110,143",
+		HTTPProxyAddress:      "",
+		HTTPProxyCredential:   "",
 		ProxyIsHTTPS:          false,
 		Socks5ProxyAddress:    "",
 		Socks5ProxyCredential: "",
