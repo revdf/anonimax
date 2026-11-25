@@ -125,7 +125,45 @@ sudo apt install tor iptables macchanger bleachbit network-manager
 sudo apt install openvpn wireguard
 ```
 
-### Compilar e instalar
+### Opção 1 — Repositório APT (recomendado)
+
+Configure uma vez e use `apt install` normalmente, igual a qualquer outro programa. Recebe atualizações automáticas com `apt upgrade`.
+
+```bash
+# 1. Adicionar a chave GPG do repositório
+curl -fsSL https://revdf.github.io/anonimax/KEY.gpg \
+  | sudo gpg --dearmor -o /usr/share/keyrings/anonimax.gpg
+
+# 2. Adicionar o repositório
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/anonimax.gpg] \
+https://revdf.github.io/anonimax stable main" \
+  | sudo tee /etc/apt/sources.list.d/anonimax.list
+
+# 3. Instalar
+sudo apt update
+sudo apt install anonsurf-cli          # CLI + daemon
+sudo apt install anonsurf-gui          # Interface gráfica (opcional)
+```
+
+Para remover o repositório depois:
+```bash
+sudo rm /etc/apt/sources.list.d/anonimax.list /usr/share/keyrings/anonimax.gpg
+sudo apt update
+```
+
+### Opção 2 — Baixar o .deb manualmente
+
+Se preferir instalar sem configurar o repositório, baixe os pacotes diretamente em:
+**https://github.com/revdf/anonimax/releases**
+
+```bash
+sudo dpkg -i anonsurf_6.1.0+anonimax1_amd64.deb
+sudo dpkg -i anonsurf-cli_6.1.0+anonimax1_amd64.deb
+sudo dpkg -i anonsurf-gui_6.1.0+anonimax1_amd64.deb   # opcional
+sudo apt-get install -f                                  # corrige dependências
+```
+
+### Opção 3 — Compilar do código fonte
 
 ```bash
 # Dependências de compilação
