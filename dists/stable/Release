@@ -1,20 +1,14 @@
-Architectures: amd64
-Codename: stable
-Components: main
-Date: Thu, 26 Nov 2026 01:42:20 +0000
-Description: Anonimax APT Repository
-Label: Anonimax
 Origin: Anonimax
+Label: Anonimax
 Suite: stable
-MD5Sum:
- 646b019ebd90c44ad2bd3da2f955c286             2719 main/binary-amd64/Packages
- 6b0803c01fd3c3216917251b372cc064             1180 main/binary-amd64/Packages.gz
-SHA1:
- 0cea5717708419bf2e2a2cbca9d8697813c3643f             2719 main/binary-amd64/Packages
- d6118481d19709240f18f5d44d0cca0cf6e43740             1180 main/binary-amd64/Packages.gz
+Codename: stable
+Architectures: amd64
+Components: main
+Description: Anonimax APT Repository
+Date: Thu, 26 Nov 2026 03:00:02 +0000
 SHA256:
- 5b76a76db21d26b96199c8756e4c9e0a44f6a352fb4894032b394401e7348b37             2719 main/binary-amd64/Packages
- e488bb80cef123fb13a8e89ff501ec6de408cc2df4230fd0babbc394dbcdb086             1180 main/binary-amd64/Packages.gz
+ 609a2fc836644c9555b7372097147d8e5df84043a7635bc04c1f204a440f98c0 2749 main/binary-amd64/Packages
+ fcc76b2ef8056b24171dea07abfda69ded478b393a8e1b7dc7453e142ca39107 1185 main/binary-amd64/Packages.gz
 SHA512:
- 1c5ad7eb902990f2b9b1299b7948fbf6d486b01a19cde83f9712ce295913d8461a1532c09e588247e6a4af4a3b154809a5ccc5e58ed1ce5ff2bcff5c912d3417             2719 main/binary-amd64/Packages
- a29547c45e248fac5814ea2503b7f829ca5d6b40ed1250462ba5b93221e470d98680b6e85e3c5163d558f29187b810fa36e0850d424096957e599968acaf3845             1180 main/binary-amd64/Packages.gz
+ f1845196c34d4509d77953589290658aa4433319f732f13510c8b738776b1e72a895ef5ae8957ea3b258f34342d0af38e5ce6e360f93191dbb8dc2c485027e37 2749 main/binary-amd64/Packages
+ 03a309a1fcc3074c8b68d4129c52412a0fc4cd780e52c706475457574d2bbccdbf23639c0135e8be3be56dd70dc2c31251baa25b09a9f3d11fb10c937db5c441 1185 main/binary-amd64/Packages.gz

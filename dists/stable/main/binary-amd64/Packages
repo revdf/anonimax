@@ -2,15 +2,15 @@ Package: anonimax
 Version: 6.1.0+anonimax1
 Architecture: amd64
 Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
-Installed-Size: 10205
+Installed-Size: 10207
 Depends: libc6 (>= 2.34), iptables, network-manager, procps, tor, systemd | systemctl, sudo, macchanger, isc-dhcp-client
 Recommends: bleachbit, tor-geoipdb
 Suggests: obfs4proxy, snowflake-client
 Filename: pool/main/a/anonimax/anonimax_6.1.0+anonimax1_amd64.deb
-Size: 1950916
-MD5sum: 2e6ee426bcd82ec0c1e6416787f8061f
-SHA1: c52464093a3b0bc50504bbd3c38b0cdb2ab3a16b
-SHA256: 5215db08393291eba2d8c587d6feabe3565fc919b0870e5f7ccbe7b29d0ee464
+Size: 1952304
+MD5sum: f40b836cf42ab2c56f3d8e3907aba74a
+SHA1: dc77c422f09d4c6dc46709f971efb17e5b1721b9
+SHA256: 4e27407bb1be8ccf07d92833c21d9309d0052a993b4e0366d078e1cef7ccf5de
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax
@@ -28,10 +28,10 @@ Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
 Installed-Size: 8617
 Depends: libc6 (>= 2.34), anonimax (= 6.1.0+anonimax1), nyx, sudo
 Filename: pool/main/a/anonimax/anonimax-cli_6.1.0+anonimax1_amd64.deb
-Size: 2779596
-MD5sum: bca58f696c322780f869a2bd5c16bb33
-SHA1: a92e0961099b46d647dc6cf49e6d32838e6a1495
-SHA256: cfa47b764d39611fd8427856ab8861c5915cd9b38800eb3a8be1699d2c73bf09
+Size: 2779972
+MD5sum: 3ea304fb23635eddcc694abc3a691313
+SHA1: 418351fbdc5f9b27653b8c9f2707dcc0e8378323
+SHA256: cf81d2e2afe7e2441e266095411e277ff863bcbf1c8c1b4c5f27a010aa086d1e
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax
@@ -43,13 +43,13 @@ Source: anonimax
 Version: 6.1.0+anonimax1
 Architecture: amd64
 Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
-Installed-Size: 811
-Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6core6t64 (>= 6.8.2), libqt6dbus6 (>= 6.8.2), libqt6gui6 (>= 6.4.0), libqt6qml6 (>= 6.6.0), libqt6quickcontrols2-6 (>= 6.6.0), libqt6widgets6 (>= 6.3.0), libstdc++6 (>= 14), anonimax-cli (= 6.1.0+anonimax1), fonts-inter, konsole, qml6-module-qtcore, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtquick-shapes
+Installed-Size: 847
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6core6t64 (>= 6.8.2), libqt6dbus6 (>= 6.8.2), libqt6gui6 (>= 6.4.0), libqt6qml6 (>= 6.6.0), libqt6quickcontrols2-6 (>= 6.6.0), libqt6widgets6 (>= 6.3.0), libstdc++6 (>= 14), anonimax (= 6.1.0+anonimax1), anonimax-cli (= 6.1.0+anonimax1), fonts-inter, konsole, qml6-module-qtcore, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtquick-shapes
 Filename: pool/main/a/anonimax/anonimax-gui_6.1.0+anonimax1_amd64.deb
-Size: 201136
-MD5sum: f5e310a19231b78fad4cb82605b6a7c8
-SHA1: f1e04d81bf1122606acf2819231ff633769db182
-SHA256: 1191cb1182be613ed352a0c8e94e61f28592941d60da90b1615136ee3198a0ca
+Size: 207676
+MD5sum: 6139fb98ee09afe50e3a9dad9bc09086
+SHA1: bfa1611cd8cdb557b8abed92afc6137928c2a36a
+SHA256: c8217e882c224355366736077f7286c910e87088a24f05a0b42f1a6b9692a181
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax
