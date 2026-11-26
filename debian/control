@@ -42,7 +42,6 @@ Depends:
  anonimax (= ${binary:Version}),
  anonimax-cli (= ${binary:Version}),
  fonts-inter,
- konsole,
  qml6-module-qtcore,
  qml6-module-qtquick,
  qml6-module-qtquick-controls,

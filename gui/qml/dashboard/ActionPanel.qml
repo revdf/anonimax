@@ -22,7 +22,7 @@ Item {
 
         GridLayout {
             Layout.fillWidth: true
-            columns: 5
+            columns: 4
             columnSpacing: Theme.spacingSmall
             rowSpacing: Theme.spacingSmall
 
@@ -56,17 +56,6 @@ Item {
                 enabled: root.backend.statusAvailable && root.backend.anonsurfActive
                          && !root.backend.busy
                 onClicked: root.backend.restart(root.safeKill)
-            }
-
-            ActionButton {
-                Layout.fillWidth: true
-                text: "Tor Monitor"
-                iconName: "monitor"
-                iconOnly: root.iconOnly
-                tooltip: "Opens nyx, the Tor connection monitor, in a Konsole window."
-                enabled: root.backend.statusAvailable && root.backend.anonsurfActive
-                         && root.backend.torActive && !root.backend.busy
-                onClicked: root.backend.openMonitor()
             }
 
             ActionButton {

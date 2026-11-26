@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+    configure)
+        # Grant access to Tor control cookie so the GUI can read bandwidth data.
+        # We try both SUDO_USER (apt/dpkg via sudo) and PKEXEC_UID (polkit).
+        if getent group debian-tor > /dev/null 2>&1; then
+            if [ -n "$SUDO_USER" ] && [ "$SUDO_USER" != "root" ]; then
+                adduser "$SUDO_USER" debian-tor 2>/dev/null || true
+            elif [ -n "$PKEXEC_UID" ]; then
+                _u=$(getent passwd "$PKEXEC_UID" | cut -d: -f1)
+                [ -n "$_u" ] && adduser "$_u" debian-tor 2>/dev/null || true
+            fi
+        fi
+        ;;
+esac
+
+#DEBHELPER#
+
+exit 0

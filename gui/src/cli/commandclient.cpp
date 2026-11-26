@@ -1,7 +1,6 @@
 #include "cli/commandclient.h"
 
 #include <QDebug>
-#include <QFileInfo>
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -9,7 +8,6 @@
 namespace {
 constexpr auto AnonSurfPath = "/usr/bin/anonimax";
 constexpr auto SafeKillPath = "/usr/lib/anonimax/safekill";
-constexpr auto KonsolePath = "/usr/bin/konsole";
 } // namespace
 
 CommandClient::CommandClient(QObject *parent) : QObject(parent) {
@@ -82,16 +80,6 @@ void CommandClient::runSafeKill() {
   if (m_safeKillProcess.state() != QProcess::NotRunning)
     return;
   m_safeKillProcess.start(SafeKillPath);
-}
-
-void CommandClient::openMonitor() {
-  if (!QFileInfo(KonsolePath).isExecutable()) {
-    emit monitorFailed("Konsole is required to open the Tor monitor.");
-    return;
-  }
-  if (!QProcess::startDetached(KonsolePath, {"-e", AnonSurfPath, "monitor"})) {
-    emit monitorFailed("Konsole could not start the Tor monitor.");
-  }
 }
 
 void CommandClient::handleStatusFinished(int exitCode,

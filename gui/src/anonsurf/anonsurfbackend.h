@@ -48,7 +48,6 @@ public:
   Q_INVOKABLE void changeIdentity();
   Q_INVOKABLE void checkIP();
   Q_INVOKABLE void setBootEnabled(bool enabled);
-  Q_INVOKABLE void openMonitor();
   Q_INVOKABLE void dismissError();
   Q_INVOKABLE void runPanic();
   Q_INVOKABLE void toggleAutochange();

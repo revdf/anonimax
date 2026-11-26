@@ -23,7 +23,6 @@ signals:
   void lifecycleRequested(const QString &action);
   void identityRequested();
   void ipRequested();
-  void monitorRequested();
   void quitRequested();
 
 private:
@@ -32,7 +31,6 @@ private:
   QAction *m_restart;
   QAction *m_identity;
   QAction *m_ip;
-  QAction *m_monitor;
   QAction *m_quit;
   bool m_active = false;
 };

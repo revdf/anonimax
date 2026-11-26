@@ -31,11 +31,6 @@ AnonSurfBackend::AnonSurfBackend(QObject *parent) : QObject(parent) {
   connect(
       &m_commands, &CommandClient::ipFailed, this,
       [this](const QString &message) { finishAction("ip", false, message); });
-  connect(&m_commands, &CommandClient::monitorFailed, this,
-          [this](const QString &message) {
-            setError(message);
-            emit operationFinished("monitor", false, message);
-          });
   connect(&m_commands, &CommandClient::panicFinished, this,
           [this](bool success, const QString &message) {
             finishAction("panic", success, message);
@@ -131,8 +126,6 @@ void AnonSurfBackend::setBootEnabled(bool enabled) {
                               : "Disabling Anonimax at startup");
   m_systemd.setAnonSurfEnabled(enabled);
 }
-
-void AnonSurfBackend::openMonitor() { m_commands.openMonitor(); }
 
 void AnonSurfBackend::dismissError() { setError({}); }
 

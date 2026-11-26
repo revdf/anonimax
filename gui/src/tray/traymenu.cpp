@@ -15,7 +15,6 @@ TrayMenu::TrayMenu(QWidget *parent) : QMenu(parent) {
                         [this]() { emit lifecycleRequested("restart"); });
   m_identity = addAction("New Identity", this, &TrayMenu::identityRequested);
   m_ip = addAction("Verify IP", this, &TrayMenu::ipRequested);
-  m_monitor = addAction("Tor Monitor", this, &TrayMenu::monitorRequested);
   addSeparator();
   m_quit = addAction("Quit", this, &TrayMenu::quitRequested);
   m_quit->setToolTip("Quit the interface without stopping Anonimax routing.");
@@ -37,6 +36,5 @@ void TrayMenu::updateState(const TrayState &state) {
   m_restart->setEnabled(ready && state.active);
   m_identity->setEnabled(ready && state.active && state.torActive);
   m_ip->setEnabled(ready);
-  m_monitor->setEnabled(ready && state.active && state.torActive);
   m_quit->setEnabled(!state.busy);
 }

@@ -153,9 +153,13 @@ Rectangle {
 
             Text {
                 anchors.centerIn: parent
-                text: root.torMonitor.status === "Connecting..."
-                      ? "Connecting to Tor control port..."
-                      : "Tor is not active — start Anonimax to see live data"
+                text: {
+                    const s = root.torMonitor.status
+                    if (s === "Connecting...") return "Connecting to Tor control port..."
+                    if (s.indexOf("auth") >= 0) return "Cannot authenticate — log out and log in after install to apply group membership"
+                    if (s.indexOf("Cannot connect") >= 0) return "Tor control port unavailable — start Anonimax first"
+                    return "Tor is not active — start Anonimax to see live data"
+                }
                 color: Theme.textDisabled
                 font.family: Theme.uiFont
                 font.pixelSize: Theme.detailSize

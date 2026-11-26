@@ -10,6 +10,8 @@ Canvas {
 
     onDownHistoryChanged: requestPaint()
     onUpHistoryChanged:   requestPaint()
+    onWidthChanged:       requestPaint()
+    onHeightChanged:      requestPaint()
 
     function formatRate(bytes) {
         if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + " MB/s"
@@ -64,11 +66,7 @@ Canvas {
             ctx.lineTo(pad, pad + h)
             ctx.closePath()
             const grad = ctx.createLinearGradient(0, pad, 0, pad + h)
-            grad.addColorStop(0, Qt.rgba(
-                parseInt(color.toString().slice(1,3), 16) / 255,
-                parseInt(color.toString().slice(3,5), 16) / 255,
-                parseInt(color.toString().slice(5,7), 16) / 255,
-                0.18))
+            grad.addColorStop(0, Qt.rgba(color.r, color.g, color.b, 0.18))
             grad.addColorStop(1, Qt.rgba(0, 0, 0, 0))
             ctx.fillStyle = grad
             ctx.fill()

@@ -16,8 +16,6 @@ TrayController::TrayController(AnonSurfBackend &backend, QObject *parent)
   connect(&m_menu, &TrayMenu::identityRequested, &backend,
           &AnonSurfBackend::changeIdentity);
   connect(&m_menu, &TrayMenu::ipRequested, &backend, &AnonSurfBackend::checkIP);
-  connect(&m_menu, &TrayMenu::monitorRequested, &backend,
-          &AnonSurfBackend::openMonitor);
   connect(&m_notifications, &DesktopNotifications::activated, this,
           &TrayController::showWindow);
   connect(&m_tray, &QSystemTrayIcon::activated, this,

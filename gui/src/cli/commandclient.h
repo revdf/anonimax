@@ -14,7 +14,6 @@ public:
   void requestStatus();
   void requestIP();
   void runSafeKill();
-  void openMonitor();
   void runPanic();
   void runAutochange(bool start, int minutes = 10);
 
@@ -25,7 +24,6 @@ signals:
   void ipReady(const QString &address, bool isTor);
   void ipFailed(const QString &message);
   void safeKillFinished(bool success, const QString &message);
-  void monitorFailed(const QString &message);
   void panicFinished(bool success, const QString &message);
   void autochangeFinished(bool success, bool started, const QString &message);
 
