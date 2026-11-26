@@ -40,20 +40,20 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 	cobra.EnableCommandSorting = false
 	var verbose bool
 	rootCmd := &cobra.Command{
-		Use:           "anonsurf",
-		Short:         "Manage AnonSurf system-wide Tor routing",
-		Long:          "AnonSurf is a system-wide Tor routing tool for Parrot OS.",
+		Use:           "anonimax",
+		Short:         "Manage Anonimax system-wide Tor routing",
+		Long:          "Anonimax is a system-wide Tor routing and privacy tool.",
 		Version:       version,
 		SilenceUsage:  true,
 		SilenceErrors: true,
 		Args:          cli.Subcommands("command"),
-		Example: `  anonsurf start
-  anonsurf status
-  anonsurf changeid
-  anonsurf autochange 10
-  anonsurf proxy set socks5://127.0.0.1:1080
-  anonsurf panic
-  anonsurf boot enable`,
+		Example: `  anonimax start
+  anonimax status
+  anonimax changeid
+  anonimax autochange 10
+  anonimax proxy set socks5://127.0.0.1:1080
+  anonimax panic
+  anonimax boot enable`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return cmd.Help()
 		},
@@ -69,7 +69,7 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 	rootCmd.SetOut(stdout)
 	rootCmd.SetErr(stderr)
 	rootCmd.SetHelpTemplate(helpTemplate)
-	rootCmd.SetVersionTemplate("AnonSurf {{.Version}}\n")
+	rootCmd.SetVersionTemplate("Anonimax {{.Version}}\n")
 	rootCmd.SetFlagErrorFunc(cli.FlagError)
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "Show commands and their output")

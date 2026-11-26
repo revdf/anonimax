@@ -1,8 +1,7 @@
-Source: anonsurf
+Source: anonimax
 Section: net
 Priority: optional
-Maintainer: Parrot Team <team@parrotsec.org>
-Uploaders: Dario "danterolle" Camonita <danterolle@parrotsec.org>
+Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
 Standards-Version: 4.7.2
 Build-Depends:
  debhelper-compat (= 13),
@@ -13,40 +12,38 @@ Build-Depends:
  qt6-base-dev,
  qt6-declarative-dev,
  qml6-module-qtquick-shapes
-Homepage: https://www.parrotsec.org/
+Homepage: https://revdf.github.io/anonimax
 
-Package: anonsurf
+Package: anonimax
 Architecture: any
 Priority: optional
 Depends: ${shlibs:Depends}, ${misc:Depends}, iptables, network-manager, procps, tor, systemd | systemctl, sudo, macchanger, isc-dhcp-client
-Breaks: anonsurf-gtk (<< 6.0.0~)
+Conflicts: anonsurf
+Replaces: anonsurf
 Recommends: bleachbit, tor-geoipdb
 Suggests: obfs4proxy, snowflake-client
-Description: Anonymization toolkit for Parrot Security OS
- AnonSurf is an anonymization toolkit that helps
- prevent tracking and surveillance of the end-user.
- .
- AnonSurf uses iptables to redirect supported TCP traffic and DNS lookups
- through Tor. Local-network exceptions remain and arbitrary UDP is not
- carried by Tor. It disables IPv6 and can optionally close selected
- applications and clear their caches.
+Description: Anonimax — extended anonymization toolkit
+ Anonimax is an extended fork of AnonSurf that routes all system traffic
+ through Tor and adds MAC address randomization, dhclient IP renewal,
+ WebRTC blocking, telemetry blocking, timezone spoofing, panic mode,
+ camera/microphone lockdown and upstream proxy support.
 
-Package: anonsurf-cli
+Package: anonimax-cli
 Architecture: any
 Priority: optional
-Depends: ${shlibs:Depends}, ${misc:Depends}, anonsurf (= ${binary:Version}), nyx, sudo
-Breaks: anonsurf (<< 6.0.0~)
-Replaces: anonsurf (<< 6.0.0~)
-Description: Command-line interface for AnonSurf
- AnonSurf's command-line interface written in Go.
+Depends: ${shlibs:Depends}, ${misc:Depends}, anonimax (= ${binary:Version}), nyx, sudo
+Conflicts: anonsurf-cli
+Replaces: anonsurf-cli
+Description: Command-line interface for Anonimax
+ Anonimax's command-line interface written in Go.
 
-Package: anonsurf-gui
+Package: anonimax-gui
 Architecture: any
 Priority: optional
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
- anonsurf-cli (= ${binary:Version}),
+ anonimax-cli (= ${binary:Version}),
  fonts-inter,
  konsole,
  qml6-module-qtcore,
@@ -54,17 +51,8 @@ Depends:
  qml6-module-qtquick-controls,
  qml6-module-qtquick-layouts,
  qml6-module-qtquick-shapes
-Replaces: anonsurf-gtk (<< 6.0.0~)
-Breaks: anonsurf-gtk (<< 6.0.0~)
-Description: Graphical interface for AnonSurf
- A Qt 6 interface for managing AnonSurf routing, status,
+Conflicts: anonsurf-gui, anonsurf-gtk
+Replaces: anonsurf-gui, anonsurf-gtk
+Description: Graphical interface for Anonimax
+ A Qt 6 interface for managing Anonimax routing, status,
  Tor identities and startup integration on KDE Plasma.
-
-Package: anonsurf-gtk
-Architecture: all
-Section: oldlibs
-Priority: optional
-Depends: ${misc:Depends}, anonsurf-gui (>= ${source:Version})
-Description: Transitional package for the AnonSurf graphical interface
- This package upgrades the legacy GTK interface to anonsurf-gui.
- It contains no legacy GTK executable.

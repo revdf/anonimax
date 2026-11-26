@@ -2,7 +2,7 @@
 Type=Application
 Name=Anonimax
 Comment=Manage system-wide Tor routing
-Exec=anonsurf-gui
+Exec=anonimax-gui
 Icon=anonsurf
 Terminal=false
 Categories=Network;Security;anonsurf;

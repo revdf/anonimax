@@ -1,4 +1,4 @@
-anonsurf (6.1.0+anonimax1) unstable; urgency=medium
+anonimax (6.1.0+anonimax1) unstable; urgency=medium
 
   * Fork: Anonimax — extended privacy features on top of AnonSurf 6.
   * Add MAC address randomization via macchanger at start/stop.

@@ -25,8 +25,8 @@ $(BUILD-DEST):
 vendor:
 	cd $(GO-SRC-DIR) && $(GO) mod vendor && $(GO) mod verify
 
-anonsurf-cli: $(BUILD-DEST)
-	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) $(GO) build $(GO-BUILD-FLAGS) -ldflags="$(GO-LDFLAGS) -X main.version=$(VERSION)" -o ../$(BUILD-DEST)/anonsurf $(GO-PKG-PREFIX)/cmd/anonsurf-cli
+anonimax-cli: $(BUILD-DEST)
+	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) $(GO) build $(GO-BUILD-FLAGS) -ldflags="$(GO-LDFLAGS) -X main.version=$(VERSION)" -o ../$(BUILD-DEST)/anonimax $(GO-PKG-PREFIX)/cmd/anonsurf-cli
 
 dnstool: $(BUILD-DEST)
 	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) $(GO) build $(GO-BUILD-FLAGS) -ldflags="$(GO-LDFLAGS)" -o ../$(BUILD-DEST)/dnstool $(GO-PKG-PREFIX)/cmd/dnstool
@@ -47,7 +47,7 @@ gui:
 gui-check: gui
 	$(CMAKE) --build $(GUI-BUILD-DIR) --target anonsurf-gui_qmllint
 
-build: anonsurf-cli dnstool make-torrc anondaemon safekill gui
+build: anonimax-cli dnstool make-torrc anondaemon safekill gui
 
 check: gui-check
 	# vendor/ is upstream code: only format-check our own sources.
@@ -68,20 +68,20 @@ inst-configs:
 	ln -sfn ../anonsurf-recovery.service $(DESTDIR)/lib/systemd/system/multi-user.target.wants/anonsurf-recovery.service
 
 inst-bins:
-	cp build/release/anonsurf $(DESTDIR)/usr/bin/anonsurf
+	cp build/release/anonimax $(DESTDIR)/usr/bin/anonimax
 	cp build/release/dnstool $(DESTDIR)/usr/bin/dnstool
 	cp build/release/make-torrc $(DESTDIR)/usr/lib/anonsurf/make-torrc
 	cp build/release/anondaemon $(DESTDIR)/usr/lib/anonsurf/anondaemon
 	cp build/release/safekill $(DESTDIR)/usr/lib/anonsurf/safekill
 
 inst-gui:
-	cp build/gui/anonsurf-gui $(DESTDIR)/usr/bin/anonsurf-gui
+	cp build/gui/anonsurf-gui $(DESTDIR)/usr/bin/anonimax-gui
 	cp gui/org.parrotsec.Anonsurf.desktop $(DESTDIR)/usr/share/applications/.
 	cp gui/org.parrotsec.AnonsurfCli.desktop $(DESTDIR)/usr/share/applications/.
 	cp icons/anonsurf.png $(DESTDIR)/usr/share/icons/hicolor/512x512/apps/anonsurf.png
 
 inst-perms:
-	chmod +x $(DESTDIR)/usr/lib/anonsurf/anondaemon $(DESTDIR)/usr/lib/anonsurf/make-torrc $(DESTDIR)/usr/lib/anonsurf/safekill $(DESTDIR)/usr/bin/anonsurf $(DESTDIR)/usr/bin/anonsurf-gui
+	chmod +x $(DESTDIR)/usr/lib/anonsurf/anondaemon $(DESTDIR)/usr/lib/anonsurf/make-torrc $(DESTDIR)/usr/lib/anonsurf/safekill $(DESTDIR)/usr/bin/anonimax $(DESTDIR)/usr/bin/anonimax-gui
 	chmod 600 $(DESTDIR)/etc/anonsurf/anonsurf.cfg
 
 mk-folders:
@@ -99,8 +99,8 @@ install: mk-folders inst-bins inst-gui inst-configs inst-perms
 uninstall:
 	rm -rf /etc/anonsurf/
 	rm -rf /usr/lib/anonsurf/
-	rm /usr/bin/anonsurf
-	rm /usr/bin/anonsurf-gui
+	rm /usr/bin/anonimax
+	rm /usr/bin/anonimax-gui
 	rm /usr/share/applications/org.parrotsec.Anonsurf.desktop
 	rm /usr/share/applications/org.parrotsec.AnonsurfCli.desktop
 	rm /usr/share/icons/hicolor/512x512/apps/anonsurf.png
