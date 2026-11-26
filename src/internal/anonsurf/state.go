@@ -110,7 +110,7 @@ func (c Controller) Recover() error {
 		return fmt.Errorf("check active state: %w", err)
 	}
 	if active {
-		c.reportStatus("AnonSurf state is active")
+		c.reportStatus("Anonimax state is active")
 		return nil
 	}
 

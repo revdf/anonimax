@@ -18,7 +18,7 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 	rootCmd := &cobra.Command{
 		Use:   "anonimax-dnstool",
 		Short: "Manage system DNS settings",
-		Long: "dnstool manages the system DNS settings used by AnonSurf.\n" +
+		Long: "anonimax-dnstool manages the system DNS settings used by Anonimax.\n" +
 			"Commands that write " + dns.ResolvConfPath + " require root privileges.",
 		SilenceUsage:  true,
 		SilenceErrors: true,

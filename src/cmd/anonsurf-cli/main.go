@@ -79,16 +79,16 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 	safeKill := safekill.Runner{}
 	rootCmd.AddCommand(
 		serviceCommandWithSafeKill(
-			"start", "Route traffic through Tor", "Starting AnonSurf...",
-			service.Start, service.StatusText, "AnonSurf started.", safeKill,
+			"start", "Route traffic through Tor", "Starting Anonimax...",
+			service.Start, service.StatusText, "Anonimax started.", safeKill,
 		),
 		serviceCommandWithSafeKill(
 			"stop", "Restore the original network", "Restoring the original network...",
-			service.Stop, service.StatusText, "AnonSurf stopped.", safeKill,
+			service.Stop, service.StatusText, "Anonimax stopped.", safeKill,
 		),
 		serviceCommandWithSafeKill(
-			"restart", "Rebuild Tor routing", "Restarting AnonSurf...",
-			service.Restart, service.StatusText, "AnonSurf restarted.", safeKill,
+			"restart", "Rebuild Tor routing", "Restarting Anonimax...",
+			service.Restart, service.StatusText, "Anonimax restarted.", safeKill,
 		),
 		statusCommand(status.Reader{}, monitor),
 		changeIDCommand(anonsurf.IdentityClient{}),
@@ -105,7 +105,7 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 	return rootCmd
 }
 
-const helpTemplate = `AnonSurf
+const helpTemplate = `Anonimax
 
 {{if .Long}}{{.Long}}{{else}}{{.Short}}{{end}}
 

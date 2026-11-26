@@ -17,7 +17,7 @@ type restartSnapshot struct {
 }
 
 func (c Controller) Restart() error {
-	c.reportStatus("Checking AnonSurf state")
+	c.reportStatus("Checking Anonimax state")
 	active, err := fileExists(ActiveStatePath)
 	if err != nil {
 		return fmt.Errorf("check active state: %w", err)

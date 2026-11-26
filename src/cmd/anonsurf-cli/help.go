@@ -84,7 +84,7 @@ func writeRootHelp(output io.Writer, root *cobra.Command) {
 		blue, muted, bold, reset = blueText, mutedText, boldText, resetText
 		writeLogo(output)
 	} else {
-		fmt.Fprintf(output, "AnonSurf %s\nSystem-wide Tor routing tool\n", version)
+		fmt.Fprintf(output, "Anonimax %s\nSystem-wide Tor routing & privacy tool\n", version)
 		fmt.Fprintln(output, "Parrot Security team")
 		fmt.Fprintln(output, "GPL-3.0")
 	}
@@ -116,7 +116,7 @@ func writeLogo(output io.Writer) {
 		"",
 		"",
 		boldText + blueText + "ANONSURF" + resetText,
-		mutedText + "System-wide Tor routing tool" + resetText,
+		mutedText + "System-wide Tor routing & privacy tool" + resetText,
 		mutedText + "Version " + version + resetText,
 		mutedText + "Parrot Security team" + resetText,
 		mutedText + "GPL-3.0" + resetText,

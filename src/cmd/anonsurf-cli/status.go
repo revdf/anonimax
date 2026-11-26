@@ -48,7 +48,7 @@ func statusCommand(reader status.Reader, monitor anonsurf.MonitorClient) *cobra.
 			return nil
 		},
 	}
-	cmd.Flags().BoolVarP(&useNyx, "nyx", "n", false, "Open Nyx with the AnonSurf configuration instead of printing a snapshot")
+	cmd.Flags().BoolVarP(&useNyx, "nyx", "n", false, "Open Nyx with the Anonimax configuration instead of printing a snapshot")
 	cmd.Flags().BoolVar(&useJSON, "json", false, "Print the status snapshot as JSON")
 	cmd.MarkFlagsMutuallyExclusive("nyx", "json")
 	return cmd
@@ -58,7 +58,7 @@ func monitorCommand(monitor anonsurf.MonitorClient) *cobra.Command {
 	return &cobra.Command{
 		Use:   "monitor",
 		Short: "Open the Nyx Tor monitor",
-		Long:  "Open Nyx using the AnonSurf configuration.",
+		Long:  "Open Nyx using the Anonimax configuration.",
 		Args:  cli.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			if err := monitor.Run(); err != nil {
@@ -70,8 +70,8 @@ func monitorCommand(monitor anonsurf.MonitorClient) *cobra.Command {
 }
 
 func printStatus(printer console.Printer, snapshot status.Snapshot) {
-	printer.Result("AnonSurf status")
-	printer.Resultf("  AnonSurf: %s\n", activeLabel(snapshot.AnonSurfActive))
+	printer.Result("Anonimax status")
+	printer.Resultf("  Anonimax: %s\n", activeLabel(snapshot.AnonSurfActive))
 	printer.Resultf("  Tor:      %s\n", activeLabel(snapshot.TorActive))
 	printer.Resultf("  DNS:      %s\n", dnsLabel(snapshot.DNSState))
 	if len(snapshot.DNSAddresses) > 0 {
@@ -111,7 +111,7 @@ func dnsLabel(state status.DNSState) string {
 	case status.DNSClearnet:
 		return "clearnet DNS"
 	case status.DNSLocalhostOnly:
-		return "localhost only without AnonSurf"
+		return "localhost only without Anonimax"
 	case status.DNSEmpty:
 		return "no nameservers configured"
 	case status.DNSMissing:

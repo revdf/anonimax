@@ -57,7 +57,7 @@ func serviceCommandWithSafeKill(
 			return nil
 		},
 	}
-	cmd.Flags().BoolVarP(&useSafeKill, "safe-kill", "k", false, "Run safekill before changing AnonSurf service state")
+	cmd.Flags().BoolVarP(&useSafeKill, "safe-kill", "k", false, "Run safekill before changing Anonimax service state")
 	return cmd
 }
 
@@ -122,12 +122,12 @@ func bootCommand(service systemd.ServiceController) *cobra.Command {
 	}
 	cmd.AddCommand(
 		serviceCommand(
-			"enable", "Enable AnonSurf at system startup", "Enabling AnonSurf at startup...",
-			service.Enable, "AnonSurf enabled at startup.",
+			"enable", "Enable Anonimax at system startup", "Enabling Anonimax at startup...",
+			service.Enable, "Anonimax enabled at startup.",
 		),
 		serviceCommand(
-			"disable", "Disable AnonSurf at system startup", "Disabling AnonSurf at startup...",
-			service.Disable, "AnonSurf disabled at startup.",
+			"disable", "Disable Anonimax at system startup", "Disabling Anonimax at startup...",
+			service.Disable, "Anonimax disabled at startup.",
 		),
 		statusBootCommand(service),
 	)
@@ -137,7 +137,7 @@ func bootCommand(service systemd.ServiceController) *cobra.Command {
 func statusBootCommand(service systemd.ServiceController) *cobra.Command {
 	return &cobra.Command{
 		Use:   "status",
-		Short: "Show whether AnonSurf starts at boot",
+		Short: "Show whether Anonimax starts at boot",
 		Args:  cli.NoArgs,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			enabled, err := service.IsEnabled()
@@ -146,9 +146,9 @@ func statusBootCommand(service systemd.ServiceController) *cobra.Command {
 			}
 			printer := console.New(cmd.OutOrStdout(), cmd.ErrOrStderr())
 			if enabled {
-				printer.Result("AnonSurf is enabled at startup.")
+				printer.Result("Anonimax is enabled at startup.")
 			} else {
-				printer.Result("AnonSurf is disabled at startup.")
+				printer.Result("Anonimax is disabled at startup.")
 			}
 			return nil
 		},

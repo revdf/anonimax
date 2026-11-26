@@ -29,7 +29,7 @@ func (c Controller) Stop() error {
 		if err := c.restoreDNS(); err != nil {
 			return err
 		}
-		c.reportStatus("AnonSurf routing is inactive")
+		c.reportStatus("Anonimax routing is inactive")
 		return nil
 	}
 	// Recovery must not mistake a partially restored session for active routing.
@@ -100,7 +100,7 @@ func (c Controller) Stop() error {
 	if err := devices.Enable(); err != nil {
 		c.reportStatus("Warning: could not re-enable camera/mic: " + err.Error())
 	}
-	c.reportStatus("AnonSurf routing is inactive")
+	c.reportStatus("Anonimax routing is inactive")
 	if cfg.CleanOnStop {
 		c.reportStatus("Cleaning system traces")
 		if err := cleanup.CleanTraces(); err != nil {

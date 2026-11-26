@@ -21,7 +21,7 @@ const (
 	AutoChangeUnit      = "anonsurf-autochange.service"
 )
 
-var ErrNotRunning = errors.New("AnonSurf is not running")
+var ErrNotRunning = errors.New("Anonimax is not running")
 
 var (
 	autoChangeMu   sync.Mutex
