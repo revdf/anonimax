@@ -39,7 +39,6 @@ public:
 
   Q_INVOKABLE void refresh();
   Q_INVOKABLE void setSetting(const QString &key, const QString &value);
-  Q_INVOKABLE bool saveLog(const QString &text);
 
 signals:
   void changed();
