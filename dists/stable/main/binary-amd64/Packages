@@ -1,70 +1,65 @@
-Package: anonsurf-cli
-Architecture: amd64
+Package: anonimax
 Version: 6.1.0+anonimax1
-Priority: optional
-Section: net
-Source: anonsurf
-Maintainer: Parrot Team <team@parrotsec.org>
-Installed-Size: 8617
-Depends: libc6 (>= 2.34), anonsurf (= 6.1.0+anonimax1), nyx, sudo
-Breaks: anonsurf (<< 6.0.0~)
-Replaces: anonsurf (<< 6.0.0~)
-Filename: pool/main/a/anonsurf/anonsurf-cli_6.1.0+anonimax1_amd64.deb
-Size: 2779268
-MD5sum: c64ae129b479a11f490060b39b036dc4
-SHA1: 9520f06e10ad764135593f263df4625425dcb09d
-SHA256: 92a4dc2ae553a7747214452396af1f0b078a8fe8c93f3a47a25b7ce395822436
-SHA512: 27f2e1a456d2f22539bdb56727154dc6b8bbc8450417c134e9e91106b8dbf31aafac9e3f7016197ea8a2ea5ee3a27d1bbd6f853ecf42904177a3275105860273
-Homepage: https://www.parrotsec.org/
-Description: Command-line interface for AnonSurf
- AnonSurf's command-line interface written in Go.
-
-Package: anonsurf-gui
 Architecture: amd64
-Version: 6.1.0+anonimax1
-Priority: optional
-Section: net
-Source: anonsurf
-Maintainer: Parrot Team <team@parrotsec.org>
-Installed-Size: 811
-Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6core6t64 (>= 6.8.2), libqt6dbus6 (>= 6.8.2), libqt6gui6 (>= 6.4.0), libqt6qml6 (>= 6.6.0), libqt6quickcontrols2-6 (>= 6.6.0), libqt6widgets6 (>= 6.3.0), libstdc++6 (>= 14), anonsurf-cli (= 6.1.0+anonimax1), fonts-inter, konsole, qml6-module-qtcore, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtquick-shapes
-Breaks: anonsurf-gtk (<< 6.0.0~)
-Replaces: anonsurf-gtk (<< 6.0.0~)
-Filename: pool/main/a/anonsurf/anonsurf-gui_6.1.0+anonimax1_amd64.deb
-Size: 200972
-MD5sum: c472ce8aad51e5f39a8ba49191abf09f
-SHA1: 7d99db9a68867a76589e6e5fcbc933006cb8e914
-SHA256: ab6fae4b838a1705fd6ec6d7de4bea23e6a71c5053e58902a0fb2b4ade9974d9
-SHA512: 8085e78b357ec736838b90bd22209b9d48102e95d1fe8c2d5fda2628ed5c6599e77b0a8023183375312b9a10fb1857b5f9f03a59866f7f905512babae0cae37a
-Homepage: https://www.parrotsec.org/
-Description: Graphical interface for AnonSurf
- A Qt 6 interface for managing AnonSurf routing, status,
- Tor identities and startup integration on KDE Plasma.
-
-Package: anonsurf
-Architecture: amd64
-Version: 6.1.0+anonimax1
-Priority: optional
-Section: net
-Maintainer: Parrot Team <team@parrotsec.org>
+Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
 Installed-Size: 10205
 Depends: libc6 (>= 2.34), iptables, network-manager, procps, tor, systemd | systemctl, sudo, macchanger, isc-dhcp-client
 Recommends: bleachbit, tor-geoipdb
 Suggests: obfs4proxy, snowflake-client
-Breaks: anonsurf-gtk (<< 6.0.0~)
-Filename: pool/main/a/anonsurf/anonsurf_6.1.0+anonimax1_amd64.deb
-Size: 1951628
-MD5sum: c5a97dc90c4dd3081ec673830af91e75
-SHA1: 1f7c21155632391d3ef98005d3c56ebe49cf78d0
-SHA256: 73fc8a13d7bf2d8fc4ebd75e6554b55baa9ad848b0254dffbb1928cba74c419e
-SHA512: 594f8c37afab2a39ae3d884b74afff0e96937d2779ebfd550a5f8fe6d2d6e4217dd212ab6e0e1d22337a7a844577f6330cbe5fd454fe5edeecd749d1c392c17b
-Homepage: https://www.parrotsec.org/
-Description: Anonymization toolkit for Parrot Security OS
- AnonSurf is an anonymization toolkit that helps
- prevent tracking and surveillance of the end-user.
- .
- AnonSurf uses iptables to redirect supported TCP traffic and DNS lookups
- through Tor. Local-network exceptions remain and arbitrary UDP is not
- carried by Tor. It disables IPv6 and can optionally close selected
- applications and clear their caches.
+Conflicts: anonsurf
+Replaces: anonsurf
+Filename: pool/main/a/anonimax/anonimax_6.1.0+anonimax1_amd64.deb
+Size: 1950796
+MD5sum: 85573b18c00ff45f8f5503c3f5c38df9
+SHA1: 8fac9963869a6c9f443fdb32d1fd8bf3329a29bb
+SHA256: b2aecc2881a2212b988feb7d7260ee459be582fac8fb00fc6d8ddfbd7b20bb61
+Section: net
+Priority: optional
+Homepage: https://revdf.github.io/anonimax
+Description: Anonimax — extended anonymization toolkit
+ Anonimax is an extended fork of AnonSurf that routes all system traffic
+ through Tor and adds MAC address randomization, dhclient IP renewal,
+ WebRTC blocking, telemetry blocking, timezone spoofing, panic mode,
+ camera/microphone lockdown and upstream proxy support.
+
+Package: anonimax-cli
+Source: anonimax
+Version: 6.1.0+anonimax1
+Architecture: amd64
+Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
+Installed-Size: 8617
+Depends: libc6 (>= 2.34), anonimax (= 6.1.0+anonimax1), nyx, sudo
+Conflicts: anonsurf-cli
+Replaces: anonsurf-cli
+Filename: pool/main/a/anonimax/anonimax-cli_6.1.0+anonimax1_amd64.deb
+Size: 2780132
+MD5sum: ff621b10a568b0e563c9c0c51490ffbe
+SHA1: 3e3c524318eb1d5e9b6de93c990a94445478e135
+SHA256: efa72c4f7365b820adb5fc980ec94bdf118e54517e0e318c6fe01f4b4eec525e
+Section: net
+Priority: optional
+Homepage: https://revdf.github.io/anonimax
+Description: Command-line interface for Anonimax
+ Anonimax's command-line interface written in Go.
+
+Package: anonimax-gui
+Source: anonimax
+Version: 6.1.0+anonimax1
+Architecture: amd64
+Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
+Installed-Size: 811
+Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6core6t64 (>= 6.8.2), libqt6dbus6 (>= 6.8.2), libqt6gui6 (>= 6.4.0), libqt6qml6 (>= 6.6.0), libqt6quickcontrols2-6 (>= 6.6.0), libqt6widgets6 (>= 6.3.0), libstdc++6 (>= 14), anonimax-cli (= 6.1.0+anonimax1), fonts-inter, konsole, qml6-module-qtcore, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtquick-shapes
+Conflicts: anonsurf-gtk, anonsurf-gui
+Replaces: anonsurf-gtk, anonsurf-gui
+Filename: pool/main/a/anonimax/anonimax-gui_6.1.0+anonimax1_amd64.deb
+Size: 201008
+MD5sum: 52a599e59b722d848016f75b368e5c5a
+SHA1: 8e419f358de1611c8f93d880e402239c1bfbb48f
+SHA256: cd9aaaeebea74f76eecd05e154412a3fb8ef8faef4ecc9ac7e742a49d9557e9f
+Section: net
+Priority: optional
+Homepage: https://revdf.github.io/anonimax
+Description: Graphical interface for Anonimax
+ A Qt 6 interface for managing Anonimax routing, status,
+ Tor identities and startup integration on KDE Plasma.
 
