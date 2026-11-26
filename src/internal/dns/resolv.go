@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	ResolvConfBackup = "/etc/anonsurf/resolv.conf.bak"
+	ResolvConfBackup = "/etc/anonimax/resolv.conf.bak"
 	ResolvConfPath   = "/etc/resolv.conf"
 )
 

@@ -1,0 +1,9 @@
+[Unit]
+Description=Request a new Anonimax Tor identity
+Requisite=animaxd.service
+After=animaxd.service tor@default.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/lib/anonimax/anondaemon changeid
+TimeoutStartSec=30

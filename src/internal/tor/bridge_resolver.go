@@ -12,7 +12,7 @@ import (
 	"strings"
 )
 
-const BridgesPath = "/etc/anonsurf/bridges.txt"
+const BridgesPath = "/etc/anonimax/bridges.txt"
 
 var ErrNoBridgeEntries = errors.New("no bridge entries found")
 

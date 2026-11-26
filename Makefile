@@ -57,22 +57,22 @@ check: gui-check
 	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(GO) build $(GO-PKG-PREFIX)/cmd/...
 
 inst-configs:
-	cp configs/bridges.txt $(DESTDIR)/etc/anonsurf/.
-	cp configs/onion.pac $(DESTDIR)/etc/anonsurf/.
-	cp configs/anonsurf.cfg $(DESTDIR)/etc/anonsurf/.
+	cp configs/bridges.txt $(DESTDIR)/etc/anonimax/.
+	cp configs/onion.pac $(DESTDIR)/etc/anonimax/.
+	cp configs/anonimax.cfg $(DESTDIR)/etc/anonimax/.
 
-	cp sys-units/anonsurfd.service $(DESTDIR)/lib/systemd/system/anonsurfd.service
-	cp sys-units/anonsurf-recovery.service $(DESTDIR)/lib/systemd/system/anonsurf-recovery.service
-	cp sys-units/anonsurf-identity.service $(DESTDIR)/lib/systemd/system/anonsurf-identity.service
-	cp sys-units/tor@default.service.d/anonsurf-recovery.conf $(DESTDIR)/lib/systemd/system/tor@default.service.d/anonsurf-recovery.conf
-	ln -sfn ../anonsurf-recovery.service $(DESTDIR)/lib/systemd/system/multi-user.target.wants/anonsurf-recovery.service
+	cp sys-units/animaxd.service $(DESTDIR)/lib/systemd/system/animaxd.service
+	cp sys-units/anonimax-recovery.service $(DESTDIR)/lib/systemd/system/anonimax-recovery.service
+	cp sys-units/anonimax-identity.service $(DESTDIR)/lib/systemd/system/anonimax-identity.service
+	cp sys-units/tor@default.service.d/anonimax-recovery.conf $(DESTDIR)/lib/systemd/system/tor@default.service.d/anonimax-recovery.conf
+	ln -sfn ../anonimax-recovery.service $(DESTDIR)/lib/systemd/system/multi-user.target.wants/anonimax-recovery.service
 
 inst-bins:
 	cp build/release/anonimax $(DESTDIR)/usr/bin/anonimax
 	cp build/release/dnstool $(DESTDIR)/usr/bin/dnstool
-	cp build/release/make-torrc $(DESTDIR)/usr/lib/anonsurf/make-torrc
-	cp build/release/anondaemon $(DESTDIR)/usr/lib/anonsurf/anondaemon
-	cp build/release/safekill $(DESTDIR)/usr/lib/anonsurf/safekill
+	cp build/release/make-torrc $(DESTDIR)/usr/lib/anonimax/make-torrc
+	cp build/release/anondaemon $(DESTDIR)/usr/lib/anonimax/anondaemon
+	cp build/release/safekill $(DESTDIR)/usr/lib/anonimax/safekill
 
 inst-gui:
 	cp build/gui/anonsurf-gui $(DESTDIR)/usr/bin/anonimax-gui
@@ -81,12 +81,12 @@ inst-gui:
 	cp icons/anonsurf.png $(DESTDIR)/usr/share/icons/hicolor/512x512/apps/anonsurf.png
 
 inst-perms:
-	chmod +x $(DESTDIR)/usr/lib/anonsurf/anondaemon $(DESTDIR)/usr/lib/anonsurf/make-torrc $(DESTDIR)/usr/lib/anonsurf/safekill $(DESTDIR)/usr/bin/anonimax $(DESTDIR)/usr/bin/anonimax-gui
-	chmod 600 $(DESTDIR)/etc/anonsurf/anonsurf.cfg
+	chmod +x $(DESTDIR)/usr/lib/anonimax/anondaemon $(DESTDIR)/usr/lib/anonimax/make-torrc $(DESTDIR)/usr/lib/anonimax/safekill $(DESTDIR)/usr/bin/anonimax $(DESTDIR)/usr/bin/anonimax-gui
+	chmod 600 $(DESTDIR)/etc/anonimax/anonimax.cfg
 
 mk-folders:
-	mkdir -p $(DESTDIR)/etc/anonsurf/
-	mkdir -p $(DESTDIR)/usr/lib/anonsurf/
+	mkdir -p $(DESTDIR)/etc/anonimax/
+	mkdir -p $(DESTDIR)/usr/lib/anonimax/
 	mkdir -p $(DESTDIR)/usr/bin/
 	mkdir -p $(DESTDIR)/usr/share/applications/
 	mkdir -p $(DESTDIR)/usr/share/icons/hicolor/512x512/apps/
@@ -97,15 +97,15 @@ mk-folders:
 install: mk-folders inst-bins inst-gui inst-configs inst-perms
 
 uninstall:
-	rm -rf /etc/anonsurf/
-	rm -rf /usr/lib/anonsurf/
+	rm -rf /etc/anonimax/
+	rm -rf /usr/lib/anonimax/
 	rm /usr/bin/anonimax
 	rm /usr/bin/anonimax-gui
 	rm /usr/share/applications/org.parrotsec.Anonsurf.desktop
 	rm /usr/share/applications/org.parrotsec.AnonsurfCli.desktop
 	rm /usr/share/icons/hicolor/512x512/apps/anonsurf.png
-	rm /lib/systemd/system/anonsurfd.service
-	rm /lib/systemd/system/anonsurf-recovery.service
-	rm /lib/systemd/system/anonsurf-identity.service
-	rm /lib/systemd/system/multi-user.target.wants/anonsurf-recovery.service
-	rm /lib/systemd/system/tor@default.service.d/anonsurf-recovery.conf
+	rm /lib/systemd/system/animaxd.service
+	rm /lib/systemd/system/anonimax-recovery.service
+	rm /lib/systemd/system/anonimax-identity.service
+	rm /lib/systemd/system/multi-user.target.wants/anonimax-recovery.service
+	rm /lib/systemd/system/tor@default.service.d/anonimax-recovery.conf

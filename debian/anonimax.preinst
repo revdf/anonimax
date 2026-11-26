@@ -8,18 +8,18 @@ if [ "$1" != "upgrade" ] ||
 fi
 
 firewall_state=/etc/network/iptables.rules
-dns_state=/etc/anonsurf/resolv.conf.bak
+dns_state=/etc/anonimax/resolv.conf.bak
 tor_state=/etc/tor/torrc.bak
 
 if [ -f "$firewall_state" ]; then
-	if [ ! -x /usr/lib/anonsurf/anondaemon ]; then
-		echo "anonsurf: legacy daemon is unavailable" >&2
+	if [ ! -x /usr/lib/anonimax/anondaemon ]; then
+		echo "anonimax: legacy daemon is unavailable" >&2
 		exit 1
 	fi
-	if systemctl is-active --quiet anonsurfd.service; then
-		systemctl stop anonsurfd.service
+	if systemctl is-active --quiet animaxd.service; then
+		systemctl stop animaxd.service
 	else
-		/usr/lib/anonsurf/anondaemon stop
+		/usr/lib/anonimax/anondaemon stop
 	fi
 fi
 
@@ -28,7 +28,7 @@ if [ -f "$dns_state" ]; then
 fi
 
 if [ -f "$tor_state" ]; then
-	/usr/lib/anonsurf/make-torrc restore
+	/usr/lib/anonimax/make-torrc restore
 fi
 
 for state in "$firewall_state" "$dns_state" "$tor_state"; do

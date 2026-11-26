@@ -9,7 +9,7 @@ import (
 
 const (
 	NyxPath       = "/usr/bin/nyx"
-	NyxConfigPath = "/etc/anonsurf/nyxrc"
+	NyxConfigPath = "/etc/anonimax/nyxrc"
 )
 
 type NyxMonitor struct {

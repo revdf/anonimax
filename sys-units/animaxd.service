@@ -1,0 +1,25 @@
+[Unit]
+Description=Anonimax system-wide Tor routing
+Requires=anonimax-recovery.service
+Wants=network-online.target
+After=anonimax-recovery.service network-online.target NetworkManager.service
+
+[Service]
+Type=oneshot
+NotifyAccess=all
+StateDirectory=anonimax
+StateDirectoryMode=0700
+RuntimeDirectory=anonimax
+RuntimeDirectoryMode=0700
+RuntimeDirectoryPreserve=yes
+ExecStartPre=/usr/lib/anonimax/anondaemon stop
+ExecStart=/usr/lib/anonimax/anondaemon start
+ExecReload=/usr/lib/anonimax/anondaemon restart
+ExecStop=/usr/lib/anonimax/anondaemon stop
+ExecStopPost=/usr/lib/anonimax/anondaemon stop
+RemainAfterExit=yes
+TimeoutStartSec=360
+TimeoutStopSec=360
+
+[Install]
+WantedBy=multi-user.target

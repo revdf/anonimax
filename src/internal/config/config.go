@@ -11,7 +11,7 @@ import (
 )
 
 const (
-	SystemPath  = "/etc/anonsurf/anonsurf.cfg"
+	SystemPath  = "/etc/anonimax/anonimax.cfg"
 	sectionName = "AnonSurfConfig"
 )
 

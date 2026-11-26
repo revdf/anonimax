@@ -9,7 +9,7 @@ import (
 
 const (
 	SystemctlPath = "/usr/bin/systemctl"
-	AnonsurfdUnit = "anonsurfd.service"
+	AnonsurfdUnit = "animaxd.service"
 	TorUnit       = "tor@default.service"
 )
 

@@ -14,7 +14,7 @@ import (
 //go:embed assets/nyxrc
 var defaultNyxrc string
 
-const NyxrcPath = "/etc/anonsurf/nyxrc"
+const NyxrcPath = "/etc/anonimax/nyxrc"
 
 var ErrEmptyNyxrc = errors.New("nyxrc content is empty")
 

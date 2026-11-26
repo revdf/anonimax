@@ -6,9 +6,9 @@ export GOCACHE := $(CURDIR)/build/go-cache
 	dh $@ --with bash-completion
 
 override_dh_installsystemd-arch:
-	dh_installsystemd -p anonsurf --no-enable --no-start anonsurfd.service
-	dh_installsystemd -p anonsurf --no-enable --no-start anonsurf-identity.service
-	dh_installsystemd -p anonsurf anonsurf-recovery.service
+	dh_installsystemd -p anonimax --no-enable --no-start animaxd.service
+	dh_installsystemd -p anonimax --no-enable --no-start anonimax-identity.service
+	dh_installsystemd -p anonimax anonimax-recovery.service
 
 override_dh_auto_build-arch:
 	make build
@@ -18,10 +18,10 @@ override_dh_auto_test-arch:
 
 override_dh_fixperms-arch:
 	dh_fixperms
-	chmod +x debian/anonsurf/usr/lib/anonsurf/anondaemon
-	chmod +x debian/anonsurf/usr/lib/anonsurf/make-torrc
-	chmod +x debian/anonsurf/usr/lib/anonsurf/safekill
-	chmod 600 debian/anonsurf/etc/anonsurf/anonsurf.cfg
+	chmod +x debian/anonimax/usr/lib/anonimax/anondaemon
+	chmod +x debian/anonimax/usr/lib/anonimax/make-torrc
+	chmod +x debian/anonimax/usr/lib/anonimax/safekill
+	chmod 600 debian/anonimax/etc/anonimax/anonimax.cfg
 
 override_dh_auto_build-indep override_dh_auto_test-indep:
 

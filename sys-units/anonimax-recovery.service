@@ -1,0 +1,13 @@
+[Unit]
+Description=Restore Anonimax state from an interrupted session
+After=local-fs.target NetworkManager.service
+Before=animaxd.service tor@default.service
+
+[Service]
+Type=oneshot
+NotifyAccess=all
+ExecStart=/usr/lib/anonimax/anondaemon recover
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

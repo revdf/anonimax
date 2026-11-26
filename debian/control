@@ -18,8 +18,6 @@ Package: anonimax
 Architecture: any
 Priority: optional
 Depends: ${shlibs:Depends}, ${misc:Depends}, iptables, network-manager, procps, tor, systemd | systemctl, sudo, macchanger, isc-dhcp-client
-Conflicts: anonsurf
-Replaces: anonsurf
 Recommends: bleachbit, tor-geoipdb
 Suggests: obfs4proxy, snowflake-client
 Description: Anonimax — extended anonymization toolkit
@@ -32,8 +30,6 @@ Package: anonimax-cli
 Architecture: any
 Priority: optional
 Depends: ${shlibs:Depends}, ${misc:Depends}, anonimax (= ${binary:Version}), nyx, sudo
-Conflicts: anonsurf-cli
-Replaces: anonsurf-cli
 Description: Command-line interface for Anonimax
  Anonimax's command-line interface written in Go.
 
@@ -51,8 +47,6 @@ Depends:
  qml6-module-qtquick-controls,
  qml6-module-qtquick-layouts,
  qml6-module-qtquick-shapes
-Conflicts: anonsurf-gui, anonsurf-gtk
-Replaces: anonsurf-gui, anonsurf-gtk
 Description: Graphical interface for Anonimax
  A Qt 6 interface for managing Anonimax routing, status,
  Tor identities and startup integration on KDE Plasma.
