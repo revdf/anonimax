@@ -7,10 +7,10 @@ Depends: libc6 (>= 2.34), iptables, network-manager, procps, tor, systemd | syst
 Recommends: bleachbit, tor-geoipdb
 Suggests: obfs4proxy, snowflake-client
 Filename: pool/main/a/anonimax/anonimax_6.1.0+anonimax1_amd64.deb
-Size: 1951552
-MD5sum: 8d4393fe1ea534bbecbfc389be38a5bb
-SHA1: d754d534e3a352d438fde4187abbbdef822c19ef
-SHA256: 8ab43e11813c0c1d3e44d0c3da190118565c07479e33907acccb522f2667e588
+Size: 1951492
+MD5sum: 5f107b6e3866ec83fb171d79184c7340
+SHA1: e486e75fcf6e1ce0fe3d94a435518cdab6d63139
+SHA256: a50fb3162717d7a5bcf0d6c7dc45fc72ff030342c57e401166f3f6d2f7b8a8f0
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax
@@ -28,10 +28,10 @@ Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
 Installed-Size: 8617
 Depends: libc6 (>= 2.34), anonimax (= 6.1.0+anonimax1), nyx, sudo
 Filename: pool/main/a/anonimax/anonimax-cli_6.1.0+anonimax1_amd64.deb
-Size: 2778676
-MD5sum: 31bf6cde23aa1fd185b9eee4755b9873
-SHA1: 1a588a0c00d8c56461edfea252cec773398f707c
-SHA256: 62b25a34d1892576b1ef11bb14b45a996b2ca024de34fce1d637ed155a2851d9
+Size: 2779500
+MD5sum: 51d2f058ed4a8e2b835735d06b5af152
+SHA1: 9116dcb637b5829be3625fd54a2aaf3df45654b3
+SHA256: 0a3ba4a0245df788d287557c6ae1a911a2968e40a19b7cc2016ddd1df5fdbfb4
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax

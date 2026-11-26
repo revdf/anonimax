@@ -1,20 +1,20 @@
 Architectures: amd64
 Codename: stable
 Components: main
-Date: Thu, 26 Nov 2026 00:59:37 +0000
+Date: Thu, 26 Nov 2026 01:13:31 +0000
 Description: Anonimax APT Repository
 Label: Anonimax
 Origin: Anonimax
 Suite: stable
 MD5Sum:
- 723b89ca19ad4c412fc1526b4bce484b             2719 main/binary-amd64/Packages
- d331de3b414685b4174364a699c1cbb2             1182 main/binary-amd64/Packages.gz
+ 469cdcb2a82dd811261c6eeb95d63091             2719 main/binary-amd64/Packages
+ 8f0b784297d108668114a04c725544e1             1185 main/binary-amd64/Packages.gz
 SHA1:
- d8f08f5cef11af7e0f751d236c06c18f504b59e7             2719 main/binary-amd64/Packages
- 47681cdc742d2fbcb110c0cf6835eb2081b188c6             1182 main/binary-amd64/Packages.gz
+ cc3f33c2e1060db70a1ba9b5a503c3bc8aa772ff             2719 main/binary-amd64/Packages
+ f073ea8bda0bc2cd62fe89edf5a3d369287b9abd             1185 main/binary-amd64/Packages.gz
 SHA256:
- 12dbbb8b25b15662f0312be201c095e1428e048fd1e84eee73d4a0dd8c16d683             2719 main/binary-amd64/Packages
- 779066c503785c56e03bfaabf2d4e4fd405fa10fd411ec319a05b6987011b167             1182 main/binary-amd64/Packages.gz
+ 64af9539787d0e4d4711957e56e34cbc5de0b6b588a900cd10a530c3221c3ecc             2719 main/binary-amd64/Packages
+ 5adc1be5c2bd3a9bd525b32d41fc67f01f8cb2196803e53f9d1c6cb9d9374314             1185 main/binary-amd64/Packages.gz
 SHA512:
- 9a862f07c0d647a394a05eb04706d465a0478f91e6882fcbf916f7d3f59d22fa78b5b0eb9eb5a8dfb9019a3cfd84594b526fd8d85e6d123664361b626b02643c             2719 main/binary-amd64/Packages
- 64baf2b7b82884bef7a35eb149a55e7abc12dbe14f1b7be68b7bca134b6374751fad4dfd3df26ad830a33a08d3525c554233a9de21c4d2905f4f15b901091806             1182 main/binary-amd64/Packages.gz
+ eff887c91f9b30369d08db8837c97e4c7f104bce2125e082e867c825b7220832bad37a7d11ffd252c931124b7e318de232898973b728bdc764ca66e99bf9f72b             2719 main/binary-amd64/Packages
+ 964338a74bc995284c66c49eb29db32f13b020b628a68256914004f3404c894ae71794b89bd6539f678942b9db821afc436abe3a52294cc1efcaa26e356a74f5             1185 main/binary-amd64/Packages.gz
