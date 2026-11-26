@@ -1,6 +1,7 @@
 #include "anonsurf/anonsurfbackend.h"
 #include "anonsurf/anonsurfconfig.h"
 #include "application/instance.h"
+#include "tor/tormonitor.h"
 #include "tray/traycontroller.h"
 
 #include <QApplication>
@@ -35,12 +36,14 @@ int main(int argc, char *argv[]) {
 
   AnonSurfBackend backend;
   AnonSurfConfig  config;
+  TorMonitor      torMonitor;
   TrayController  desktop(backend);
   QQmlApplicationEngine engine;
   engine.setInitialProperties(
-      {{"backend", QVariant::fromValue(static_cast<QObject *>(&backend))},
-       {"desktop", QVariant::fromValue(static_cast<QObject *>(&desktop))},
-       {"config",  QVariant::fromValue(static_cast<QObject *>(&config))}});
+      {{"backend",    QVariant::fromValue(static_cast<QObject *>(&backend))},
+       {"desktop",    QVariant::fromValue(static_cast<QObject *>(&desktop))},
+       {"config",     QVariant::fromValue(static_cast<QObject *>(&config))},
+       {"torMonitor", QVariant::fromValue(static_cast<QObject *>(&torMonitor))}});
   engine.load(QUrl("qrc:/qt/qml/Parrot/AnonSurf/qml/app/Main.qml"));
   if (engine.rootObjects().isEmpty())
     return 1;

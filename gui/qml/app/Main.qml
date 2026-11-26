@@ -9,19 +9,9 @@ ApplicationWindow {
     required property var backend
     required property var desktop
     required property var config
+    required property var torMonitor
     property bool safeKill: false
-    property string _lastState: ""
-    property string _lastProgress: ""
 
-    property string logText: ""
-
-    function logEntry(message, entryType) {
-        var prefix = entryType === "error"   ? "✗"
-                   : entryType === "success" ? "✓"
-                   : entryType === "warn"    ? "⚠"
-                   : "→"
-        logText += Qt.formatTime(new Date(), "hh:mm:ss") + "  " + prefix + " " + message + "\n"
-    }
     // The tray needs fresh status even while the window is hidden.
     readonly property bool live: window.visible
                                  && window.visibility !== Window.Minimized
@@ -44,14 +34,9 @@ ApplicationWindow {
     color: Theme.bgWindow
     font.family: Theme.uiFont
 
-    Component.onCompleted: {
-        window.logEntry("Anonimax GUI iniciada — a conectar ao daemon...", "info")
-        window.backend.refresh()
-    }
+    Component.onCompleted: window.backend.refresh()
     onClosing: close => {
         aboutWindow.close();
-        if (logPanel.saveOnExit && window.logText !== "")
-            window.config.saveLog(window.logText)
         if (window.desktop.hideToTray())
             close.accepted = false;
     }
@@ -137,11 +122,10 @@ ApplicationWindow {
                     onPanicRequested: panicDialog.open()
                 }
 
-                LogPanel {
-                    id: logPanel
+                TorMonitorPanel {
+                    id: torMonitorPanel
                     width: parent.width
-                    logText: window.logText
-                    onClearRequested: window.logText = ""
+                    torMonitor: window.torMonitor
                 }
             }
         }
@@ -234,33 +218,14 @@ ApplicationWindow {
         target: window.backend
 
         function onChanged() {
-            if (window.backend.errorMessage !== "" && !errorDialog.opened) {
-                window.logEntry("✗ Error: " + window.backend.errorMessage, "error")
-                errorDialog.open();
-            }
+            if (window.backend.errorMessage !== "" && !errorDialog.opened)
+                errorDialog.open()
 
-            var state = window.backend.protectionState
-            if (state !== window._lastState) {
-                window._lastState = state
-                var t = state === "ROUTED"     ? "success"
-                      : state === "INACTIVE"   ? "info"
-                      : state === "UNAVAILABLE" ? "warn"
-                      : "warn"
-                window.logEntry("Estado → " + state, t)
-            }
-
-            if (window.backend.busy) {
-                var prog = window.backend.progress
-                if (prog !== window._lastProgress) {
-                    window._lastProgress = prog
-                    window.logEntry(prog, "info")
-                }
-            }
-        }
-
-        function onOperationFinished(action, success, message) {
-            window.logEntry((success ? "✓ " : "✗ ") + action + ": " + message,
-                            success ? "success" : "error")
+            const active = window.backend.protectionState === "ROUTED"
+            if (active && !window.torMonitor.connected)
+                window.torMonitor.start()
+            else if (!active && window.torMonitor.connected)
+                window.torMonitor.stop()
         }
     }
 }

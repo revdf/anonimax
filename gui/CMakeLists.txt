@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-find_package(Qt6 6.8 REQUIRED COMPONENTS Core DBus Gui Qml Quick QuickControls2 Widgets)
+find_package(Qt6 6.8 REQUIRED COMPONENTS Core DBus Gui Network Qml Quick QuickControls2 Widgets)
 qt_policy(SET QTP0004 NEW)
 
 qt_add_executable(anonsurf-gui
@@ -29,6 +29,8 @@ qt_add_executable(anonsurf-gui
     src/systemd/systemdclient.cpp
     src/systemd/systemdclient.h
     src/systemd/systemdjobs.cpp
+    src/tor/tormonitor.cpp
+    src/tor/tormonitor.h
     src/tray/traycontroller.cpp
     src/tray/traycontroller.h
     src/tray/traymenu.cpp
@@ -63,10 +65,11 @@ qt_add_qml_module(anonsurf-gui
         qml/controls/ThemedToolTip.qml
         qml/controls/ToggleOption.qml
         qml/dashboard/ActionPanel.qml
+        qml/dashboard/BandwidthGraph.qml
         qml/dashboard/ConfigPanel.qml
         qml/dashboard/ConnectionOverview.qml
-        qml/dashboard/LogPanel.qml
         qml/dashboard/ProtectionPanel.qml
+        qml/dashboard/TorMonitorPanel.qml
         qml/theme/IconPaths.qml
         qml/theme/Theme.qml
 )
@@ -90,6 +93,7 @@ target_link_libraries(anonsurf-gui PRIVATE
     Qt6::Core
     Qt6::DBus
     Qt6::Gui
+    Qt6::Network
     Qt6::Qml
     Qt6::Quick
     Qt6::QuickControls2
