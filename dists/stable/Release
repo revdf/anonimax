@@ -1,20 +1,20 @@
 Architectures: amd64
 Codename: stable
 Components: main
-Date: Thu, 26 Nov 2026 01:16:21 +0000
+Date: Thu, 26 Nov 2026 01:42:20 +0000
 Description: Anonimax APT Repository
 Label: Anonimax
 Origin: Anonimax
 Suite: stable
 MD5Sum:
- 1bf4c6208dd7c161f8084581701812ef             2719 main/binary-amd64/Packages
- b1c5e47916a95d62ca2c6d393a84e3eb             1184 main/binary-amd64/Packages.gz
+ 646b019ebd90c44ad2bd3da2f955c286             2719 main/binary-amd64/Packages
+ 6b0803c01fd3c3216917251b372cc064             1180 main/binary-amd64/Packages.gz
 SHA1:
- fb1f5f0ffdf8bc223c185be73ae139502b96b591             2719 main/binary-amd64/Packages
- a6e45f0c63f9e92aabeca17917097c8f19e23871             1184 main/binary-amd64/Packages.gz
+ 0cea5717708419bf2e2a2cbca9d8697813c3643f             2719 main/binary-amd64/Packages
+ d6118481d19709240f18f5d44d0cca0cf6e43740             1180 main/binary-amd64/Packages.gz
 SHA256:
- 9a36c99af96bd15c62fe97031c13d8303d523c3e56c6117d05a9afdaa28954b6             2719 main/binary-amd64/Packages
- dae7835f81aa44629b7c3c54ba606d861b36f21d7fbefa9897b32e945e110f34             1184 main/binary-amd64/Packages.gz
+ 5b76a76db21d26b96199c8756e4c9e0a44f6a352fb4894032b394401e7348b37             2719 main/binary-amd64/Packages
+ e488bb80cef123fb13a8e89ff501ec6de408cc2df4230fd0babbc394dbcdb086             1180 main/binary-amd64/Packages.gz
 SHA512:
- c5f89c81d6515863f7ba90bb16314b68059d4f9af857e55cebc5977b34a6119137b0d73540b1e5c0176b8a4334db32891875e1d4dc5b809c87afc9864d2a7f6d             2719 main/binary-amd64/Packages
- 21f986ea8f23bfef681e2c7557638ebc853959002942b747245b043f45fb5d23e012d7cb1b1e298b60ef1968ddf55e1fccd874df293e399e8d0d7a3ccdfe7dba             1184 main/binary-amd64/Packages.gz
+ 1c5ad7eb902990f2b9b1299b7948fbf6d486b01a19cde83f9712ce295913d8461a1532c09e588247e6a4af4a3b154809a5ccc5e58ed1ce5ff2bcff5c912d3417             2719 main/binary-amd64/Packages
+ a29547c45e248fac5814ea2503b7f829ca5d6b40ed1250462ba5b93221e470d98680b6e85e3c5163d558f29187b810fa36e0850d424096957e599968acaf3845             1180 main/binary-amd64/Packages.gz
