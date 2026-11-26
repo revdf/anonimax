@@ -35,7 +35,7 @@ Rectangle {
             detail: !root.backend.statusAvailable ? "Unavailable"
                     : root.backend.anonsurfActive ? "Managed by Anonimax" : "System service"
             accentColor: root.backend.statusAvailable && root.backend.torActive
-                         ? Theme.neonCyan : Theme.textPrimary
+                         ? Theme.success : Theme.textPrimary
         }
 
         StatusItem {
@@ -47,7 +47,7 @@ Rectangle {
             accentColor: !root.backend.statusAvailable || !root.backend.anonsurfActive
                          ? Theme.textPrimary
                          : root.backend.dnsMode.indexOf("Tor") === 0
-                           ? Theme.neonCyan : Theme.warning
+                           ? Theme.success : Theme.warning
         }
 
         StatusItem {
@@ -56,7 +56,7 @@ Rectangle {
             tooltip: "IP observed by the Tor Project for this request. A Tor exit result does not verify every application's traffic."
             value: root.backend.publicIP
             detail: "Tor check: " + root.backend.torCheck
-            accentColor: root.backend.torCheck === "TOR" ? Theme.neonCyan
+            accentColor: root.backend.torCheck === "TOR" ? Theme.success
                          : root.backend.torCheck === "CLEARNET" ? Theme.danger
                          : Theme.textPrimary
         }

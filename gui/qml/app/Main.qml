@@ -10,6 +10,20 @@ ApplicationWindow {
     required property var desktop
     required property var config
     property bool safeKill: false
+    property string _lastState: ""
+    property string _lastProgress: ""
+
+    ListModel { id: logModel }
+
+    function logEntry(message, entryType) {
+        logModel.append({
+            time: Qt.formatTime(new Date(), "hh:mm:ss"),
+            message: message,
+            entryType: entryType || "info"
+        })
+        if (logModel.count > 300)
+            logModel.remove(0)
+    }
     // The tray needs fresh status even while the window is hidden.
     readonly property bool live: window.visible
                                  && window.visibility !== Window.Minimized
@@ -32,7 +46,10 @@ ApplicationWindow {
     color: Theme.bgWindow
     font.family: Theme.uiFont
 
-    Component.onCompleted: window.backend.refresh()
+    Component.onCompleted: {
+        window.logEntry("Anonimax GUI iniciada — a conectar ao daemon...", "info")
+        window.backend.refresh()
+    }
     onClosing: close => {
         aboutWindow.close();
         if (window.desktop.hideToTray())
@@ -117,6 +134,12 @@ ApplicationWindow {
                     safeKill: window.safeKill
                     onPanicRequested: panicDialog.open()
                 }
+
+                LogPanel {
+                    width: parent.width
+                    height: 200
+                    logModel: window.logModel
+                }
             }
         }
     }
@@ -174,6 +197,29 @@ ApplicationWindow {
         function onChanged() {
             if (window.backend.errorMessage !== "" && !errorDialog.opened)
                 errorDialog.open();
+
+            var state = window.backend.protectionState
+            if (state !== window._lastState) {
+                window._lastState = state
+                var t = state === "ROUTED"     ? "success"
+                      : state === "INACTIVE"   ? "info"
+                      : state === "UNAVAILABLE" ? "warn"
+                      : "warn"
+                window.logEntry("Estado → " + state, t)
+            }
+
+            if (window.backend.busy) {
+                var prog = window.backend.progress
+                if (prog !== window._lastProgress) {
+                    window._lastProgress = prog
+                    window.logEntry(prog, "info")
+                }
+            }
+        }
+
+        function onOperationFinished(action, success, message) {
+            window.logEntry((success ? "✓ " : "✗ ") + action + ": " + message,
+                            success ? "success" : "error")
         }
     }
 }

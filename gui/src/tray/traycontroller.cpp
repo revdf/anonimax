@@ -111,7 +111,7 @@ QIcon TrayController::statusIcon() const {
   if (image.isNull())
     return qApp->windowIcon();
   const QString state = m_backend.protectionState();
-  const QColor color = state == "ROUTED" ? QColor("#38D9FF")
+  const QColor color = state == "ROUTED" ? QColor("#2ECC71")
                        : state == "UNVERIFIED" || state == "DEGRADED"
                            ? QColor("#F4C95D")
                        : state == "INACTIVE" ? QColor("#8CB2C1")

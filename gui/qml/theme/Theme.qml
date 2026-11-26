@@ -7,6 +7,7 @@ QtObject {
     readonly property color accentBright: "#FF3B30"
     readonly property color warning: "#F4C95D"
     readonly property color danger: "#FF453A"
+    readonly property color success: "#2ECC71"
     readonly property color info: "#B01010"
     readonly property color neonCyan: "#FF6B6B"
     readonly property color bgWindow: "#120404"

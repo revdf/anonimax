@@ -10,7 +10,7 @@ Rectangle {
     readonly property bool compact: width < 620
     readonly property bool veryCompact: width < 500
     readonly property color stateColor:
-        root.backend.protectionState === "ROUTED" ? Theme.neonCyan
+        root.backend.protectionState === "ROUTED" ? Theme.success
         : root.backend.protectionState === "DEGRADED"
           || root.backend.protectionState === "UNVERIFIED" ? Theme.warning
         : root.backend.protectionState === "INACTIVE" ? Theme.textSecondary

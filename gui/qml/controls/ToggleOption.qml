@@ -31,7 +31,7 @@ AbstractButton {
 
             Icon {
                 icon: root.checked ? "check" : "close"
-                color: root.checked ? root.accentColor : Theme.textSecondary
+                color: root.checked ? Theme.textOnAccent : Theme.textSecondary
                 anchors.verticalCenter: parent.verticalCenter
                 width: 14
                 height: 14
@@ -41,7 +41,7 @@ AbstractButton {
                 id: textLabel
 
                 color: root.checked
-                       ? root.accentColor
+                       ? Theme.textOnAccent
                        : (root.hovered ? Theme.textPrimary : Theme.textSecondary)
                 font.family: Theme.uiFont
                 font.pixelSize: Theme.buttonSize
