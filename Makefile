@@ -29,7 +29,7 @@ anonimax-cli: $(BUILD-DEST)
 	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) $(GO) build $(GO-BUILD-FLAGS) -ldflags="$(GO-LDFLAGS) -X main.version=$(VERSION)" -o ../$(BUILD-DEST)/anonimax $(GO-PKG-PREFIX)/cmd/anonsurf-cli
 
 dnstool: $(BUILD-DEST)
-	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) $(GO) build $(GO-BUILD-FLAGS) -ldflags="$(GO-LDFLAGS)" -o ../$(BUILD-DEST)/dnstool $(GO-PKG-PREFIX)/cmd/dnstool
+	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) $(GO) build $(GO-BUILD-FLAGS) -ldflags="$(GO-LDFLAGS)" -o ../$(BUILD-DEST)/anonimax-dnstool $(GO-PKG-PREFIX)/cmd/dnstool
 
 make-torrc: $(BUILD-DEST)
 	cd $(GO-SRC-DIR) && $(GO-BUILD-ENV) $(GO) build $(GO-BUILD-FLAGS) -ldflags="$(GO-LDFLAGS)" -o ../$(BUILD-DEST)/make-torrc $(GO-PKG-PREFIX)/cmd/make-torrc
@@ -69,7 +69,7 @@ inst-configs:
 
 inst-bins:
 	cp build/release/anonimax $(DESTDIR)/usr/bin/anonimax
-	cp build/release/dnstool $(DESTDIR)/usr/bin/dnstool
+	cp build/release/anonimax-dnstool $(DESTDIR)/usr/bin/anonimax-dnstool
 	cp build/release/make-torrc $(DESTDIR)/usr/lib/anonimax/make-torrc
 	cp build/release/anondaemon $(DESTDIR)/usr/lib/anonimax/anondaemon
 	cp build/release/safekill $(DESTDIR)/usr/lib/anonimax/safekill
@@ -77,7 +77,7 @@ inst-bins:
 inst-gui:
 	cp build/gui/anonsurf-gui $(DESTDIR)/usr/bin/anonimax-gui
 	cp gui/org.parrotsec.Anonsurf.desktop $(DESTDIR)/usr/share/applications/.
-	cp gui/org.parrotsec.AnonsurfCli.desktop $(DESTDIR)/usr/share/applications/.
+	cp gui/org.parrotsec.AnonimaxCli.desktop $(DESTDIR)/usr/share/applications/.
 	cp icons/anonsurf.png $(DESTDIR)/usr/share/icons/hicolor/512x512/apps/anonsurf.png
 
 inst-perms:
@@ -102,7 +102,7 @@ uninstall:
 	rm /usr/bin/anonimax
 	rm /usr/bin/anonimax-gui
 	rm /usr/share/applications/org.parrotsec.Anonsurf.desktop
-	rm /usr/share/applications/org.parrotsec.AnonsurfCli.desktop
+	rm /usr/share/applications/org.parrotsec.AnonimaxCli.desktop
 	rm /usr/share/icons/hicolor/512x512/apps/anonsurf.png
 	rm /lib/systemd/system/animaxd.service
 	rm /lib/systemd/system/anonimax-recovery.service

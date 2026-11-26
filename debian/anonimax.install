@@ -5,7 +5,7 @@ configs/anonimax.cfg etc/anonimax/
 build/release/make-torrc usr/lib/anonimax/
 build/release/anondaemon usr/lib/anonimax/
 build/release/safekill usr/lib/anonimax/
-build/release/dnstool usr/bin/
+build/release/anonimax-dnstool usr/bin/
 
 sys-units/animaxd.service lib/systemd/system/
 sys-units/anonimax-identity.service lib/systemd/system/

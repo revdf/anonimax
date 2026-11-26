@@ -18,7 +18,7 @@ var (
 func main() {
 	if err := execute(os.Args[1:], os.Stdout, os.Stderr); err != nil {
 		printer := console.New(os.Stdout, os.Stderr)
-		printer.Error(fmt.Sprintf("dnstool: %v", err))
+		printer.Error(fmt.Sprintf("anonimax-dnstool: %v", err))
 		if hint := cli.Hint(err); hint != "" {
 			printer.Info(hint)
 		}
@@ -26,7 +26,7 @@ func main() {
 			printer.Info("Run this command with sudo.")
 		}
 		if errors.Is(err, errDNSUnusable) {
-			printer.Info("Run 'sudo dnstool restore-backup' to restore system DNS.")
+			printer.Info("Run 'sudo anonimax-dnstool restore-backup' to restore system DNS.")
 		}
 		os.Exit(1)
 	}

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Anonimax CLI
+Comment=Manage system-wide Tor routing from the terminal
+Exec=anonimax
+Icon=anonsurf
+Terminal=true
+Categories=Network;Security;anonsurf;
+Keywords=Tor;Privacy;Anonymity;Network;CLI;Terminal;
+StartupNotify=false
