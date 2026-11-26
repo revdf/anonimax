@@ -1,4 +1,2 @@
-build/gui/anonsurf-gui usr/bin/
-
-gui/org.parrotsec.Anonsurf.desktop usr/share/applications/
-icons/anonsurf.png usr/share/icons/hicolor/512x512/apps/
+gui/org.parrotsec.Anonimax.desktop usr/share/applications/
+icons/anonimax.png usr/share/icons/hicolor/512x512/apps/

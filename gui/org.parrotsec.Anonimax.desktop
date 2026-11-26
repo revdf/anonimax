@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Anonimax
+Comment=Manage system-wide Tor routing
+Exec=anonimax-gui
+Icon=anonimax
+Terminal=false
+Categories=Network;Security;anonimax;
+Keywords=Tor;Privacy;Anonymity;Network;Anonimax;
+StartupNotify=true

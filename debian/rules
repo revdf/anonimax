@@ -16,6 +16,11 @@ override_dh_auto_build-arch:
 override_dh_auto_test-arch:
 	make check
 
+override_dh_install-arch:
+	dh_install
+	mkdir -p debian/anonimax-gui/usr/bin
+	install -m 755 build/gui/anonsurf-gui debian/anonimax-gui/usr/bin/anonimax-gui
+
 override_dh_fixperms-arch:
 	dh_fixperms
 	chmod +x debian/anonimax/usr/lib/anonimax/anondaemon
