@@ -59,7 +59,7 @@ Window {
                 Layout.preferredWidth: 56
                 Layout.preferredHeight: 56
                 Layout.alignment: Qt.AlignVCenter
-                source: "qrc:/icons/anonsurf.png"
+                source: "qrc:/icons/anonimax.png"
                 fillMode: Image.PreserveAspectFit
             }
 

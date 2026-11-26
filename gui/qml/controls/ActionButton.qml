@@ -7,6 +7,7 @@ Button {
     property string iconName: ""
     property string tooltip: ""
     property bool primary: false
+    property bool danger: false
     property bool iconOnly: false
 
     implicitHeight: Theme.buttonHeight
@@ -42,7 +43,8 @@ Button {
                 text: String(root.text).toUpperCase()
                 visible: !root.iconOnly
                 color: root.primary ? Theme.textOnAccent
-                                    : (root.hovered ? Theme.accentBright : Theme.buttonText)
+                                    : (root.danger ? (root.hovered ? "#FF8080" : "#FF4444")
+                                                   : (root.hovered ? Theme.accentBright : Theme.buttonText))
                 font.family: Theme.uiFont
                 font.pixelSize: Theme.buttonSize
                 font.bold: true
@@ -72,7 +74,8 @@ Button {
                    ? (root.hovered ? Theme.buttonPrimaryHover : Theme.buttonPrimary)
                    : (root.hovered ? Theme.buttonSecondaryHover : Theme.buttonSecondary)
             border.width: Theme.frameBorder
-            border.color: root.primary ? Theme.neonCyan : Theme.buttonBorder
+            border.color: root.primary ? Theme.neonCyan
+                                        : (root.danger ? Theme.danger : Theme.buttonBorder)
             Behavior on color {
                 ColorAnimation { duration: Theme.durationFast }
             }

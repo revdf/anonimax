@@ -39,6 +39,7 @@ Priority: optional
 Depends:
  ${shlibs:Depends},
  ${misc:Depends},
+ anonimax (= ${binary:Version}),
  anonimax-cli (= ${binary:Version}),
  fonts-inter,
  konsole,

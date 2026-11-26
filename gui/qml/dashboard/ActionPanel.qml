@@ -6,13 +6,10 @@ Item {
 
     required property var backend
     property bool safeKill: false
-    // The row never wraps: below the width that fits five labels the buttons
-    // drop to icons, which keeps the panel one line tall at any size instead
-    // of stacking and dragging the whole window taller.
+    signal panicRequested()
+
     readonly property bool iconOnly: width < 700
 
-    // No frame here: five buttons in a row already read as one group, and a
-    // container around them would only add a box inside a box.
     implicitHeight: content.implicitHeight
 
     ColumnLayout {
@@ -55,7 +52,7 @@ Item {
                 text: "Restart"
                 iconName: "restart"
                 iconOnly: root.iconOnly
-                tooltip: "Restarts Tor and rebuilds routing from the current AnonSurf configuration."
+                tooltip: "Restarts Tor and rebuilds routing from the current Anonimax configuration."
                 enabled: root.backend.statusAvailable && root.backend.anonsurfActive
                          && !root.backend.busy
                 onClicked: root.backend.restart(root.safeKill)
@@ -77,11 +74,41 @@ Item {
                 text: "Refresh"
                 iconName: "refresh"
                 iconOnly: root.iconOnly
-                tooltip: "Reads the AnonSurf status right away instead of waiting for the periodic update."
+                tooltip: "Reads the Anonimax status right away instead of waiting for the periodic update."
                 enabled: !root.backend.busy
                 onClicked: root.backend.refresh()
             }
         }
 
+        GridLayout {
+            Layout.fillWidth: true
+            columns: 2
+            columnSpacing: Theme.spacingSmall
+            rowSpacing: Theme.spacingSmall
+
+            ActionButton {
+                Layout.fillWidth: true
+                text: root.backend.autochangeActive ? "Stop Auto-change" : "Auto-change"
+                iconName: "timer"
+                iconOnly: root.iconOnly
+                tooltip: root.backend.autochangeActive
+                         ? "Stop automatic Tor identity rotation."
+                         : "Rotate Tor identity automatically every 10 minutes."
+                enabled: root.backend.statusAvailable && root.backend.anonsurfActive
+                         && root.backend.torActive && !root.backend.busy
+                onClicked: root.backend.toggleAutochange()
+            }
+
+            ActionButton {
+                Layout.fillWidth: true
+                text: "Panic"
+                iconName: "zap"
+                iconOnly: root.iconOnly
+                danger: true
+                tooltip: "Emergency shutdown: cuts network, stops Tor, clears traces and powers off the machine."
+                enabled: !root.backend.busy
+                onClicked: root.panicRequested()
+            }
+        }
     }
 }

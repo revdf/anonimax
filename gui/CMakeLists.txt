@@ -68,9 +68,9 @@ qt_add_qml_module(anonsurf-gui
         qml/theme/Theme.qml
 )
 
-set(ANONSURF_ICON "${CMAKE_CURRENT_SOURCE_DIR}/../icons/anonsurf.png")
+set(ANONSURF_ICON "${CMAKE_CURRENT_SOURCE_DIR}/../icons/anonimax.png")
 set_source_files_properties("${ANONSURF_ICON}" PROPERTIES
-    QT_RESOURCE_ALIAS icons/anonsurf.png
+    QT_RESOURCE_ALIAS icons/anonimax.png
 )
 qt_add_resources(anonsurf-gui "anonsurf-assets"
     PREFIX /
@@ -97,5 +97,5 @@ install(TARGETS anonsurf-gui RUNTIME DESTINATION bin)
 install(FILES org.parrotsec.Anonsurf.desktop DESTINATION share/applications)
 install(FILES "${ANONSURF_ICON}"
     DESTINATION share/icons/hicolor/512x512/apps
-    RENAME anonsurf.png
+    RENAME anonimax.png
 )

@@ -9,7 +9,7 @@ import (
 	"gitlab.com/parrotsec/packages/anonsurf/internal/fileops"
 )
 
-const StatePath = "/run/anonsurf/loaded-av-modules"
+const StatePath = "/run/anonimax/loaded-av-modules"
 
 var runner = command.Runner{}
 

@@ -1,9 +1,9 @@
 [Unit]
-Description=Request a new AnonSurf Tor identity
-Requisite=anonsurfd.service
-After=anonsurfd.service tor@default.service
+Description=Request a new Anonimax Tor identity
+Requisite=animaxd.service
+After=animaxd.service tor@default.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/lib/anonsurf/anondaemon changeid
+ExecStart=/usr/lib/anonimax/anondaemon changeid
 TimeoutStartSec=30

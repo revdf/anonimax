@@ -111,9 +111,11 @@ ApplicationWindow {
                 }
 
                 ActionPanel {
+                    id: actionPanel
                     width: parent.width
                     backend: window.backend
                     safeKill: window.safeKill
+                    onPanicRequested: panicDialog.open()
                 }
             }
         }
@@ -121,6 +123,17 @@ ApplicationWindow {
 
     AboutWindow {
         id: aboutWindow
+    }
+
+    ConfirmDialog {
+        id: panicDialog
+
+        badge: "PANIC"
+        confirmText: "Execute Panic"
+        message: "This will immediately cut all network connections, stop Tor, "
+                 + "clear traces and POWER OFF the machine. All unsaved work will be lost. "
+                 + "This cannot be undone."
+        onAccepted: window.backend.runPanic()
     }
 
     ConfirmDialog {

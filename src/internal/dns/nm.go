@@ -12,8 +12,8 @@ import (
 
 const (
 	NMHookScript               = "/etc/NetworkManager/conf.d/90-dns-none.conf"
-	NMHookBackup               = "/var/lib/anonsurf/network-manager-hook.backup"
-	NMHookMissingMarker        = "/var/lib/anonsurf/network-manager-hook.missing"
+	NMHookBackup               = "/var/lib/anonimax/network-manager-hook.backup"
+	NMHookMissingMarker        = "/var/lib/anonimax/network-manager-hook.missing"
 	NMHookDontManageResolvConf = "[main]\ndns=none\nrc-manager=unmanaged\n"
 	NMHookHandleResolvConf     = "[main]\ndns=default\nrc-manager=symlink\n"
 )

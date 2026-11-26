@@ -29,7 +29,7 @@ DesktopInstance::Startup DesktopInstance::start() {
   m_exported =
       m_bus.registerObject(Path, this, QDBusConnection::ExportScriptableSlots);
   if (!m_exported) {
-    qCritical() << "Cannot export the AnonSurf activation endpoint:"
+    qCritical() << "Cannot export the Anonimax activation endpoint:"
                 << m_bus.lastError().message();
     return Startup::Failed;
   }
@@ -37,7 +37,7 @@ DesktopInstance::Startup DesktopInstance::start() {
   const auto reply = m_bus.interface()->registerService(
       Service, QDBusConnectionInterface::DontQueueService);
   if (!reply.isValid()) {
-    qCritical() << "Cannot register the AnonSurf desktop instance:"
+    qCritical() << "Cannot register the Anonimax desktop instance:"
                 << reply.error().message();
     return Startup::Failed;
   }
@@ -50,7 +50,7 @@ DesktopInstance::Startup DesktopInstance::start() {
       QDBusMessage::createMethodCall(Service, Path, Service, "Activate"),
       QDBus::Block, 3000);
   if (activation.type() == QDBusMessage::ErrorMessage) {
-    qCritical() << "Cannot activate the existing AnonSurf window:"
+    qCritical() << "Cannot activate the existing Anonimax window:"
                 << activation.errorMessage();
     return Startup::Failed;
   }

@@ -34,9 +34,9 @@ void DesktopNotifications::send(const QString &title, const QString &message,
   const QVariantMap hints{
       {"desktop-entry", "org.parrotsec.Anonsurf"},
       {"urgency", QVariant::fromValue(static_cast<uchar>(error ? 2 : 1))}};
-  request.setArguments({QString("AnonSurf"), uint(0), QString("anonsurf"),
+  request.setArguments({QString("Anonimax"), uint(0), QString("anonimax"),
                         title, message.toHtmlEscaped(),
-                        QStringList{"default", "Open AnonSurf"}, hints, -1});
+                        QStringList{"default", "Open Anonimax"}, hints, -1});
   auto *watcher =
       new QDBusPendingCallWatcher(m_bus.asyncCall(request, 5000), this);
   connect(watcher, &QDBusPendingCallWatcher::finished, this,

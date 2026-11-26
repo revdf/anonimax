@@ -1,12 +1,12 @@
 [Unit]
-Description=Restore AnonSurf state from an interrupted session
+Description=Restore Anonimax state from an interrupted session
 After=local-fs.target NetworkManager.service
-Before=anonsurfd.service tor@default.service
+Before=animaxd.service tor@default.service
 
 [Service]
 Type=oneshot
 NotifyAccess=all
-ExecStart=/usr/lib/anonsurf/anondaemon recover
+ExecStart=/usr/lib/anonimax/anondaemon recover
 RemainAfterExit=yes
 
 [Install]

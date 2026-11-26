@@ -9,7 +9,7 @@ import (
 	"gitlab.com/parrotsec/packages/anonsurf/internal/fileops"
 )
 
-const StatePath = "/run/anonsurf/proxy-active"
+const StatePath = "/run/anonimax/proxy-active"
 
 type Config struct {
 	Type       string // "http", "https", "socks5"
@@ -64,7 +64,7 @@ func ParseURL(rawURL string) (Config, error) {
 }
 
 // Apply configures proxy environment variables for the current process
-// and marks proxy as active under /run/anonsurf.
+// and marks proxy as active under /run/anonimax.
 func Apply(cfg Config) error {
 	if cfg.Address == "" {
 		return fmt.Errorf("proxy address is empty")
@@ -119,7 +119,7 @@ func buildProxyURL(cfg Config) string {
 	return cfg.Type + "://" + cfg.Credential + "@" + cfg.Address
 }
 
-// FromAnonSurfConfig builds a proxy Config from AnonSurf settings.
+// FromAnonSurfConfig builds a proxy Config from Anonimax settings.
 // ok is false when proxy is disabled or no address is configured.
 func FromAnonSurfConfig(useProxy bool, socks5Addr, socks5Cred, httpAddr, httpCred string, https bool) (Config, bool) {
 	if !useProxy {

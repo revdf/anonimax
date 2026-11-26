@@ -39,8 +39,8 @@ func (Checker) Check(ctx context.Context) (Result, error) {
 	// DefaultTransport could take this path:
 	//   request -> HTTP_PROXY -> proxy -> Tor Project
 	// The check must instead exercise:
-	//   request -> normal socket -> AnonSurf iptables -> Tor -> Tor Project
-	// Otherwise a Tor-enabled proxy could return IsTor=true while AnonSurf's
+	//   request -> normal socket -> Anonimax iptables -> Tor -> Tor Project
+	// Otherwise a Tor-enabled proxy could return IsTor=true while Anonimax's
 	// transparent routing is broken. Clone keeps the transport defaults; clearing
 	// Proxy forces the connection through the system route being verified.
 	transport.Proxy = nil

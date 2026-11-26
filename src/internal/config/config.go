@@ -12,11 +12,11 @@ import (
 
 const (
 	SystemPath  = "/etc/anonimax/anonimax.cfg"
-	sectionName = "AnonSurfConfig"
+	sectionName = "AnonimaxConfig"
 )
 
 // ErrSectionNotFound keeps missing config explicit instead of silently running with defaults.
-var ErrSectionNotFound = errors.New("AnonSurfConfig section not found")
+var ErrSectionNotFound = errors.New("AnonimaxConfig section not found")
 
 type Config struct {
 	UseSandbox            bool
@@ -44,7 +44,7 @@ type Config struct {
 	DisableCameraMic      bool
 }
 
-// Default mirrors configs/anonsurf.cfg so missing optional values keep Parrot's shipped behavior.
+// Default mirrors configs/anonimax.cfg so missing optional values keep the shipped behavior.
 func Default() Config {
 	return Config{
 		UseSandbox:            false,
@@ -108,7 +108,7 @@ func Parse(reader io.Reader) (Config, error) {
 		if currentSection == "" {
 			return cfg, fmt.Errorf("line %d: setting outside section", lineNumber)
 		}
-		// Other sections may be introduced by packaging or local tooling without affecting AnonSurf.
+		// Other sections may be introduced by packaging or local tooling without affecting Anonimax.
 		if currentSection != sectionName {
 			continue
 		}

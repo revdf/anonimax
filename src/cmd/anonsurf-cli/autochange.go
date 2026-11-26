@@ -15,8 +15,8 @@ func autoChangeCommand(client anonsurf.AutoChangeClient) *cobra.Command {
 		Use:   "autochange",
 		Short: "Auto-rotate Tor identity every N minutes",
 		Long: "Start or stop automatic Tor identity rotation.\n" +
-			"  anonsurf autochange <N>     rotate every N minutes (N >= 1)\n" +
-			"  anonsurf autochange stop    stop automatic rotation",
+			"  anonimax autochange <N>     rotate every N minutes (N >= 1)\n" +
+			"  anonimax autochange stop    stop automatic rotation",
 		Args: cobra.ExactArgs(1),
 		ValidArgsFunction: func(cmd *cobra.Command, args []string, toComplete string) ([]string, cobra.ShellCompDirective) {
 			if len(args) == 0 {
@@ -38,7 +38,7 @@ func autoChangeCommand(client anonsurf.AutoChangeClient) *cobra.Command {
 			if err != nil || minutes < 1 {
 				return cli.NewError(
 					"interval must be a number >= 1",
-					"Example: anonsurf autochange 10",
+					"Example: anonimax autochange 10",
 				)
 			}
 			printer.Running(fmt.Sprintf("Starting auto identity change every %d minute(s)...", minutes))

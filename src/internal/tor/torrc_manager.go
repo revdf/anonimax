@@ -12,8 +12,8 @@ import (
 
 const (
 	TorrcPath              = "/etc/tor/torrc"
-	TorrcBackupPath        = "/var/lib/anonsurf/torrc.backup"
-	TorrcMissingMarkerPath = "/var/lib/anonsurf/torrc.missing"
+	TorrcBackupPath        = "/var/lib/anonimax/torrc.backup"
+	TorrcMissingMarkerPath = "/var/lib/anonimax/torrc.missing"
 )
 
 var (

@@ -21,7 +21,7 @@ const (
 )
 
 type Snapshot struct {
-	AnonSurfActive bool
+	AnonimaxActive bool
 	TorActive      bool
 	DNSState       DNSState
 	DNSAddresses   []string
@@ -30,9 +30,9 @@ type Snapshot struct {
 type Reader struct{}
 
 func (Reader) Snapshot() (Snapshot, error) {
-	anonsurfActive, err := systemd.NewAnonsurfdController().IsActive()
+	anoimaxActive, err := systemd.NewAnimaxdController().IsActive()
 	if err != nil {
-		return Snapshot{}, fmt.Errorf("read AnonSurf status: %w", err)
+		return Snapshot{}, fmt.Errorf("read Anonimax status: %w", err)
 	}
 	torActive, err := systemd.NewTorController().IsActive()
 	if err != nil {
@@ -44,21 +44,21 @@ func (Reader) Snapshot() (Snapshot, error) {
 	}
 
 	return Snapshot{
-		AnonSurfActive: anonsurfActive,
+		AnonimaxActive: anoimaxActive,
 		TorActive:      torActive,
-		DNSState:       classifyDNS(anonsurfActive, addresses, err),
+		DNSState:       classifyDNS(anoimaxActive, addresses, err),
 		DNSAddresses:   addresses,
 	}, nil
 }
 
-func classifyDNS(anonsurfActive bool, addresses []string, readErr error) DNSState {
+func classifyDNS(anoimaxActive bool, addresses []string, readErr error) DNSState {
 	if errors.Is(readErr, os.ErrNotExist) {
 		return DNSMissing
 	}
 	if len(addresses) == 0 {
 		return DNSEmpty
 	}
-	if anonsurfActive {
+	if anoimaxActive {
 		if dns.HasOnlyLocalhost(addresses) {
 			return DNSTor
 		}

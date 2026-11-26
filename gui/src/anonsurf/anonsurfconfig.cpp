@@ -3,7 +3,7 @@
 #include <QProcess>
 
 namespace {
-constexpr auto AnonSurfBin = "/usr/bin/anonsurf";
+constexpr auto AnonSurfBin = "/usr/bin/anonimax";
 } // namespace
 
 AnonSurfConfig::AnonSurfConfig(QObject *parent) : QObject(parent) {

@@ -30,7 +30,7 @@ Se você usa Windows e quer algo parecido com o Anonimax, as melhores opções s
 
 ## O que o Anonimax faz?
 
-Quando você executa `anonsurf start`, o Anonimax:
+Quando você executa `anonimax start`, o Anonimax:
 
 1. 🔀 **Troca o endereço MAC** da sua placa de rede por um aleatório
 2. 🌐 **Renova seu IP local** via DHCP
@@ -41,31 +41,31 @@ Quando você executa `anonsurf start`, o Anonimax:
 7. 📡 **Bloqueia telemetria** do Google, Microsoft e Amazon
 8. 📷 **Desativa câmera e microfone** via módulos do kernel
 
-Quando você executa `anonsurf stop`, tudo é restaurado ao estado original automaticamente.
+Quando você executa `anonimax stop`, tudo é restaurado ao estado original automaticamente.
 
 ---
 
 ## Comandos
 
 ```bash
-anonsurf start              # Ativa proteção completa
-anonsurf stop               # Para e restaura tudo
-anonsurf status             # Mostra o estado atual
-anonsurf restart            # Reinicia (troca circuito Tor)
-anonsurf changeid           # Troca de identidade Tor manualmente
-anonsurf autochange 10      # Troca de identidade a cada 10 minutos
-anonsurf autochange stop    # Para a troca automática
-anonsurf panic              # EMERGÊNCIA: derruba rede, limpa rastros e desliga
-anonsurf proxy set socks5://127.0.0.1:1080   # Configura proxy
-anonsurf proxy unset        # Remove proxy
-anonsurf config list        # Lista todas as configurações
-anonsurf config set block_telemetry true     # Altera uma configuração
+anonimax start              # Ativa proteção completa
+anonimax stop               # Para e restaura tudo
+anonimax status             # Mostra o estado atual
+anonimax restart            # Reinicia (troca circuito Tor)
+anonimax changeid           # Troca de identidade Tor manualmente
+anonimax autochange 10      # Troca de identidade a cada 10 minutos
+anonimax autochange stop    # Para a troca automática
+anonimax panic              # EMERGÊNCIA: derruba rede, limpa rastros e desliga
+anonimax proxy set socks5://127.0.0.1:1080   # Configura proxy
+anonimax proxy unset        # Remove proxy
+anonimax config list        # Lista todas as configurações
+anonimax config set block_telemetry true     # Altera uma configuração
 ```
 
 ### Modo Pânico
 
 ```bash
-anonsurf panic
+anonimax panic
 ```
 
 Sequência de emergência: derruba todas as interfaces de rede → para o Tor → limpa as regras de firewall → restaura o MAC original → apaga rastros → **desliga o computador**. Use quando precisar fechar tudo rapidamente.
@@ -106,7 +106,7 @@ O Tor Browser usa essa rede só para o navegador. O Anonimax vai além: coloca *
 
 Para ativar qualquer opção:
 ```bash
-sudo anonsurf config set block_telemetry true
+sudo anonimax config set block_telemetry true
 ```
 
 Ou use os checkboxes na interface gráfica.
@@ -141,8 +141,8 @@ https://revdf.github.io/anonimax stable main" \
 
 # 3. Instalar
 sudo apt update
-sudo apt install anonsurf-cli          # CLI + daemon
-sudo apt install anonsurf-gui          # Interface gráfica (opcional)
+sudo apt install anonimax-cli          # CLI + daemon
+sudo apt install anonimax-gui          # Interface gráfica (opcional)
 ```
 
 Para remover o repositório depois:
@@ -157,9 +157,9 @@ Se preferir instalar sem configurar o repositório, baixe os pacotes diretamente
 **https://github.com/revdf/anonimax/releases**
 
 ```bash
-sudo dpkg -i anonsurf_6.1.0+anonimax1_amd64.deb
-sudo dpkg -i anonsurf-cli_6.1.0+anonimax1_amd64.deb
-sudo dpkg -i anonsurf-gui_6.1.0+anonimax1_amd64.deb   # opcional
+sudo dpkg -i anonimax_6.1.0+anonimax1_amd64.deb
+sudo dpkg -i anonimax-cli_6.1.0+anonimax1_amd64.deb
+sudo dpkg -i anonimax-gui_6.1.0+anonimax1_amd64.deb   # opcional
 sudo apt-get install -f                                  # corrige dependências
 ```
 

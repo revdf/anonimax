@@ -93,7 +93,7 @@ Rectangle {
                 text: root.backend.anonsurfActive ? "Stop Anonimax" : "Start Anonimax"
                 iconName: root.backend.anonsurfActive ? "stop" : "start"
                 tooltip: root.backend.anonsurfActive
-                         ? "Removes AnonSurf routing and restores the previous network settings."
+                         ? "Removes Anonimax routing and restores the previous network settings."
                          : "Redirects supported TCP and DNS traffic through Tor. Private networks and loopback remain excluded; other UDP traffic is not tunneled."
                 primary: true
                 enabled: root.backend.statusAvailable && !root.backend.busy

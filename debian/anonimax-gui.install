@@ -1,2 +1,4 @@
 gui/org.parrotsec.Anonimax.desktop usr/share/applications/
 icons/anonimax.png usr/share/icons/hicolor/512x512/apps/
+debian/anonimax.directory usr/share/desktop-directories/
+debian/anonimax.menu etc/xdg/menus/applications-merged/

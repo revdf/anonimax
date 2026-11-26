@@ -30,8 +30,8 @@ TrayController::TrayController(AnonSurfBackend &backend, QObject *parent)
           &TrayController::updateState);
   connect(&backend, &AnonSurfBackend::operationFinished, this,
           [this](const QString &, bool success, const QString &message) {
-            m_notifications.send(success ? "AnonSurf"
-                                         : "AnonSurf action failed",
+            m_notifications.send(success ? "Anonimax"
+                                         : "Anonimax action failed",
                                  message, !success);
           });
   m_availabilityTimer.setInterval(3000);
@@ -56,7 +56,7 @@ bool TrayController::hideToTray() {
   if (!m_hideNoticeShown) {
     m_hideNoticeShown = true;
     m_notifications.send(
-        "AnonSurf is running in the tray",
+        "Anonimax is running in the tray",
         "Use the tray menu to reopen the window or quit the interface. "
         "Closing the window does not stop routing.");
   }
@@ -102,7 +102,7 @@ void TrayController::updateState() {
   m_menu.updateState({m_backend.statusAvailable(), m_backend.anonsurfActive(),
                       m_backend.torActive(), m_backend.busy(),
                       m_backend.protectionState(), detail});
-  m_tray.setToolTip("AnonSurf: " + m_backend.protectionState() + "\n" + detail);
+  m_tray.setToolTip("Anonimax: " + m_backend.protectionState() + "\n" + detail);
   m_tray.setIcon(statusIcon());
 }
 

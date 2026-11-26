@@ -1,51 +1,101 @@
 import QtQuick
 import QtQuick.Controls
 
-CheckBox {
+AbstractButton {
     id: root
 
     property alias label: textLabel.text
     property string tooltip: ""
-    property color accentColor: Theme.accentBright
+    property color accentColor: Theme.accent
 
-    spacing: Theme.spacingSmall
+    checkable: false
     hoverEnabled: true
-    opacity: enabled ? 1 : 0.55
+    opacity: enabled ? 1 : 0.5
+    implicitHeight: Theme.buttonHeight
+    implicitWidth: textLabel.implicitWidth + 14 + Theme.spacingSmall * 2 + Theme.spacingLarge * 2
     Accessible.name: label
-    Accessible.description: tooltip
 
-    indicator: Rectangle {
-        x: 0
-        y: parent.height / 2 - height / 2
-        width: 20
-        height: 20
-        color: root.checked ? root.accentColor : Theme.bgPanelAlt
-        border.width: 1
-        border.color: root.checked ? root.accentColor : Theme.textSecondary
+    contentItem: Item {
+        anchors.fill: parent
+        transform: Translate {
+            x: root.down ? Theme.buttonShadowSize : 0
+            y: root.down ? Theme.buttonShadowSize : 0
+        }
 
-        Icon {
+        Row {
             anchors.centerIn: parent
-            width: 12
-            height: 12
-            icon: "check"
-            color: Theme.bgWindow
-            visible: root.checked
+            anchors.left: parent.left
+            anchors.right: parent.right
+            anchors.leftMargin: Theme.spacingLarge
+            spacing: Theme.spacingSmall
+
+            Icon {
+                icon: root.checked ? "check" : "close"
+                color: root.checked ? root.accentColor : Theme.textSecondary
+                anchors.verticalCenter: parent.verticalCenter
+                width: 14
+                height: 14
+            }
+
+            Text {
+                id: textLabel
+
+                color: root.checked
+                       ? root.accentColor
+                       : (root.hovered ? Theme.textPrimary : Theme.textSecondary)
+                font.family: Theme.uiFont
+                font.pixelSize: Theme.buttonSize
+                font.bold: root.checked
+                anchors.verticalCenter: parent.verticalCenter
+                elide: Text.ElideRight
+                Behavior on color {
+                    ColorAnimation { duration: Theme.durationFast }
+                }
+            }
         }
     }
 
-    contentItem: Text {
-        id: textLabel
+    background: Item {
+        Rectangle {
+            x: root.down ? 0 : Theme.buttonShadowSize
+            y: root.down ? 0 : Theme.buttonShadowSize
+            width: parent.width
+            height: parent.height
+            color: root.checked ? Theme.buttonShadow : Theme.buttonSecondaryShadow
+        }
 
-        leftPadding: 28
-        verticalAlignment: Text.AlignVCenter
-        color: root.checked ? root.accentColor : Theme.textPrimary
-        font.family: Theme.uiFont
-        font.pixelSize: Theme.detailSize
+        Rectangle {
+            id: bg
+            x: root.down ? Theme.buttonShadowSize : 0
+            y: root.down ? Theme.buttonShadowSize : 0
+            width: parent.width
+            height: parent.height
+            color: root.checked
+                   ? (root.hovered ? Theme.buttonPrimaryHover : Theme.buttonPrimary)
+                   : (root.hovered ? Theme.buttonSecondaryHover : Theme.buttonSecondary)
+            border.width: Theme.frameBorder
+            border.color: root.checked ? root.accentColor : Theme.buttonBorder
+            Behavior on color {
+                ColorAnimation { duration: Theme.durationFast }
+            }
+            Behavior on border.color {
+                ColorAnimation { duration: Theme.durationFast }
+            }
+
+            Rectangle {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.top: parent.top
+                height: 1
+                color: root.checked ? Qt.rgba(1, 0.3, 0.3, 0.35) : Theme.buttonHighlight
+                opacity: root.down ? 0 : 1
+            }
+        }
     }
 
     ThemedToolTip {
         parent: root
-        x: 0
+        x: Math.round((root.width - width) / 2)
         y: root.height + Theme.spacingTiny
         visible: root.tooltip !== "" && root.hovered
         text: root.tooltip

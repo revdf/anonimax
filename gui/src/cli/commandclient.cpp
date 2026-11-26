@@ -7,8 +7,8 @@
 #include <QJsonObject>
 
 namespace {
-constexpr auto AnonSurfPath = "/usr/bin/anonsurf";
-constexpr auto SafeKillPath = "/usr/lib/anonsurf/safekill";
+constexpr auto AnonSurfPath = "/usr/bin/anonimax";
+constexpr auto SafeKillPath = "/usr/lib/anonimax/safekill";
 constexpr auto KonsolePath = "/usr/bin/konsole";
 } // namespace
 
@@ -23,12 +23,12 @@ CommandClient::CommandClient(QObject *parent) : QObject(parent) {
   connect(&m_statusProcess, &QProcess::errorOccurred, this,
           [this](QProcess::ProcessError error) {
             if (error == QProcess::FailedToStart)
-              emit statusFailed("The AnonSurf CLI could not be started.");
+              emit statusFailed("The Anonimax CLI could not be started.");
           });
   connect(&m_ipProcess, &QProcess::errorOccurred, this,
           [this](QProcess::ProcessError error) {
             if (error == QProcess::FailedToStart)
-              emit ipFailed("The AnonSurf CLI could not be started.");
+              emit ipFailed("The Anonimax CLI could not be started.");
           });
   connect(&m_safeKillProcess, &QProcess::errorOccurred, this,
           [this](QProcess::ProcessError error) {
@@ -36,11 +36,26 @@ CommandClient::CommandClient(QObject *parent) : QObject(parent) {
               emit safeKillFinished(false, "SafeKill could not be started.");
             }
           });
+  connect(&m_panicProcess, &QProcess::finished, this,
+          &CommandClient::handlePanicFinished);
+  connect(&m_panicProcess, &QProcess::errorOccurred, this,
+          [this](QProcess::ProcessError error) {
+            if (error == QProcess::FailedToStart)
+              emit panicFinished(false, "Panic command could not be started.");
+          });
+  connect(&m_autochangeProcess, &QProcess::finished, this,
+          &CommandClient::handleAutochangeFinished);
+  connect(&m_autochangeProcess, &QProcess::errorOccurred, this,
+          [this](QProcess::ProcessError error) {
+            if (error == QProcess::FailedToStart)
+              emit autochangeFinished(false, m_autochangeStarting,
+                                      "Autochange command could not be started.");
+          });
 }
 
 CommandClient::~CommandClient() {
-  // QProcess can emit completion signals while its owner is being destroyed.
-  for (auto *process : {&m_statusProcess, &m_ipProcess, &m_safeKillProcess}) {
+  for (auto *process : {&m_statusProcess, &m_ipProcess, &m_safeKillProcess,
+                        &m_panicProcess, &m_autochangeProcess}) {
     process->disconnect(this);
     if (process->state() != QProcess::NotRunning) {
       process->kill();
@@ -83,7 +98,7 @@ void CommandClient::handleStatusFinished(int exitCode,
                                          QProcess::ExitStatus exitStatus) {
   if (exitStatus != QProcess::NormalExit || exitCode != 0) {
     emit statusFailed(
-        processError(m_statusProcess, "AnonSurf status is unavailable."));
+        processError(m_statusProcess, "Anonimax status is unavailable."));
     return;
   }
 
@@ -91,16 +106,16 @@ void CommandClient::handleStatusFinished(int exitCode,
   const QJsonDocument document = QJsonDocument::fromJson(
       m_statusProcess.readAllStandardOutput(), &parseError);
   if (parseError.error != QJsonParseError::NoError || !document.isObject()) {
-    emit statusFailed("AnonSurf returned an invalid status response.");
+    emit statusFailed("Anonimax returned an invalid status response.");
     return;
   }
 
   const QJsonObject object = document.object();
-  if (!object.value("anonsurf_active").isBool() ||
+  if (!object.value("anonimax_active").isBool() ||
       !object.value("tor_active").isBool() ||
       !object.value("dns_state").isString() ||
       !object.value("dns_addresses").isArray()) {
-    emit statusFailed("AnonSurf returned an incomplete status response.");
+    emit statusFailed("Anonimax returned an incomplete status response.");
     return;
   }
 
@@ -109,7 +124,7 @@ void CommandClient::handleStatusFinished(int exitCode,
     if (value.isString())
       addresses.append(value.toString());
   }
-  emit statusReady(object.value("anonsurf_active").toBool(),
+  emit statusReady(object.value("anonimax_active").toBool(),
                    object.value("tor_active").toBool(),
                    object.value("dns_state").toString(), addresses);
 }
@@ -127,7 +142,7 @@ void CommandClient::handleIPFinished(int exitCode,
   const QJsonObject object = document.object();
   if (parseError.error != QJsonParseError::NoError || !document.isObject() ||
       !object.value("ip").isString() || !object.value("is_tor").isBool()) {
-    emit ipFailed("AnonSurf returned an invalid Tor check response.");
+    emit ipFailed("Anonimax returned an invalid Tor check response.");
     return;
   }
   emit ipReady(object.value("ip").toString(), object.value("is_tor").toBool());
@@ -142,6 +157,40 @@ void CommandClient::handleSafeKillFinished(int exitCode,
           ? QString{}
           : processError(m_safeKillProcess,
                          "SafeKill failed. Ensure BleachBit is installed."));
+}
+
+void CommandClient::runPanic() {
+  if (m_panicProcess.state() != QProcess::NotRunning)
+    return;
+  m_panicProcess.start(AnonSurfPath, {"panic", "--force"});
+}
+
+void CommandClient::runAutochange(bool start, int minutes) {
+  if (m_autochangeProcess.state() != QProcess::NotRunning)
+    return;
+  m_autochangeStarting = start;
+  if (start)
+    m_autochangeProcess.start(AnonSurfPath,
+                               {"autochange", QString::number(minutes)});
+  else
+    m_autochangeProcess.start(AnonSurfPath, {"autochange", "stop"});
+}
+
+void CommandClient::handlePanicFinished(int exitCode,
+                                        QProcess::ExitStatus exitStatus) {
+  const bool success = exitStatus == QProcess::NormalExit && exitCode == 0;
+  emit panicFinished(
+      success,
+      success ? QString{} : processError(m_panicProcess, "Panic command failed."));
+}
+
+void CommandClient::handleAutochangeFinished(int exitCode,
+                                             QProcess::ExitStatus exitStatus) {
+  const bool success = exitStatus == QProcess::NormalExit && exitCode == 0;
+  emit autochangeFinished(
+      success, m_autochangeStarting,
+      success ? QString{}
+              : processError(m_autochangeProcess, "Autochange command failed."));
 }
 
 QString CommandClient::processError(QProcess &process,

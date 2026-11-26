@@ -15,7 +15,7 @@ const (
 	ipv6AllKey     = "net.ipv6.conf.all.disable_ipv6"
 	ipv6DefaultKey = "net.ipv6.conf.default.disable_ipv6"
 	ConfPath       = "/proc/sys/net/ipv6/conf"
-	StatePath      = "/run/anonsurf/ipv6.state"
+	StatePath      = "/run/anonimax/ipv6.state"
 	sysctlPath     = "/sbin/sysctl"
 )
 

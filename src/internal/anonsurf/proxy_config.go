@@ -7,7 +7,7 @@ import (
 	"gitlab.com/parrotsec/packages/anonsurf/internal/proxy"
 )
 
-// SetProxyConfig parses url and writes proxy settings into anonsurf.cfg.
+// SetProxyConfig parses url and writes proxy settings into anonimax.cfg.
 func (Controller) SetProxyConfig(rawURL string) error {
 	cfg, err := proxy.ParseURL(rawURL)
 	if err != nil {
@@ -39,7 +39,7 @@ func (Controller) SetProxyConfig(rawURL string) error {
 	return config.UpdateKeys(config.SystemPath, values)
 }
 
-// UnsetProxyConfig disables proxy settings in anonsurf.cfg.
+// UnsetProxyConfig disables proxy settings in anonimax.cfg.
 func (Controller) UnsetProxyConfig() error {
 	return config.UpdateKeys(config.SystemPath, map[string]string{
 		"use_proxy":               "false",

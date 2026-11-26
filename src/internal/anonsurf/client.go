@@ -7,7 +7,7 @@ import (
 	"gitlab.com/parrotsec/packages/anonsurf/internal/command"
 )
 
-const BinaryPath = "/usr/lib/anonsurf/anondaemon"
+const BinaryPath = "/usr/lib/anonimax/anondaemon"
 
 type IdentityClient struct{}
 

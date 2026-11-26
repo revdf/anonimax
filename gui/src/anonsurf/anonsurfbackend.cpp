@@ -1,7 +1,7 @@
 #include "anonsurf/anonsurfbackend.h"
 
 namespace {
-constexpr auto IdentityUnit = "anonsurf-identity.service";
+constexpr auto IdentityUnit = "anonimax-identity.service";
 } // namespace
 
 AnonSurfBackend::AnonSurfBackend(QObject *parent) : QObject(parent) {
@@ -35,6 +35,16 @@ AnonSurfBackend::AnonSurfBackend(QObject *parent) : QObject(parent) {
           [this](const QString &message) {
             setError(message);
             emit operationFinished("monitor", false, message);
+          });
+  connect(&m_commands, &CommandClient::panicFinished, this,
+          [this](bool success, const QString &message) {
+            finishAction("panic", success, message);
+          });
+  connect(&m_commands, &CommandClient::autochangeFinished, this,
+          [this](bool success, bool started, const QString &message) {
+            if (success)
+              m_autochangeActive = started;
+            finishAction("autochange", success, message);
           });
   connect(&m_commands, &CommandClient::safeKillFinished, this,
           [this](bool success, const QString &message) {
@@ -74,6 +84,7 @@ QString AnonSurfBackend::publicIP() const { return m_publicIP; }
 QString AnonSurfBackend::torCheck() const { return m_torCheck; }
 QString AnonSurfBackend::progress() const { return m_progress; }
 QString AnonSurfBackend::errorMessage() const { return m_errorMessage; }
+bool AnonSurfBackend::autochangeActive() const { return m_autochangeActive; }
 
 void AnonSurfBackend::refresh() {
   m_commands.requestStatus();
@@ -116,11 +127,30 @@ void AnonSurfBackend::setBootEnabled(bool enabled) {
   if (m_busy || enabled == m_bootEnabled)
     return;
   const QString action = enabled ? "boot-enable" : "boot-disable";
-  beginAction(action, enabled ? "Enabling AnonSurf at startup"
-                              : "Disabling AnonSurf at startup");
+  beginAction(action, enabled ? "Enabling Anonimax at startup"
+                              : "Disabling Anonimax at startup");
   m_systemd.setAnonSurfEnabled(enabled);
 }
 
 void AnonSurfBackend::openMonitor() { m_commands.openMonitor(); }
 
 void AnonSurfBackend::dismissError() { setError({}); }
+
+void AnonSurfBackend::runPanic() {
+  if (m_busy)
+    return;
+  beginAction("panic", "Executing emergency shutdown...");
+  m_commands.runPanic();
+}
+
+void AnonSurfBackend::toggleAutochange() {
+  if (m_busy)
+    return;
+  if (m_autochangeActive) {
+    beginAction("autochange", "Stopping auto identity change");
+    m_commands.runAutochange(false);
+  } else {
+    beginAction("autochange", "Starting auto identity change every 10 minutes");
+    m_commands.runAutochange(true, 10);
+  }
+}

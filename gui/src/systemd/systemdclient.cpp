@@ -11,9 +11,9 @@ constexpr auto Service = "org.freedesktop.systemd1";
 constexpr auto ManagerPath = "/org/freedesktop/systemd1";
 constexpr auto ManagerInterface = "org.freedesktop.systemd1.Manager";
 constexpr auto PropertiesInterface = "org.freedesktop.DBus.Properties";
-constexpr auto AnonSurfUnit = "anonsurfd.service";
+constexpr auto AnonSurfUnit = "animaxd.service";
 constexpr auto AnonSurfPath =
-    "/org/freedesktop/systemd1/unit/anonsurfd_2eservice";
+    "/org/freedesktop/systemd1/unit/animaxd_2eservice";
 constexpr auto ServiceInterface = "org.freedesktop.systemd1.Service";
 constexpr int AuthorizationTimeout = std::numeric_limits<int>::max();
 

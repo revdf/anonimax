@@ -10,13 +10,13 @@ import (
 )
 
 const (
-	ActiveStatePath    = "/run/anonsurf/active"
+	ActiveStatePath    = "/run/anonimax/active"
 	DNSStatePath       = dns.StatePath
-	TorStatePath       = "/run/anonsurf/tor.was-active"
-	MACStatePath       = "/run/anonsurf/original-mac"
-	TimezoneStatePath  = "/run/anonsurf/original-timezone"
-	AVModulesStatePath = "/run/anonsurf/loaded-av-modules"
-	stateMarkerContent = "anonsurf\n"
+	TorStatePath       = "/run/anonimax/tor.was-active"
+	MACStatePath       = "/run/anonimax/original-mac"
+	TimezoneStatePath  = "/run/anonimax/original-timezone"
+	AVModulesStatePath = "/run/anonimax/loaded-av-modules"
+	stateMarkerContent = "anonimax\n"
 )
 
 func (c Controller) markActive() error {

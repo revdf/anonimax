@@ -22,7 +22,7 @@ func statusCommand(reader status.Reader, monitor anonsurf.MonitorClient) *cobra.
 			if useNyx && useJSON {
 				return cli.NewError(
 					"options --nyx and --json cannot be used together",
-					"Run 'anonsurf status --nyx' for the interactive monitor or 'anonsurf status --json' for machine-readable output.",
+					"Run 'anonimax status --nyx' for the interactive monitor or 'anonimax status --json' for machine-readable output.",
 				)
 			}
 			return nil
@@ -71,7 +71,7 @@ func monitorCommand(monitor anonsurf.MonitorClient) *cobra.Command {
 
 func printStatus(printer console.Printer, snapshot status.Snapshot) {
 	printer.Result("Anonimax status")
-	printer.Resultf("  Anonimax: %s\n", activeLabel(snapshot.AnonSurfActive))
+	printer.Resultf("  Anonimax: %s\n", activeLabel(snapshot.AnonimaxActive))
 	printer.Resultf("  Tor:      %s\n", activeLabel(snapshot.TorActive))
 	printer.Resultf("  DNS:      %s\n", dnsLabel(snapshot.DNSState))
 	if len(snapshot.DNSAddresses) > 0 {
@@ -80,7 +80,7 @@ func printStatus(printer console.Printer, snapshot status.Snapshot) {
 }
 
 type statusOutput struct {
-	AnonSurfActive bool            `json:"anonsurf_active"`
+	AnonimaxActive bool            `json:"anonimax_active"`
 	TorActive      bool            `json:"tor_active"`
 	DNSState       status.DNSState `json:"dns_state"`
 	DNSAddresses   []string        `json:"dns_addresses"`
@@ -88,7 +88,7 @@ type statusOutput struct {
 
 func newStatusOutput(snapshot status.Snapshot) statusOutput {
 	return statusOutput{
-		AnonSurfActive: snapshot.AnonSurfActive,
+		AnonimaxActive: snapshot.AnonimaxActive,
 		TorActive:      snapshot.TorActive,
 		DNSState:       snapshot.DNSState,
 		DNSAddresses:   append([]string{}, snapshot.DNSAddresses...),

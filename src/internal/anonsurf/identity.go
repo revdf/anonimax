@@ -17,8 +17,8 @@ import (
 )
 
 const (
-	AutoChangeStatePath = "/run/anonsurf/autochange"
-	AutoChangeUnit      = "anonsurf-autochange.service"
+	AutoChangeStatePath = "/run/anonimax/autochange"
+	AutoChangeUnit      = "anonimax-autochange.service"
 )
 
 var ErrNotRunning = errors.New("Anonimax is not running")
@@ -29,9 +29,9 @@ var (
 )
 
 func (Controller) ChangeIdentity() error {
-	active, err := systemd.NewAnonsurfdController().IsActive()
+	active, err := systemd.NewAnimaxdController().IsActive()
 	if err != nil {
-		return fmt.Errorf("check AnonSurf service: %w", err)
+		return fmt.Errorf("check Anonimax service: %w", err)
 	}
 	if !active {
 		return ErrNotRunning
@@ -77,9 +77,9 @@ func (c Controller) EnableAutoChange(minutes int) error {
 	if minutes < 1 {
 		return fmt.Errorf("interval must be a number >= 1")
 	}
-	active, err := systemd.NewAnonsurfdController().IsActive()
+	active, err := systemd.NewAnimaxdController().IsActive()
 	if err != nil {
-		return fmt.Errorf("check AnonSurf service: %w", err)
+		return fmt.Errorf("check Anonimax service: %w", err)
 	}
 	if !active {
 		return ErrNotRunning
@@ -131,7 +131,7 @@ func (Controller) startAutoChangeUnit(minutes int) error {
 	_ = runner.Run("systemctl", "stop", AutoChangeUnit)
 	if err := runner.Run(
 		"systemd-run",
-		"--unit=anonsurf-autochange",
+		"--unit=anonimax-autochange",
 		"--property=Restart=on-failure",
 		BinaryPath, "autochange-loop", strconv.Itoa(minutes),
 	); err != nil {

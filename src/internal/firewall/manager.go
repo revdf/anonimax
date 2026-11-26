@@ -12,7 +12,7 @@ import (
 const (
 	SavePath       = "/usr/sbin/iptables-save"
 	RestorePath    = "/usr/sbin/iptables-restore"
-	StatePath      = "/run/anonsurf/iptables.rules"
+	StatePath      = "/run/anonimax/iptables.rules"
 	defaultTorUser = "debian-tor"
 )
 

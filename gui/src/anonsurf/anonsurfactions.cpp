@@ -1,7 +1,7 @@
 #include "anonsurf/anonsurfbackend.h"
 
 namespace {
-constexpr auto AnonSurfUnit = "anonsurfd.service";
+constexpr auto AnonSurfUnit = "animaxd.service";
 constexpr int IPCheckDelayMs = 2000;
 } // namespace
 

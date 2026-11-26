@@ -23,12 +23,12 @@ func showDNSStatus(printer console.Printer) error {
 		return fmt.Errorf("%w: %s contains no nameservers", errDNSUnusable, dns.ResolvConfPath)
 	}
 
-	active, err := systemd.NewAnonsurfdController().IsActive()
+	active, err := systemd.NewAnimaxdController().IsActive()
 	if err != nil {
-		return fmt.Errorf("read AnonSurf status: %w", err)
+		return fmt.Errorf("read Anonimax status: %w", err)
 	}
 	if !active && dns.HasOnlyLocalhost(addresses) {
-		return fmt.Errorf("%w: localhost is the only DNS server while AnonSurf is inactive", errDNSUnusable)
+		return fmt.Errorf("%w: localhost is the only DNS server while Anonimax is inactive", errDNSUnusable)
 	}
 
 	mode := "clearnet"

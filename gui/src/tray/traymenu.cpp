@@ -4,11 +4,11 @@
 
 TrayMenu::TrayMenu(QWidget *parent) : QMenu(parent) {
   setToolTipsVisible(true);
-  m_status = addAction("AnonSurf: UNAVAILABLE");
+  m_status = addAction("Anonimax: UNAVAILABLE");
   m_status->setEnabled(false);
-  addAction("Show AnonSurf", this, &TrayMenu::showRequested);
+  addAction("Show Anonimax", this, &TrayMenu::showRequested);
   addSeparator();
-  m_toggle = addAction("Start AnonSurf", this, [this]() {
+  m_toggle = addAction("Start Anonimax", this, [this]() {
     emit lifecycleRequested(m_active ? "stop" : "start");
   });
   m_restart = addAction("Restart", this,
@@ -18,7 +18,7 @@ TrayMenu::TrayMenu(QWidget *parent) : QMenu(parent) {
   m_monitor = addAction("Tor Monitor", this, &TrayMenu::monitorRequested);
   addSeparator();
   m_quit = addAction("Quit", this, &TrayMenu::quitRequested);
-  m_quit->setToolTip("Quit the interface without stopping AnonSurf routing.");
+  m_quit->setToolTip("Quit the interface without stopping Anonimax routing.");
   m_toggle->setToolTip("Uses the SafeKill option selected in the main window.");
   m_restart->setToolTip(
       "Uses the SafeKill option selected in the main window.");
@@ -29,9 +29,9 @@ TrayMenu::TrayMenu(QWidget *parent) : QMenu(parent) {
 
 void TrayMenu::updateState(const TrayState &state) {
   m_active = state.active;
-  m_status->setText("AnonSurf: " + state.label);
+  m_status->setText("Anonimax: " + state.label);
   m_status->setToolTip(state.detail);
-  m_toggle->setText(state.active ? "Stop AnonSurf" : "Start AnonSurf");
+  m_toggle->setText(state.active ? "Stop Anonimax" : "Start Anonimax");
   const bool ready = state.available && !state.busy;
   m_toggle->setEnabled(ready);
   m_restart->setEnabled(ready && state.active);

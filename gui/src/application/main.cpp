@@ -18,13 +18,13 @@ int main(int argc, char *argv[]) {
   QQuickStyle::setStyle("Fusion");
 
   QApplication app(argc, argv);
-  app.setApplicationName("anonsurf-gui");
+  app.setApplicationName("anonimax-gui");
   app.setApplicationDisplayName("Anonimax");
   app.setOrganizationName("ParrotSec");
   app.setApplicationVersion(ANONSURF_VERSION);
   app.setDesktopFileName("org.parrotsec.Anonsurf");
   app.setWindowIcon(
-      QIcon::fromTheme("anonsurf", QIcon(":/icons/anonsurf.png")));
+      QIcon::fromTheme("anonimax", QIcon(":/icons/anonimax.png")));
 
   DesktopInstance instance;
   const auto startup = instance.start();
@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
   auto *window = qobject_cast<QWindow *>(engine.rootObjects().first());
   if (!window) {
-    qCritical() << "The main AnonSurf window is unavailable.";
+    qCritical() << "The main Anonimax window is unavailable.";
     return 1;
   }
   desktop.attachWindow(window);

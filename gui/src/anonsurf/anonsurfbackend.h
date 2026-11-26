@@ -21,6 +21,7 @@ class AnonSurfBackend final : public QObject {
   Q_PROPERTY(QString torCheck READ torCheck NOTIFY changed)
   Q_PROPERTY(QString progress READ progress NOTIFY changed)
   Q_PROPERTY(QString errorMessage READ errorMessage NOTIFY changed)
+  Q_PROPERTY(bool autochangeActive READ autochangeActive NOTIFY changed)
 
 public:
   explicit AnonSurfBackend(QObject *parent = nullptr);
@@ -38,6 +39,7 @@ public:
   QString torCheck() const;
   QString progress() const;
   QString errorMessage() const;
+  bool autochangeActive() const;
 
   Q_INVOKABLE void refresh();
   Q_INVOKABLE void start(bool safeKill);
@@ -48,6 +50,8 @@ public:
   Q_INVOKABLE void setBootEnabled(bool enabled);
   Q_INVOKABLE void openMonitor();
   Q_INVOKABLE void dismissError();
+  Q_INVOKABLE void runPanic();
+  Q_INVOKABLE void toggleAutochange();
 
 signals:
   void changed();
@@ -83,12 +87,13 @@ private:
   bool m_busy = false;
   bool m_autoCheck = false;
   bool m_ipCheckStale = false;
+  bool m_autochangeActive = false;
   QString m_dnsState;
   QStringList m_dnsAddresses;
   QString m_dnsMode = "Unavailable";
   QString m_dnsServers = "No data";
   QString m_protectionState = "UNAVAILABLE";
-  QString m_protectionDetail = "Waiting for AnonSurf status.";
+  QString m_protectionDetail = "Waiting for Anonimax status.";
   QString m_publicIP = "Not checked";
   QString m_torCheck = "UNKNOWN";
   QString m_progress = "Ready";

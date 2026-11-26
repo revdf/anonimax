@@ -9,7 +9,7 @@ import (
 
 const (
 	SystemctlPath = "/usr/bin/systemctl"
-	AnonsurfdUnit = "animaxd.service"
+	AnimaxdUnit   = "animaxd.service"
 	TorUnit       = "tor@default.service"
 )
 
@@ -18,9 +18,9 @@ type ServiceController struct {
 	privileged bool
 }
 
-func NewAnonsurfdController() ServiceController {
+func NewAnimaxdController() ServiceController {
 	return ServiceController{
-		unit:       AnonsurfdUnit,
+		unit:       AnimaxdUnit,
 		privileged: true,
 	}
 }

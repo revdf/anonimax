@@ -20,7 +20,7 @@ Item {
                 anchors.centerIn: parent
                 width: 42
                 height: 42
-                source: "qrc:/icons/anonsurf.png"
+                source: "qrc:/icons/anonimax.png"
                 fillMode: Image.PreserveAspectFit
             }
         }

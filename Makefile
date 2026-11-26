@@ -76,9 +76,9 @@ inst-bins:
 
 inst-gui:
 	cp build/gui/anonsurf-gui $(DESTDIR)/usr/bin/anonimax-gui
-	cp gui/org.parrotsec.Anonsurf.desktop $(DESTDIR)/usr/share/applications/.
+	cp gui/org.parrotsec.Anonimax.desktop $(DESTDIR)/usr/share/applications/.
 	cp gui/org.parrotsec.AnonimaxCli.desktop $(DESTDIR)/usr/share/applications/.
-	cp icons/anonsurf.png $(DESTDIR)/usr/share/icons/hicolor/512x512/apps/anonsurf.png
+	cp icons/anonimax.png $(DESTDIR)/usr/share/icons/hicolor/512x512/apps/anonimax.png
 
 inst-perms:
 	chmod +x $(DESTDIR)/usr/lib/anonimax/anondaemon $(DESTDIR)/usr/lib/anonimax/make-torrc $(DESTDIR)/usr/lib/anonimax/safekill $(DESTDIR)/usr/bin/anonimax $(DESTDIR)/usr/bin/anonimax-gui
@@ -101,9 +101,9 @@ uninstall:
 	rm -rf /usr/lib/anonimax/
 	rm /usr/bin/anonimax
 	rm /usr/bin/anonimax-gui
-	rm /usr/share/applications/org.parrotsec.Anonsurf.desktop
+	rm /usr/share/applications/org.parrotsec.Anonimax.desktop
 	rm /usr/share/applications/org.parrotsec.AnonimaxCli.desktop
-	rm /usr/share/icons/hicolor/512x512/apps/anonsurf.png
+	rm /usr/share/icons/hicolor/512x512/apps/anonimax.png
 	rm /lib/systemd/system/animaxd.service
 	rm /lib/systemd/system/anonimax-recovery.service
 	rm /lib/systemd/system/anonimax-identity.service

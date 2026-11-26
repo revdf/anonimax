@@ -85,7 +85,7 @@ func writeRootHelp(output io.Writer, root *cobra.Command) {
 		writeLogo(output)
 	} else {
 		fmt.Fprintf(output, "Anonimax %s\nSystem-wide Tor routing & privacy tool\n", version)
-		fmt.Fprintln(output, "Parrot Security team")
+		fmt.Fprintln(output, "revdf")
 		fmt.Fprintln(output, "GPL-3.0")
 	}
 
@@ -94,7 +94,7 @@ func writeRootHelp(output io.Writer, root *cobra.Command) {
 		descriptions[command.Name()] = command.Short
 	}
 
-	fmt.Fprintf(output, "\n  %sUsage%s     anonsurf <command> [flags]\n\n", muted, reset)
+	fmt.Fprintf(output, "\n  %sUsage%s     anonimax <command> [flags]\n\n", muted, reset)
 	fmt.Fprintf(output, "  %sCOMMANDS%s\n", bold, reset)
 	for _, entry := range rootHelpEntries {
 		fmt.Fprintf(output, "  %s%-12s%s %s%-13s%s %s\n",
@@ -115,10 +115,10 @@ func writeLogo(output io.Writer) {
 	title := [...]string{
 		"",
 		"",
-		boldText + blueText + "ANONSURF" + resetText,
+		boldText + blueText + "ANONIMAX" + resetText,
 		mutedText + "System-wide Tor routing & privacy tool" + resetText,
 		mutedText + "Version " + version + resetText,
-		mutedText + "Parrot Security team" + resetText,
+		mutedText + "revdf" + resetText,
 		mutedText + "GPL-3.0" + resetText,
 	}
 	for row := 0; row < len(logoPixels)/2; row++ {

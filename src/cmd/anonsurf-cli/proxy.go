@@ -13,10 +13,10 @@ func proxyCommand(client anonsurf.ProxyClient) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "proxy",
 		Short: "Configure upstream HTTP/HTTPS/SOCKS5 proxy",
-		Long: "Configure or remove the upstream proxy used with AnonSurf.\n" +
-			"  anonsurf proxy set socks5://127.0.0.1:1080\n" +
-			"  anonsurf proxy set http://user:pass@127.0.0.1:8080\n" +
-			"  anonsurf proxy unset",
+		Long: "Configure or remove the upstream proxy used with Anonimax.\n" +
+			"  anonimax proxy set socks5://127.0.0.1:1080\n" +
+			"  anonimax proxy set http://user:pass@127.0.0.1:8080\n" +
+			"  anonimax proxy unset",
 		Args: cli.Subcommands("action"),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return cmd.Help()

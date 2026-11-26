@@ -32,7 +32,7 @@ QString SystemdClient::jobError(const QString &action, const QString &result) {
     return QString("Tor could not change identity (systemd result: %1).")
         .arg(result);
   }
-  return QString("AnonSurf could not complete the %1 operation "
+  return QString("Anonimax could not complete the %1 operation "
                  "(systemd result: %2).")
       .arg(action, result);
 }

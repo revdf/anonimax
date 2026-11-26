@@ -8,8 +8,8 @@ import (
 	"gitlab.com/parrotsec/packages/anonsurf/internal/fileops"
 )
 
-// UpdateKeys rewrites key=value pairs in the AnonSurf config file.
-// Missing keys are appended inside the AnonSurfConfig section.
+// UpdateKeys rewrites key=value pairs in the Anonimax config file.
+// Missing keys are appended inside the AnonimaxConfig section.
 func UpdateKeys(path string, values map[string]string) error {
 	data, err := os.ReadFile(path)
 	if err != nil {

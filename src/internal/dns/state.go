@@ -8,13 +8,13 @@ import (
 	"gitlab.com/parrotsec/packages/anonsurf/internal/fileops"
 )
 
-const StatePath = "/var/lib/anonsurf/dns.changed"
+const StatePath = "/var/lib/anonimax/dns.changed"
 
 type dnsState string
 
 const (
 	stateUntracked          dnsState = ""
-	stateManaged            dnsState = "anonsurf\n"
+	stateManaged            dnsState = "anonimax\n"
 	stateRestored           dnsState = "restored\n"
 	stateRestoredStandalone dnsState = "restored-standalone\n"
 )

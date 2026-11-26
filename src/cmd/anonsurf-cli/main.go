@@ -22,7 +22,7 @@ var version = "6.0.0"
 func main() {
 	if err := execute(os.Args[1:], os.Stdout, os.Stderr); err != nil {
 		printer := console.New(os.Stdout, os.Stderr)
-		printer.Error(fmt.Sprintf("anonsurf: %v", err))
+		printer.Error(fmt.Sprintf("anonimax: %v", err))
 		if hint := cli.Hint(err); hint != "" {
 			printer.Info(hint)
 		}
@@ -74,7 +74,7 @@ func newRootCommand(stdout, stderr io.Writer) *cobra.Command {
 	rootCmd.CompletionOptions.DisableDefaultCmd = true
 	rootCmd.PersistentFlags().BoolVar(&verbose, "verbose", false, "Show commands and their output")
 
-	service := systemd.NewAnonsurfdController()
+	service := systemd.NewAnimaxdController()
 	monitor := anonsurf.MonitorClient{}
 	safeKill := safekill.Runner{}
 	rootCmd.AddCommand(

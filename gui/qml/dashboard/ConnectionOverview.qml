@@ -33,7 +33,7 @@ Rectangle {
             value: !root.backend.statusAvailable ? "UNKNOWN"
                    : root.backend.torActive ? "ACTIVE" : "INACTIVE"
             detail: !root.backend.statusAvailable ? "Unavailable"
-                    : root.backend.anonsurfActive ? "Managed by AnonSurf" : "System service"
+                    : root.backend.anonsurfActive ? "Managed by Anonimax" : "System service"
             accentColor: root.backend.statusAvailable && root.backend.torActive
                          ? Theme.neonCyan : Theme.textPrimary
         }
@@ -85,7 +85,7 @@ Rectangle {
                 ToggleOption {
                     Layout.fillWidth: true
                     label: root.backend.bootEnabled ? "Enabled" : "Disabled"
-                    tooltip: "Starts AnonSurf during boot. Traffic sent before routing is activated is not covered."
+                    tooltip: "Starts Anonimax during boot. Traffic sent before routing is activated is not covered."
                     checked: root.backend.bootEnabled
                     enabled: !root.backend.busy
                     // The box follows the service, not the click: a refused
