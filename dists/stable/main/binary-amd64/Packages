@@ -6,13 +6,11 @@ Installed-Size: 10205
 Depends: libc6 (>= 2.34), iptables, network-manager, procps, tor, systemd | systemctl, sudo, macchanger, isc-dhcp-client
 Recommends: bleachbit, tor-geoipdb
 Suggests: obfs4proxy, snowflake-client
-Conflicts: anonsurf
-Replaces: anonsurf
 Filename: pool/main/a/anonimax/anonimax_6.1.0+anonimax1_amd64.deb
-Size: 1950796
-MD5sum: 85573b18c00ff45f8f5503c3f5c38df9
-SHA1: 8fac9963869a6c9f443fdb32d1fd8bf3329a29bb
-SHA256: b2aecc2881a2212b988feb7d7260ee459be582fac8fb00fc6d8ddfbd7b20bb61
+Size: 1951552
+MD5sum: 8d4393fe1ea534bbecbfc389be38a5bb
+SHA1: d754d534e3a352d438fde4187abbbdef822c19ef
+SHA256: 8ab43e11813c0c1d3e44d0c3da190118565c07479e33907acccb522f2667e588
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax
@@ -29,13 +27,11 @@ Architecture: amd64
 Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
 Installed-Size: 8617
 Depends: libc6 (>= 2.34), anonimax (= 6.1.0+anonimax1), nyx, sudo
-Conflicts: anonsurf-cli
-Replaces: anonsurf-cli
 Filename: pool/main/a/anonimax/anonimax-cli_6.1.0+anonimax1_amd64.deb
-Size: 2780132
-MD5sum: ff621b10a568b0e563c9c0c51490ffbe
-SHA1: 3e3c524318eb1d5e9b6de93c990a94445478e135
-SHA256: efa72c4f7365b820adb5fc980ec94bdf118e54517e0e318c6fe01f4b4eec525e
+Size: 2778676
+MD5sum: 31bf6cde23aa1fd185b9eee4755b9873
+SHA1: 1a588a0c00d8c56461edfea252cec773398f707c
+SHA256: 62b25a34d1892576b1ef11bb14b45a996b2ca024de34fce1d637ed155a2851d9
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax
@@ -49,13 +45,11 @@ Architecture: amd64
 Maintainer: rhaniere pimenta evaristo vieira <rhanierevieira@gmail.com>
 Installed-Size: 811
 Depends: libc6 (>= 2.34), libgcc-s1 (>= 3.0), libqt6core6t64 (>= 6.8.2), libqt6dbus6 (>= 6.8.2), libqt6gui6 (>= 6.4.0), libqt6qml6 (>= 6.6.0), libqt6quickcontrols2-6 (>= 6.6.0), libqt6widgets6 (>= 6.3.0), libstdc++6 (>= 14), anonimax-cli (= 6.1.0+anonimax1), fonts-inter, konsole, qml6-module-qtcore, qml6-module-qtquick, qml6-module-qtquick-controls, qml6-module-qtquick-layouts, qml6-module-qtquick-shapes
-Conflicts: anonsurf-gtk, anonsurf-gui
-Replaces: anonsurf-gtk, anonsurf-gui
 Filename: pool/main/a/anonimax/anonimax-gui_6.1.0+anonimax1_amd64.deb
-Size: 201008
-MD5sum: 52a599e59b722d848016f75b368e5c5a
-SHA1: 8e419f358de1611c8f93d880e402239c1bfbb48f
-SHA256: cd9aaaeebea74f76eecd05e154412a3fb8ef8faef4ecc9ac7e742a49d9557e9f
+Size: 200988
+MD5sum: 14432ab7c33b11cb10a2654051498b30
+SHA1: 7669ed35b0e27aac594e67005f5642cfe1969bd5
+SHA256: 6e77b84af4ca12354758610222553c4004ea506db286e77e171787cbf83efbc8
 Section: net
 Priority: optional
 Homepage: https://revdf.github.io/anonimax
