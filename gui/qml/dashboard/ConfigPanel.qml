@@ -5,6 +5,9 @@ Rectangle {
     id: root
 
     required property var config
+    signal proxyConfigRequested()
+    signal proxyNotConfigured()
+    signal vpnNotConfigured()
 
     implicitHeight: content.implicitHeight + Theme.spacingLarge * 2
     color: Theme.bgPanel
@@ -111,7 +114,18 @@ Rectangle {
                 tooltip: "Connects to the VPN defined in vpn_config_path before starting Tor."
                 checked: root.config.useVPN
                 enabled: !root.config.busy
-                onClicked: root.config.setSetting("use_vpn", root.config.useVPN ? "false" : "true")
+                onClicked: {
+                    if (root.config.useVPN) {
+                        root.config.setSetting("use_vpn", "false")
+                    } else {
+                        if (root.config.vpnConfigPath !== "") {
+                            root.config.setSetting("use_vpn", "true")
+                        } else {
+                            root.vpnNotConfigured()
+                        }
+                    }
+                    checked = Qt.binding(() => root.config.useVPN)
+                }
             }
 
             ToggleOption {
@@ -120,7 +134,20 @@ Rectangle {
                 tooltip: "Routes traffic through the configured SOCKS5/HTTP proxy."
                 checked: root.config.useProxy
                 enabled: !root.config.busy
-                onClicked: root.config.setSetting("use_proxy", root.config.useProxy ? "false" : "true")
+                onClicked: {
+                    if (root.config.useProxy) {
+                        root.config.setSetting("use_proxy", "false")
+                    } else {
+                        const hasProxy = root.config.socks5Address !== ""
+                                         || root.config.httpAddress !== ""
+                        if (hasProxy) {
+                            root.config.setSetting("use_proxy", "true")
+                        } else {
+                            root.proxyNotConfigured()
+                        }
+                    }
+                    checked = Qt.binding(() => root.config.useProxy)
+                }
             }
         }
     }

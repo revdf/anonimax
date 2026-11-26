@@ -49,6 +49,8 @@ qt_add_qml_module(anonsurf-gui
         qml/about/AboutWindow.qml
         qml/about/AboutField.qml
         qml/app/ConfirmDialog.qml
+        qml/app/ProxyConfigDialog.qml
+        qml/app/VpnConfigDialog.qml
         qml/app/CrtOverlay.qml
         qml/app/ErrorDialog.qml
         qml/app/HeaderBar.qml
@@ -63,6 +65,7 @@ qt_add_qml_module(anonsurf-gui
         qml/dashboard/ActionPanel.qml
         qml/dashboard/ConfigPanel.qml
         qml/dashboard/ConnectionOverview.qml
+        qml/dashboard/LogPanel.qml
         qml/dashboard/ProtectionPanel.qml
         qml/theme/IconPaths.qml
         qml/theme/Theme.qml

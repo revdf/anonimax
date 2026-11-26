@@ -13,16 +13,14 @@ ApplicationWindow {
     property string _lastState: ""
     property string _lastProgress: ""
 
-    ListModel { id: logModel }
+    property string logText: ""
 
     function logEntry(message, entryType) {
-        logModel.append({
-            time: Qt.formatTime(new Date(), "hh:mm:ss"),
-            message: message,
-            entryType: entryType || "info"
-        })
-        if (logModel.count > 300)
-            logModel.remove(0)
+        var prefix = entryType === "error"   ? "✗"
+                   : entryType === "success" ? "✓"
+                   : entryType === "warn"    ? "⚠"
+                   : "→"
+        logText += Qt.formatTime(new Date(), "hh:mm:ss") + "  " + prefix + " " + message + "\n"
     }
     // The tray needs fresh status even while the window is hidden.
     readonly property bool live: window.visible
@@ -52,6 +50,8 @@ ApplicationWindow {
     }
     onClosing: close => {
         aboutWindow.close();
+        if (logPanel.saveOnExit && window.logText !== "")
+            window.config.saveLog(window.logText)
         if (window.desktop.hideToTray())
             close.accepted = false;
     }
@@ -120,6 +120,8 @@ ApplicationWindow {
                 ConfigPanel {
                     width: parent.width
                     config: window.config
+                    onProxyNotConfigured: proxyWarningDialog.open()
+                    onVpnNotConfigured: vpnWarningDialog.open()
                 }
 
                 ConnectionOverview {
@@ -136,9 +138,10 @@ ApplicationWindow {
                 }
 
                 LogPanel {
+                    id: logPanel
                     width: parent.width
-                    height: 200
-                    logModel: window.logModel
+                    logText: window.logText
+                    onClearRequested: window.logText = ""
                 }
             }
         }
@@ -178,6 +181,42 @@ ApplicationWindow {
         backend: window.backend
     }
 
+    ConfirmDialog {
+        id: proxyWarningDialog
+
+        badge: "PROXY"
+        accentColor: Theme.accent
+        confirmText: "Configure"
+        message: "No proxy is configured. You need a SOCKS5 or HTTP proxy "
+                 + "already running on your machine before enabling this option.\n\n"
+                 + "Do you want to configure one now?"
+        onAccepted: proxyConfigDialog.open()
+    }
+
+    ProxyConfigDialog {
+        id: proxyConfigDialog
+
+        config: window.config
+    }
+
+    ConfirmDialog {
+        id: vpnWarningDialog
+
+        badge: "VPN"
+        accentColor: Theme.accent
+        confirmText: "Configure"
+        message: "No VPN configuration file is set. You need an OpenVPN (.ovpn) "
+                 + "or WireGuard (.conf) config file on this machine.\n\n"
+                 + "Do you want to set the path now?"
+        onAccepted: vpnConfigDialog.open()
+    }
+
+    VpnConfigDialog {
+        id: vpnConfigDialog
+
+        config: window.config
+    }
+
     Connections {
         target: window.desktop
 
@@ -195,8 +234,10 @@ ApplicationWindow {
         target: window.backend
 
         function onChanged() {
-            if (window.backend.errorMessage !== "" && !errorDialog.opened)
+            if (window.backend.errorMessage !== "" && !errorDialog.opened) {
+                window.logEntry("✗ Error: " + window.backend.errorMessage, "error")
                 errorDialog.open();
+            }
 
             var state = window.backend.protectionState
             if (state !== window._lastState) {

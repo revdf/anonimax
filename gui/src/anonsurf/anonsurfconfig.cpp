@@ -1,6 +1,11 @@
 #include "anonsurf/anonsurfconfig.h"
 
+#include <QDateTime>
+#include <QDir>
+#include <QFile>
 #include <QProcess>
+#include <QStandardPaths>
+#include <QTextStream>
 
 namespace {
 constexpr auto AnonSurfBin = "/usr/bin/anonimax";
@@ -36,6 +41,24 @@ void AnonSurfConfig::setSetting(const QString &key, const QString &value) {
        value});
 }
 
+bool AnonSurfConfig::saveLog(const QString &text) {
+  const QString dir = QStandardPaths::writableLocation(
+                          QStandardPaths::AppLocalDataLocation)
+                      + QStringLiteral("/logs");
+  if (!QDir().mkpath(dir))
+    return false;
+  const QString filename = dir + QStringLiteral("/anonimax-")
+                           + QDateTime::currentDateTime().toString(
+                                 QStringLiteral("yyyy-MM-dd_HH-mm-ss"))
+                           + QStringLiteral(".log");
+  QFile f(filename);
+  if (!f.open(QIODevice::WriteOnly | QIODevice::Text))
+    return false;
+  QTextStream out(&f);
+  out << text;
+  return true;
+}
+
 void AnonSurfConfig::parseOutput(const QString &output) {
   for (const QString &line :
        output.split(QLatin1Char('\n'), Qt::SkipEmptyParts)) {
@@ -57,5 +80,6 @@ void AnonSurfConfig::parseOutput(const QString &output) {
     else if (k == QLatin1String("use_proxy"))            m_useProxy         = bv;
     else if (k == QLatin1String("vpn_config_path"))      m_vpnConfigPath    = v;
     else if (k == QLatin1String("socks5_proxy_address")) m_socks5Address    = v;
+    else if (k == QLatin1String("http_proxy_address"))   m_httpAddress      = v;
   }
 }

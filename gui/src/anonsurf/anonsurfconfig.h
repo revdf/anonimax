@@ -17,6 +17,7 @@ class AnonSurfConfig final : public QObject {
   Q_PROPERTY(bool useProxy         READ useProxy         NOTIFY changed)
   Q_PROPERTY(QString vpnConfigPath READ vpnConfigPath    NOTIFY changed)
   Q_PROPERTY(QString socks5Address READ socks5Address    NOTIFY changed)
+  Q_PROPERTY(QString httpAddress   READ httpAddress      NOTIFY changed)
   Q_PROPERTY(bool busy             READ busy             NOTIFY changed)
 
 public:
@@ -33,10 +34,12 @@ public:
   bool    useProxy()         const { return m_useProxy; }
   QString vpnConfigPath()    const { return m_vpnConfigPath; }
   QString socks5Address()    const { return m_socks5Address; }
+  QString httpAddress()      const { return m_httpAddress; }
   bool    busy()             const { return m_busy; }
 
   Q_INVOKABLE void refresh();
   Q_INVOKABLE void setSetting(const QString &key, const QString &value);
+  Q_INVOKABLE bool saveLog(const QString &text);
 
 signals:
   void changed();
@@ -55,6 +58,7 @@ private:
   bool    m_useProxy         = false;
   QString m_vpnConfigPath;
   QString m_socks5Address;
+  QString m_httpAddress;
   bool    m_busy = false;
 
   QProcess m_writeProcess;
