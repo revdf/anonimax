@@ -6,8 +6,8 @@
 #include <QDebug>
 
 namespace {
-constexpr auto Service = "org.parrotsec.Anonsurf";
-constexpr auto Path = "/org/parrotsec/Anonsurf";
+constexpr auto Service = "org.parrotsec.Anonimax";
+constexpr auto Path = "/org/parrotsec/Anonimax";
 } // namespace
 
 DesktopInstance::DesktopInstance(const QDBusConnection &bus, QObject *parent)

@@ -5,7 +5,7 @@ import QtQuick.Window
 Window {
     id: root
 
-    readonly property string projectUrl: "https://gitlab.com/parrotsec/packages/anonsurf"
+    readonly property string projectUrl: "https://github.com/revdf/anonimax"
     readonly property int preferredHeight: content.implicitHeight + Theme.spacingLarge * 2
 
     // Note:
@@ -107,8 +107,8 @@ Window {
             AboutField {
                 Layout.fillWidth: true
                 label: "Maintainer"
-                value: "ParrotSec Team"
-                link: "mailto:team@parrotsec.org"
+                value: "revdf"
+                link: "https://github.com/revdf"
             }
         }
 

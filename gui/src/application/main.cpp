@@ -22,7 +22,7 @@ int main(int argc, char *argv[]) {
   app.setApplicationDisplayName("Anonimax");
   app.setOrganizationName("ParrotSec");
   app.setApplicationVersion(ANONSURF_VERSION);
-  app.setDesktopFileName("org.parrotsec.Anonsurf");
+  app.setDesktopFileName("org.parrotsec.Anonimax");
   app.setWindowIcon(
       QIcon::fromTheme("anonimax", QIcon(":/icons/anonimax.png")));
 

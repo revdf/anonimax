@@ -90,9 +90,8 @@ Rectangle {
                     enabled: !root.backend.busy
                     // The box follows the service, not the click: a refused
                     // authorisation leaves the real state on screen.
-                    onToggled: {
-                        if (checked !== root.backend.bootEnabled)
-                            root.backend.setBootEnabled(checked);
+                    onClicked: {
+                        root.backend.setBootEnabled(!root.backend.bootEnabled);
                         checked = Qt.binding(() => root.backend.bootEnabled);
                     }
                 }

@@ -123,8 +123,8 @@ Rectangle {
                 enabled: !root.backend.busy
                 // A checkbox click overwrites the binding, so it is restored to
                 // keep the box following the state the window actually holds.
-                onToggled: {
-                    root.safeKillToggled(checked);
+                onClicked: {
+                    root.safeKillToggled(!root.safeKill);
                     checked = Qt.binding(() => root.safeKill);
                 }
             }

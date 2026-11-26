@@ -123,6 +123,7 @@ ApplicationWindow {
 
     AboutWindow {
         id: aboutWindow
+        transientParent: window
     }
 
     ConfirmDialog {

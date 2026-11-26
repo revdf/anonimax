@@ -5,7 +5,7 @@
 
 class DesktopInstance final : public QObject {
   Q_OBJECT
-  Q_CLASSINFO("D-Bus Interface", "org.parrotsec.Anonsurf")
+  Q_CLASSINFO("D-Bus Interface", "org.parrotsec.Anonimax")
 
 public:
   enum class Startup { Primary, Activated, Unavailable, Failed };

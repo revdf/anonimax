@@ -32,7 +32,7 @@ void DesktopNotifications::send(const QString &title, const QString &message,
   auto request =
       QDBusMessage::createMethodCall(Service, Path, Service, "Notify");
   const QVariantMap hints{
-      {"desktop-entry", "org.parrotsec.Anonsurf"},
+      {"desktop-entry", "org.parrotsec.Anonimax"},
       {"urgency", QVariant::fromValue(static_cast<uchar>(error ? 2 : 1))}};
   request.setArguments({QString("Anonimax"), uint(0), QString("anonimax"),
                         title, message.toHtmlEscaped(),
