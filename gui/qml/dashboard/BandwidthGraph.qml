@@ -12,6 +12,7 @@ Canvas {
     onUpHistoryChanged:   requestPaint()
     onWidthChanged:       requestPaint()
     onHeightChanged:      requestPaint()
+    onVisibleChanged:     if (visible) requestPaint()
 
     function formatRate(bytes) {
         if (bytes >= 1048576) return (bytes / 1048576).toFixed(1) + " MB/s"
