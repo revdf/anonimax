@@ -1,10 +1,13 @@
 #pragma once
 
+#include <QDateTime>
 #include <QMap>
 #include <QObject>
+#include <QQueue>
 #include <QStringList>
 #include <QTcpSocket>
 #include <QVariantList>
+#include <functional>
 
 class TorMonitor final : public QObject {
   Q_OBJECT
@@ -38,15 +41,33 @@ signals:
 private:
   enum class State { Disconnected, Authenticating, Subscribing, Active };
 
+  struct Circuit {
+    int         id;
+    QStringList fps;        // hex fingerprints
+    QStringList nodes;      // relay display names
+    QStringList countries;  // 2-letter codes, "" while pending
+    QDateTime   builtAt;
+    int         buildMs = -1;
+  };
+
+  struct Request {
+    QString                               command;
+    std::function<void(QStringList)>      handler;
+  };
+
   void onConnected();
   void onReadyRead();
   void onError(QAbstractSocket::SocketError err);
   void processLine(const QString &line);
-  void parseBandwidth(const QString &line);
-  void parseCircuit(const QString &line);
+  void parseBandwidth(const QString &data);
+  void parseCircuit(const QString &data);
   void authenticate();
-  static QStringList parsePath(const QString &pathStr);
+  void enqueueRequest(const QString &cmd, std::function<void(QStringList)> handler);
+  void sendNextRequest();
+  void lookupCountries(int circId);
+  static QPair<QStringList, QStringList> parsePath(const QString &pathStr);
   static QString cookieHex();
+  static QString formatAge(const QDateTime &builtAt);
 
   QTcpSocket   m_socket;
   QString      m_buffer;
@@ -57,8 +78,13 @@ private:
   QVariantList m_downHistory;
   QVariantList m_upHistory;
 
-  struct Circuit { int id; QStringList nodes; };
-  QMap<int, Circuit> m_circuits;
+  QMap<int, Circuit>   m_circuits;
+  QMap<int, QDateTime> m_launchedAt;
+
+  QQueue<Request> m_requestQueue;
+  bool            m_reqPending   = false;
+  bool            m_inMultiLine  = false;
+  QStringList     m_responseLines;
 
   static constexpr int HistorySize = 60;
 };

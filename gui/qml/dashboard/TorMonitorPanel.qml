@@ -8,7 +8,7 @@ Rectangle {
     required property var torMonitor
 
     readonly property int headerH: 40
-    readonly property int bodyH:   256
+    readonly property int bodyH:   288
     property bool expanded: false
 
     implicitHeight: root.expanded ? root.headerH + root.bodyH : root.headerH
@@ -170,19 +170,44 @@ Rectangle {
         ListView {
             id: circuitList
             Layout.fillWidth: true
-            height: Math.min(contentHeight, 72)
+            height: Math.min(contentHeight, 112)
             clip: true
             visible: root.torMonitor.circuitCount > 0
             model: root.torMonitor.circuits
+            spacing: 2
 
-            delegate: Text {
+            delegate: Column {
                 required property var modelData
                 width: circuitList.width
-                text: "● " + (modelData.path || "")
-                color: Theme.textSecondary
-                font.family: Theme.uiFont
-                font.pixelSize: Theme.detailSize
-                elide: Text.ElideRight
+                spacing: 1
+
+                // Path line: "● [FR] Guard → [DE] Middle → [NL] Exit"
+                Text {
+                    width: parent.width
+                    text: "● " + (modelData.display || "")
+                    color: Theme.textSecondary
+                    font.family: Theme.uiFont
+                    font.pixelSize: Theme.detailSize
+                    elide: Text.ElideRight
+                }
+
+                // Meta line: "active 3m 24s  •  built in 0.8s"
+                Text {
+                    width: parent.width
+                    text: {
+                        const age   = modelData.age       || ""
+                        const built = modelData.buildTime || ""
+                        if (age && built)  return "  active " + age + "  ·  built in " + built
+                        if (age)           return "  active " + age
+                        if (built)         return "  built in " + built
+                        return ""
+                    }
+                    color: Theme.textDisabled
+                    font.family: Theme.uiFont
+                    font.pixelSize: Theme.detailSize - 1
+                    elide: Text.ElideRight
+                    visible: text.length > 0
+                }
             }
         }
     }
